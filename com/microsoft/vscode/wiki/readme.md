@@ -28,7 +28,7 @@ Welcome to the Code Wiki.
 - 怎样贡献（[How to Contribute]）
 - 提交漏洞和建议（[Submitting Bugs and Suggestions]）
 - 反馈渠道（[Feedback Channels]）
-- 代码组织（[Code Organization]）
+- [代码组织]（[Code Organization]）
 - 编码指南（[Coding Guidelines]）
 - 冒烟测试（[Smoke Test]）
 - 贡献者许可协议（[Contributor License Agreement]）
@@ -58,6 +58,7 @@ Welcome to the Code Wiki.
 [How to Contribute]: <https://github.com/Microsoft/vscode/wiki/How-to-Contribute>
 [Submitting Bugs and Suggestions]: <https://github.com/Microsoft/vscode/wiki/Submitting-Bugs-and-Suggestions>
 [Feedback Channels]: <https://github.com/Microsoft/vscode/wiki/Feedback-Channels>
+[代码组织]: <https://github.com/rzning/newbie/blob/master/com/microsoft/vscode/wiki/code_organization.md>
 [Code Organization]: <https://github.com/Microsoft/vscode/wiki/Code-Organization>
 [Coding Guidelines]: <https://github.com/Microsoft/vscode/wiki/Coding-Guidelines>
 [Smoke Test]: <https://github.com/Microsoft/vscode/wiki/Smoke-Test>

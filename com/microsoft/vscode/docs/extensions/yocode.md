@@ -60,4 +60,18 @@ options:
 你需要从一个新的扩展开始（推荐你这样做）。
 - 从一个 TextMate 颜色主题开始，将从一个现有的主题开始，可用于 `.tmTheme`。
 
+生成器将：
+
+- 提示输入颜色主题名称和颜色基本主题（light or dark）。
+- 提示输入扩展名称（identifier），并将在当前目录中创建该名称的文件夹。
+
+一旦创建，使用 VS Code 打开创建的文件夹，并运行扩展以测试新主题。
+
+查看 `vsc-extension-quickstart.md` 这是下一步操作的快速指南。
+
+### New Language Support
+
+创建一个扩展，来贡献一个用于着色器的语言。
+
+
 

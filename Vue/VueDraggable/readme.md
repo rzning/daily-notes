@@ -108,40 +108,127 @@ export default {
   },
   /**
    * 用于初始化 sortable 对象的配置项
+   * 注意，所以以 on 开头的方法都将被忽略，因为可拖动组件通过事件公开相同的 API。
+   * 例如，可以使用 :options="{handle:'.handle'}" 来添加一个拖动句柄。
    */
   options: {
     type: Object,
     required: false
   },
-
-  noTransitionOnDrag: {
-    type: Boolean,
-    default: false
+  /**
+   * 可拖动组件元素的 HTML 节点类型，为包含的槽（slot）创建的外部元素。
+   * 也可以将 vue 组件的名称作为元素传递。在这种情况下，可拖动属性将被传递给创建的组件。
+   */
+  element: {
+    type: String,
+    default: 'div'
   },
+  /**
+   * 当克隆选项为真时，函数调用源组件来克隆元素。
+   * 唯一的参数是要克隆的 viewModel 元素，返回的值是它的克隆版本。
+   * 默认框架将重用这个 viewModel 元素，所以如果你想克隆或深度克隆它，你必须使用这个钩子。
+   */
   clone: {
     type: Function,
     default: function _default(original) {
       return original;
     }
   },
-  element: {
-    type: String,
-    default: 'div'
-  },
+  /**
+   * 若此方法非空，将以类似于 Sortable onMove callback 的方式调用。
+   * 返回 false 将取消拖动操作。
+   */
   move: {
     type: Function,
     default: null
   },
+  /**
+   * 用来将额外的信息传递给由 `element` props 声明的子组件。
+   * Value:
+   * - props: 将被传递给子组件的 props
+   * - on: 要在子组件中订阅的事件
+   */
   componentData: {
     type: Object,
     required: false,
     default: null
+  },
+  /**
+   * 使能拖放无过渡效果
+   */
+  noTransitionOnDrag: {
+    type: Boolean,
+    default: false
   }
 }
 ```
 
-> [ sortable option documentation](https://github.com/RubaXa/Sortable#options)
+### props `options`:
 
+- 参考：[ sortable option documentation](https://github.com/RubaXa/Sortable#options)
+
+### props `move`:
+
+```
+function onMoveCallback(evt, originalEvent) {
+  ...
+  // return false; -- for cancel
+}
+```
+
+`evt` 对象具有和 [Sortable onMove event](https://github.com/RubaXa/Sortable#move-event-object)
+相同的属性，和下面附加属性：
+
+- `draggedContext`: 与拖动元素相关的上下文
+  - `index`: 被拖动元素的索引
+  - `element`: 被拖动元素的底层视图模型元素
+  - `futureIndex`: 被拖动的元素的潜在索引，若拖放操作被接受
+- `relatedContext`: 与当前拖动操作相关联的上下文
+  - `index`: 目标元素索引
+  - `element`: 目标元素视图模型元素
+  - `list`: 目标列表
+  - `component`: 目标 Vue 组件
+
+### props `componentData`:
+
+示例：
+
+```vue
+<draggable element="el-collapse" :list="list" :component-data="getComponentData()">
+  <el-collapse-item v-for="item in list"
+    :title="item.title" :name="item.name" :key="item.name">
+    <div>
+      {{item.description}}
+    </div>
+   </el-collapse-item>
+</draggable>
+```
+
+```js
+methods: {
+  handleChange() {
+    console.log('changed')
+  },
+  inputChanged(value) {
+    this.activeNames = value
+  },
+  getComponentData() {
+    return: {
+      on: {
+        change: this.handleChange,
+        input: this.inputChanged
+      },
+      props: {
+        value: this.activeNames
+      }
+    }
+  }
+}
+```
+
+## Event
+
+## Slots
 
 
 [Sortable.js]: <https://github.com/RubaXa/Sortable>

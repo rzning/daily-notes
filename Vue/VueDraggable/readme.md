@@ -228,6 +228,35 @@ methods: {
 
 ## Event
 
+### 支持的 Sortable 事件
+
+- `start`, `add`, `remove`, `update`, `end`, `choose`, `sort`, `filter`, `clone`
+
+每当事件（如： `onStart`）被 Sortable 以相同的参数触发时，就会调用这些事件。
+
+注意 SortableJS `OnMove` 回调将被映射为 `move` prop
+
+```vue
+<draggable :list="list" @end="onEnd">
+```
+
+### change 事件
+
+`change` 事件在 `list` prop 非空时触发，并且由于拖放操作，相应的数组将被修改。
+
+这个事件被调时使用包含下列属性之一的参数：
+
+- `added`: 包含被添加到数组中的元素的信息
+  - `newIndex`: 被添加元素的索引
+  - `element`: 被添加的元素
+- `removed`: 包含从数组中移除的元素的信息
+  - `oldIndex`: 元素被移除前的索引
+  - `element`: 被移除的元素
+- `moved`: 包含在数组中移动的元素的信息
+  - `newIndex`: 被移动元素的当前索引
+  - `oldIndex`: 被移动元素的先前索引
+  - `element`: 被移动的元素
+
 ## Slots
 
 

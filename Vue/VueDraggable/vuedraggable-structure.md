@@ -123,3 +123,31 @@ var props = {
   componentData: Object
 }
 ```
+
+## Events Listened
+
+```js
+function buildDraggable(Sortable) {
+
+  var eventsListened = ['Start', 'Add', 'Remove', 'Update', 'End'];
+
+  var draggableComponent = {
+    mounted: function () {
+      var _this = this;
+      var optionsAdded = {};
+
+      eventsListened.forEach(function (elt) {
+        optionsAdded['on' + elt] = delegateAndEmit.call(_this, elt);
+      });
+      
+      var options = {...this.options, ...optionsAdded};
+      this._sortable = new Sortable(this.rootContainer, options);
+      this.computeIndexes();
+    }
+  }
+}
+```
+
+
+## Events To Emit
+

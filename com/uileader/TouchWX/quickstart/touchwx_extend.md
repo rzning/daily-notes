@@ -1,8 +1,14 @@
+---
+title       : "能力扩展 - Touch WX 入门"
+author      : Rzning
+date        : 2018-06-19 20:18:00 +0800
+modified    : 2018-08-05 17:12:00 +0800
+---
 # Touch WX
 
 ### 能力扩展
 
-- <http://www.touchui.io/touchui_doc_wx/quickstart/extend>
+- <http://www.wetouch.net/touchwx_doc/quickstart/extend>
   - 矢量图标库 - [extend/icon]
   - 框架常量 - [extend/constant]
   - 常用样式库 - [extend/styleLib]
@@ -269,10 +275,10 @@ import city from '../static/data/city.js'
 此外，模板名字如果带 `-` 可能导致引入出错。
 
 
-[extend/icon]: <http://www.touchui.io/touchui_doc_wx/quickstart/extend/icon>
-[extend/constant]: <http://www.touchui.io/touchui_doc_wx/quickstart/extend/constant>
-[extend/styleLib]: <http://www.touchui.io/touchui_doc_wx/quickstart/extend/styleLib>
-[extend/api]: <http://www.touchui.io/touchui_doc_wx/quickstart/extend/api>
-[extend/less]: <http://www.touchui.io/touchui_doc_wx/quickstart/extend/less>
-[extend/npm]: <http://www.touchui.io/touchui_doc_wx/quickstart/extend/npm>
-[extend/import]: <http://www.touchui.io/touchui_doc_wx/quickstart/extend/import>
+[extend/icon]: <http://www.wetouch.net/touchwx_doc/quickstart/extend/icon>
+[extend/constant]: <http://www.wetouch.net/touchwx_doc/quickstart/extend/constant>
+[extend/styleLib]: <http://www.wetouch.net/touchwx_doc/quickstart/extend/styleLib>
+[extend/api]: <http://www.wetouch.net/touchwx_doc/quickstart/extend/api>
+[extend/less]: <http://www.wetouch.net/touchwx_doc/quickstart/extend/less>
+[extend/npm]: <http://www.wetouch.net/touchwx_doc/quickstart/extend/npm>
+[extend/import]: <http://www.wetouch.net/touchwx_doc/quickstart/extend/import>

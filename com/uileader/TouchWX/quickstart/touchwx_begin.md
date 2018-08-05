@@ -1,7 +1,14 @@
+---
+title       : "起步 - Touch WX 入门"
+author      : Rzning
+date        : 2018-06-19 16:00:00 +0800
+modified    : 2018-08-05 17:07:00 +0800
+---
 # Touch WX
 
 ### 起步
-- <http://www.touchui.io/touchui_doc_wx/quickstart/begin>
+- ~~<http://www.touchui.io/touchui_doc_wx/quickstart/begin>~~
+- <http://www.wetouch.net/touchwx_doc/quickstart/begin>
 
   - 框架介绍 - [begin/wx]
   - 环境安装 - [begin/ide]
@@ -138,7 +145,7 @@ npm update touchui-wx-components
 
 
 
-[begin/wx]: <http://www.touchui.io/touchui_doc_wx/quickstart/begin/wx>
-[begin/ide]: <http://www.touchui.io/touchui_doc_wx/quickstart/begin/ide>
-[begin/miniProgram]: <http://www.touchui.io/touchui_doc_wx/quickstart/begin/miniProgram>
-[begin/question]: <http://www.touchui.io/touchui_doc_wx/quickstart/begin/question>
+[begin/wx]: <http://www.wetouch.net/touchwx_doc/quickstart/begin/wx>
+[begin/ide]: <http://www.wetouch.net/touchwx_doc/quickstart/begin/ide>
+[begin/miniProgram]: <http://www.wetouch.net/touchwx_doc/quickstart/begin/miniProgram>
+[begin/question]: <http://www.wetouch.net/touchwx_doc/quickstart/begin/question>

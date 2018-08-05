@@ -1,8 +1,14 @@
+---
+title       : "工程文件 - Touch WX 入门"
+author      : Rzning
+date        : 2018-06-19 16:56:00 +0800
+modified    : 2018-08-05 17:09:00 +0800
+---
 # Touch WX
 
 ### 工程文件
 
-- <http://www.touchui.io/touchui_doc_wx/quickstart/project>
+- <http://www.wetouch.net/touchwx_doc/quickstart/project>
     - 工程目录结构 - [project/catalog]
     - 主框架页面 - [project/index]
     - 内容页面 - [project/code]
@@ -121,6 +127,6 @@ export default {
 ```
 
 
-[project/catalog]: <http://www.touchui.io/touchui_doc_wx/quickstart/project/catalog>
-[project/index]: <http://www.touchui.io/touchui_doc_wx/quickstart/project/index>
-[project/code]: <http://www.touchui.io/touchui_doc_wx/quickstart/project/code>
+[project/catalog]: <http://www.wetouch.net/touchwx_doc/quickstart/project/catalog>
+[project/index]: <http://www.wetouch.net/touchwx_doc/quickstart/project/index>
+[project/code]: <http://www.wetouch.net/touchwx_doc/quickstart/project/code>

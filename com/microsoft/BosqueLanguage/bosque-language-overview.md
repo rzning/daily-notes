@@ -11,6 +11,9 @@ Bosque Language Overview
 
 # 目录
 
+<details>
+<summary>Bosque Language Overview</summary>
+
 - [0 Highlight Features] 重要特点
     - [0.1 Immutable Values] 不可变值
     - [0.2 Block Scoping] 块级作用域
@@ -78,6 +81,8 @@ Bosque Language Overview
 - 7 Invokable Declarations 调用声明
 - 8 Concept and Entity Declarations 概念和实体声明
 - 9 Namespace Declarations 命名空间声明
+
+</details>
 
 [0 Highlight Features]: <#0-highlight-features>
 [0.1 Immutable Values]: <#0.1-immutable-values>

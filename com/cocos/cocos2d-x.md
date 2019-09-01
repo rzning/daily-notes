@@ -1,7 +1,7 @@
-![cocos2d-x-logo](https://cocos2d-x.org/images/logo.png)
-
 Cocos2d-x
 =========
+
+![cocos2d-x-logo](https://cocos2d-x.org/images/logo.png)
 
 Cocos2d-x 是一套成熟的开源跨平台游戏开发框架。
 引擎提供了图形渲染、GUI、音频、网络、物理、用户输入等丰富的功能，被广泛应用于游戏开发及交互式应用的构建。
@@ -10,20 +10,21 @@ Cocos2d-x 适配 iOS、Android、HTML5、Windows 和 Mac 系统，功能侧重�
 
 仓库
 
-- https://github.com/cocos2d/cocos2d-x
+- <https://github.com/cocos2d/cocos2d-x>
 
 网址
 
-- https://cocos2d-x.org/
-- https://www.cocos.com/cocos2dx
+- <https://cocos2d-x.org/>
+- <https://www.cocos.com/cocos2dx>
 
 文档
 
-- https://docs.cocos.com/cocos2d-x/manual/zh/
+- <https://docs.cocos2d-x.org/cocos2d-x/zh/>
+- <https://docs.cocos.com/cocos2d-x/manual/zh/>
 
 API
 
-- https://docs.cocos2d-x.org/api-ref/
+- <https://docs.cocos2d-x.org/api-ref/>
 
 ---
 

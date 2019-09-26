@@ -65,6 +65,29 @@
 |- project.config.json
 ```
 
-- `app.json` [小程序配置]()
+- `app.json` [小程序配置](./config.md#app)
+- `project.config.json` [开发者工具配置](../devtools/projectconfig.md)
+- `page.json` [页面配置](./config.md#page)
 
-工具配置 `project.config.json`
+### 3.2 WXML 模板
+
+- [WXML](./view.md#wxml)
+
+  1. `{{ data }}`
+  2. `wx:for="{{ list }}"`
+  3. `wx:if="{{ conditional }}"`
+  4. `<template name="">` -> `<template is="" data="">`
+  5. `<import src="template.wxml">`
+  6. `<include src="snippet.wxml">`
+
+### 3.3 WXSS 样式
+
+- [WXSS](./view.md#wxss)
+
+  1. 新增尺寸单位 `rpx`
+  2. 提供全局样式 `app.wxss` 和局部样式 `page.wxss`
+  3. `WXSS` 仅支持部分 `CSS` 选择器
+
+### 3.3 JS 逻辑交互
+
+-

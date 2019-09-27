@@ -35,7 +35,7 @@
 
 在 `app.js` 中调用 `App()` 进行小程序的注册和实例化。
 
-> 参考 @ [App 参考文档](https://developers.weixin.qq.com/miniprogram/dev/reference/api/App.html)
+> 参考 @ [App 参考文档](../reference/api.md#App)
 
 ```js
 // app.js
@@ -66,26 +66,62 @@ console.log(appInstance.someGlobalData) // abc
 
 每个页面都需在对应 JS 文件中调用 `Page()` 方法进行注册。
 
+> 参考 @ [Page 参考文档](../reference/api.md#Page)
+
 ```js
 // somepage.js
 
 Page({
+  // 页面初始数据
   data: {
-    // 用户数据
+    // 页面加载时 `data` 数据将
+    // 以 JSON 字符串形式由逻辑层传至渲染层
   },
+
+  // 生命周期回调函数
   onLoad () {},
   onShow () {},
   onReady () {},
   onHide () {},
   onUnload () {},
+
+  // 页面事件处理函数
   onPullDownRefresh () {},
   onReachBottom () {},
   onShareAppMessage () {},
   onPageScroll () {},
   onResize () {},
   onTabItemTap (item) {},
+
+  // 组件事件响应函数
   viewTap () {},
+  // 自由数据
   customData: {}
+})
+```
+
+### 使用 Component 构造器构造页面
+
+页面可以使用 `Component()` 构造器来创建，并可以使用 `behaviors` 等高级特性，但必须在对应 `json` 文件中添加 `usingComponents` 字段。
+
+> 参考 @ [自定义组件 Component 构造器](./custom-component.md#component)
+
+```jsonc
+{
+  "usingComponents": {}
+}
+```
+
+```js
+// somepage.js
+
+Component({
+  data: {},
+  methods: {
+    onLoad () {},
+    onPullDownRefresh () {},
+    wiewTap () {}
+  }
 })
 ```
 

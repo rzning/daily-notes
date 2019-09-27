@@ -1,4 +1,6 @@
-# 指南 > 起步
+微信小程序 > 开发 > 指南 > 起步
+
+# 起步
 
 1. [小程序简介](#intro)
 2. [开始](#getstart)
@@ -71,7 +73,7 @@
 
 ### 3.2 WXML 模板
 
-- [WXML](./view.md#wxml)
+- [WXML](./view/view.md#wxml)
 
   1. `{{ data }}`
   2. `wx:for="{{ list }}"`
@@ -82,7 +84,7 @@
 
 ### 3.3 WXSS 样式
 
-- [WXSS](./view.md#wxss)
+- [WXSS](./view/view.md#wxss)
 
   1. 新增尺寸单位 `rpx`
   2. 提供全局样式 `app.wxss` 和局部样式 `page.wxss`
@@ -90,4 +92,8 @@
 
 ### 3.3 JS 逻辑交互
 
--
+- 处理用户交互事件
+  - [WXML - 事件](./view/event.md)
+
+- 调用微信提供的 API 能力
+  - []

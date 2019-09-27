@@ -1,4 +1,6 @@
-# 框架 > WXML 语法参考
+微信小程序 > 开发 > 框架 > WXML
+
+# WXML 语法参考
 
 > [dev/reference/wxml](https://developers.weixin.qq.com/miniprogram/dev/reference/wxml/)
 

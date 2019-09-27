@@ -1,4 +1,6 @@
-# 指南 > 配置文件
+微信小程序 > 开发 > 指南 > 配置文件
+
+# 配置文件
 
 > [dev/framework/config](https://developers.weixin.qq.com/miniprogram/dev/framework/config.html)
 
@@ -6,7 +8,7 @@
 
 ## 全局配置 `app.json`
 
-参考 @ [小程序全局配置](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html)
+> 参考 @ [小程序全局配置](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html)
 
 ```jsonc
 {

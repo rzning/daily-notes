@@ -15,7 +15,7 @@
 - 提供丰富的 [API](#api) 调用微信特有能力
 - 提供 [模块化](#module) 能力，每个页面有独立作用域
 
-<hr id=""/>
+<hr id="scene"/>
 
 ## 场景值
 
@@ -131,17 +131,86 @@ Component({
 
 > [dev/framework/app-service/page-life-cycle](https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page-life-cycle.html)
 
+![page-lifecycle](https://res.wx.qq.com/wxdoc/dist/assets/img/page-lifecycle.2e646c86.png)
+
 <hr id="route"/>
 
 ## 页面路由
 
 > [dev/framework/app-service/route](https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/route.html)
 
+小程序页面路由都有框架进行管理。
+
+### 页面栈
+
+框架以栈的形式维护当前所有页面。
+
+- 可使用 `getCurrentPages()` 方法获取当前 `页面栈` 。
+
+当路由改变时 `页面栈` 有以下表现：
+
+路由操作 | 页面栈
+-|-
+初始化 | 新页面入栈
+打开新页面 | 新页面入栈
+页面重定向 | 当前页面出栈，新页面入栈
+页面返回 | 页面出栈，直到目标返回页
+Tab 切换 | 页面全部出栈，只留下新的 Tab 页面
+重加载 | 页面全部出栈，只留下新的页面
+
+路由触发方式与页面生命周期关系如下表所示：
+
+路由操作 | 触发时机 | 路由原页面 | 路由目标页面
+-|-|-|-
+初始化 | 小程序打开第一个页面 | - | `onLoad()` , `onShow()`
+打开新页面 | `wx.navigateTo()` <hr/> `<navigator open-type="navigateTo"/>` | `onHide()` | `onLoad()` , `onShow()`
+页面重定向 | `wx.redirectTo()` <hr/> `<navigator open-type="redirectTo"/>` | `onUnload()` | `onLoad()` , `onShow()`
+页面返回 | `wx.navigateBack()` <hr/> `<navigator open-type="navigateBack">` <hr/> 用户点击左上角返回 | `onUnload()` | `onShow()`
+Tab 切换 | `wx.switchTab()` <hr/> `<navigator open-type="switchTab"/>` <hr/> 用户切换 Tab | （参考 | 子表）
+重启动 | `wx.reLaunch()` <hr/> `<navigator open-type="reLaunch"/>` | `onLoad()` | `onLoad()` , `onShow()`
+
+> （子表）Tab 切换对应生命周期：参考官方 [页面路由](https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/route.html)
+
+Tips:
+
+- `navigateTo()` , `redirectTo()` 只能打开非 tabBar 页面
+- `switchTab()` 只能打开 tabBar 页面
+- `reLaunch()` 可以打开任意页面
+- 页面底部的 tabBar 由页面决定，定义为 tabBar 的页面底部都有 tabBar
+- 页面路由传参，可在目标页面 `onLoad()` 中获取
+
 <hr id="module"/>
 
 ## 模块化
 
 > [dev/framework/app-service/module](https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/module.html)
+
+ JS 模块通过 `module.exports` 或者 `exports` 暴露接口。
+
+ 小程序目前不支持直接引入 `node_modules` 目录文件，开发者需将相关代码拷贝到小程序目录中，或使用小程序中支持的 npm 功能。
+
+- 参考 @ [小程序 npm 包](../devtools/npm.md)
+
+```js
+// 定义 common.js
+
+function sayHello(name) {
+  console.log(`hello ${name} !`)
+}
+
+module.exports.sayHello = sayHello
+```
+
+```js
+// 在页面中使用 common.js 模块
+
+const common = require('common.js')
+Page({
+  helloAnna () {
+    common.sayHello('Anna')
+  }
+})
+```
 
 <hr id="api"/>
 
@@ -152,4 +221,10 @@ Component({
 小程序开发框架提供丰富的微信原生 API，可以方便的调起微信提供的能力，
 如获取用户信息，本地存储，支付功能等。
 
-- 参考 @ [小程序 API 文档](../api)
+- 参考 @ [小程序 API 文档](../api/api-list.md)
+
+小程序 API 有以下几种类型：
+
+- 以 `on` 开头的事件监听 API
+- 以 `Sync` 结尾的同步 API
+- 异步 API

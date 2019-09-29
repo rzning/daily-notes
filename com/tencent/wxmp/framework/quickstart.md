@@ -96,4 +96,20 @@
   - [WXML - 事件](./view/event.md)
 
 - 调用微信提供的 API 能力
-  - []
+  - [小程序 API](./app-service.md#api)
+
+
+<hr id="framework"/>
+
+## 4. 小程序宿主环境
+
+> [dev/framework/quickstart/framework](https://developers.weixin.qq.com/miniprogram/dev/framework/quickstart/framework.html)
+
+### 4.1 渲染层和逻辑层
+
+### 4.2 程序与页面
+
+### 4.3 组件
+
+### 4.4 API
+

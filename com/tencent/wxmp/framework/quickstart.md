@@ -5,6 +5,9 @@
 1. [小程序简介](#intro)
 2. [开始](#getstart)
 3. [小程序代码构成](#code)
+4. [小程序宿主环境](#framework)
+5. [小程序协同工作和发布](#release)
+
 
 <hr id="intro"/>
 
@@ -105,11 +108,131 @@
 
 > [dev/framework/quickstart/framework](https://developers.weixin.qq.com/miniprogram/dev/framework/quickstart/framework.html)
 
+微信客户端给小程序提供的环境称为宿主环境。
+
 ### 4.1 渲染层和逻辑层
+
+小程序的运行环境分为 `渲染层` 和 `逻辑层` ：
+
+- WXML 模板和 WXSS 样式工作在渲染层。
+- JS 脚本运行在逻辑层。
+
+小程序的渲染层和逻辑层分别由两个线程管理：
+
+- 渲染层界面使用 WebView 进行渲染。
+- 逻辑层采用 JsCore 线程运行 JS 脚本。
+
+小程序多个界面中，每个界面都有独立 WebView 线程管理，
+两个线程间的通信将通过微信客户端 ( 常称为 Native ) 进行中转。
+
+逻辑层发送的网络请求也经由 Native 转发。
+
+![4-1](https://res.wx.qq.com/wxdoc/dist/assets/img/4-1.ad156d1c.png)
+
+有关渲染层和逻辑层的详细信息，参考 @ [小程序框架](./MINA.md)
 
 ### 4.2 程序与页面
 
+在打开小程序之前，微信客户端会将小程序代码包下载到本地。
+
+通过 `app.json` 的 `pages` 字段获取当前小程序所有页面路径：
+
+```json
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs"
+  ]
+}
+```
+
+`pages` 字段的第一个页面为小程序的首页。
+
+小程序启动后，将触发 `app.js` 中定义的 App 实例的 `onLaunch()` 方法：
+
+```js
+App({
+  onLaunch () {
+    // 小程序启动后触发
+  }
+})
+```
+
+每个小程序只有一个 App 实例，且所有页面共享。
+
+- 详细 App 事件回调参考 @ [注册小程序](./app-service.md#app)
+
+每个小程序页面都包括四种文件。
+
+微信客户端首先根据 `page.json` 文件生成一个界面，页面顶部的颜色和文本都在 `page.json` 文件中指定。
+
+接着客户端将装载页面的 WXML 结构和 WXSS 样式。
+
+最后加载 `page.js` 脚本：
+
+```js
+Page({
+  data: {},
+  onLoad () {}
+})
+```
+
+JS 脚本中 `Page()` 方法为一个页面构造器，传入页面配置，返回页面实例。
+
+页面加载后，将触发 `onLoad()` 事件回调。
+
+- 关于 `Page()` 构造器参考 @ [注册页面](./app-service.md#page)
+
+
 ### 4.3 组件
 
+小程序提供丰富的基础组件供开发者使用。
+
+- 参考 @ [小程序组件](../component/component.md)
+
 ### 4.4 API
+
+为了让开发者方便调用微信提供的各种能力，如获取用户信息、微信支付等，
+小程序提供丰富 API 供开发者使用。
+
+获取用户地理位置：
+
+```js
+wx.getLocation({
+  type: 'wgs84',
+  success: (res) => {
+    var latitude = res.latitude // 纬度
+    var longitude = res.longitude // 经度
+  }
+})
+```
+
+调用微信扫一扫：
+
+```js
+wx.scanCode({
+  success: (res) => {
+    console.log(res)
+  }
+})
+
+```
+
+- 参考 @ [小程序 API](./app-service.md#api)
+
+
+<hr id="release"/>
+
+## 5. 小程序协同工作和发布
+
+> [dev/framework/quickstart/release](https://developers.weixin.qq.com/miniprogram/dev/framework/quickstart/release.html)
+
+
+### 5.1 协同工作
+
+### 5.2 小程序的版本
+
+### 5.3 发布上线
+
+### 5.4 运营数据
 

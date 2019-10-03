@@ -4,6 +4,14 @@
 
 > [dev/framework/app-service](https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/)
 
+  - [场景值](#scene)
+  - [注册小程序](#app)
+  - [注册页面](#page)
+  - [页面生命周期](#lifecycle)
+  - [页面路由](#route)
+  - [模块化](#module)
+  - [API](#api)
+
 小程序开发框架的 `逻辑层` 为开发者提供 JavaScript 代码处理能力。
 
 `逻辑层` 用于处理数据，并将处理结果发送给 `视图层` ，同时接收 `视图层` 的事件反馈。

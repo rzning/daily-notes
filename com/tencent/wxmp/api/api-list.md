@@ -2,7 +2,7 @@
 
 # API
 
-> [dev/api](https://developers.weixin.qq.com/miniprogram/dev/api/)
+> [miniprogram/dev/api](https://developers.weixin.qq.com/miniprogram/dev/api/)
 
 - 基础
 - 路由

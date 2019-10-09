@@ -8,7 +8,7 @@
 
 ## 全局配置 `app.json`
 
-> 参考 @ [小程序全局配置](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html)
+> 参考 @ [小程序全局配置](../reference/app.md)
 
 ```jsonc
 {
@@ -55,7 +55,7 @@
 
 ## 页面配置
 
-参考 @ [小程序页面配置](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/page.html)
+> 参考 @ [小程序页面配置](../reference/page.md)
 
 ```jsonc
 {

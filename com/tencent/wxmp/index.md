@@ -56,6 +56,12 @@
 
 - ## 云开发
 
-  - 
+  - [基础](./wxcloud/basis.md)
+  - [开发指引](./wxcloud/guide.md)
+  - 计费相关
+  - 参考信息
+  - 小程序端 API 文档
+  - 服务器端 API 文档
+  - HTTP API 文档
 
 - ## 扩展能力

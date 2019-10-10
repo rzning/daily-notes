@@ -1,67 +1,88 @@
 # 微信小程序开发指南
 
-- ## 指南
+<details>
+<summary>指南</summary>
 
-  - [起步](./framework/quickstart.md)
-  - [目录结构](./framework/structure.md)
-  - [配置](./framework/config.md)
-  - [框架](./framework/MINA.md)
-    - [逻辑层](./framework/app-service.md)
-    - [视图层](./framework/view/view.md)
-  - 运行时
-  - [自定义组件](./framework/custom-component.md)
-  - 插件
-  - 基础能力
-  - 硬件能力
-  - 开放能力
-  - 企业微信
-  - 调试
-  - 优化
-  - 基础库
+- [起步](./framework/quickstart.md)
+- [目录结构](./framework/structure.md)
+- [配置](./framework/config.md)
+- [框架](./framework/MINA.md)
+  - [逻辑层](./framework/app-service.md)
+  - [视图层](./framework/view/view.md)
+- 运行时
+- [自定义组件](./framework/custom-component.md)
+- 插件
+- [基础能力](./framework/ability.md)
+- 硬件能力
+- 开放能力
+- 企业微信
+- 调试
+- 优化
+- 基础库
 
-- ## 框架
+</details>
 
-  - 配置
-  - [场景值](./reference/scene-list.md)
-  - [框架接口](./reference/api.md)
-    - 小程序
-      - `App()`
-      - `getApp()`
-    - 页面
-      - `Page()`
-      - `getCurrentPages()`
-    - 自定义组件
-      - `Component()`
-      - `Behavior()`
-    - 模块化
-      - `require`
-      - `module`
-      - `exports`
-    - 基础功能
-      - wx
-        - `wx.env`
-      - console
-      - timer
-  - [WXML 语法参考](./reference/wxml.md)
+<details>
+<summary>框架</summary>
+
+- 配置
+- [场景值](./reference/scene-list.md)
+- [框架接口](./reference/api.md)
+  - 小程序
+    - `App()`
+    - `getApp()`
+  - 页面
+    - `Page()`
+    - `getCurrentPages()`
+  - 自定义组件
+    - `Component()`
+    - `Behavior()`
+  - 模块化
+    - `require`
+    - `module`
+    - `exports`
+  - 基础功能
+    - wx
+      - `wx.env`
+    - console
+    - timer
+- [WXML 语法参考](./reference/wxml.md)
+
+</details>
 
 - ## [组件](./component/component.md)
 - ## [API](./api/api-list.md)
 - ## 服务端 API
-- ## 开发者工具
 
-  - 代码编辑
-    - [项目配置文件](./devtools/projectconfig.md)
-  - 开发辅助
-    - [NPM 支持](./devtools/npm.md)
+<details>
+<summary>开发者工具</summary>
 
-- ## 云开发
+- 代码编辑
+  - [项目配置文件](./devtools/projectconfig.md)
+- 开发辅助
+  - [NPM 支持](./devtools/npm.md)
 
-  - [基础](./wxcloud/basis.md)
-  - [开发指引](./wxcloud/guide.md)
-  - 计费相关
-  - 参考信息
-  - 小程序端 API 文档
-  - 服务器端 API 文档
-  - HTTP API 文档
+</details>
+
+<details>
+<summary>云开发</summary>
+
+- [基础](./wxcloud/basis.md)
+- [开发指引](./wxcloud/guide.md)
+- 计费相关
+- 参考信息
+- 小程序端 API 文档
+- 服务器端 API 文档
+- HTTP API 文档
+
+</details>
 
 - ## 扩展能力
+
+
+<style>
+summary {
+  font-size: 1.5em;
+  font-weight: 500;
+}
+</style>

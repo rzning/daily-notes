@@ -12,7 +12,7 @@
 - [云函数](#functions)
 - [云调用](#openapi)
 - [告警](#alarm)
-- [工单]](#ticket)
+- [工单](#ticket)
 
 <hr id="console"/>
 

@@ -28,17 +28,19 @@
 
 包括：
 
-- 普通 HTTPS 请求 `wx.request()`
-- 上传文件 `wx.uploadFile()`
-- 下载文件 `wx.downloadFile()`
-- WebSocket 通信 `wx.connectSocket()`
-- UDP 通信 `wx.createUDPSocket()`
+- 普通 HTTPS 请求 [`wx.request()`][1.1.1]
+- 上传文件 [`wx.uploadFile()`][1.1.2]
+- 下载文件 [`wx.downloadFile()`][1.1.3]
+- WebSocket 通信 [`wx.connectSocket()`][1.1.4]
+- UDP 通信 [`wx.createUDPSocket()`][1.1.5]
 
 从基础库 2.4.0 开始，网络可以与局域网 IP 通信，但不允许与本机 IP 通信。
 
 服务器域名在 `小程序后台 > 开发 > 开发设置 > 服务器域名` 中配置：
 
 - 域名只支持 HTTPS 和 WSS 协议
+  - HTTPS : [`wx.request()`][1.1.1] , [`wx.uploadFile()`][1.1.2] , [`wx.downloadFile()`][1.1.3]
+  - WSS : [`wx.connectSocket()`][1.1.4]
 - 域名不能使用 IP 地址或 `localhost` ，局域网 IP 除外
 - 可以配置端口号
 - 若未配置端口号，则请求的 URL 也不能包含端口号
@@ -84,6 +86,48 @@
 
 > [dev/framework/ability/mDNS](https://developers.weixin.qq.com/miniprogram/dev/framework/ability/mDNS.html)
 
+- [`wx.startLocalServiceDiscovery()`][1.4.1] 搜索局域网内提供 mDNS 服务的设备 IP
+- [`wx.request()`][1.1.1] 等请求的 URL 参数允许为 `${IP}:${PORT}/${PATH}` 格式
+  - 当且仅当 IP 与 手机 IP 处于同一网段，且非本机 IP 时，请求或链接才会成功
+  - 此时不会进行安全域校验，可以使用 HTTP 或 WS
+
+目前小程序只支持通过 mDNS 协议获取局域网内其他设备的 IP
+
+- IOS 基于 [Bonjour](https://developer.apple.com/bonjour/)
+- Android 基于 [NSD 网络服务发现](https://developer.android.com/training/connect-devices-wirelessly/nsd)
+  - 参考 [使用网络服务发现][android.nsd]
+  - 要在本地网络上注册服务，需首先创建一个 [`NsdServiceInfo`](https://developer.android.google.cn/reference/android/net/nsd/NsdServiceInfo.html) 对象
+
+服务类型 serviceType
+
+发起 mDNS 服务搜索需传入 `serviceType` 参数：
+
+```js
+wx.startLocalServiceDiscovery({
+  serviceType: '_http._tcp.',
+  success () {},
+  fail () {}
+})
+```
+
+- [域命名约定 | Bonjour Overview - IOS ](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/NetServices/Articles/domainnames.html)
+  - 格式 `_ServiceType._TransportProtocolName.`
+    - `_ServiceType` : 服务类型 `ftp` , `http` , `printer`
+    - `_TransportProtocolName` : 传输协议名称 `tcp` , `udp`
+  - 例如在 TCP 上运行的 FTP 服务的注册类型为 `_ftp._tcp.`
+- [使用网络服务发现 | Android Developers][android.nsd]
+  - 参数 `serviceType` 指定应用程序使用的协议和传输层
+  - 语法 `_<protocol>._<transportlayer>`
+- [服务名称和传输协议端口号注册表](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml)
+
+
+[1.1.1]: <https://developers.weixin.qq.com/miniprogram/dev/api/network/request/wx.request.html>
+[1.1.2]: <https://developers.weixin.qq.com/miniprogram/dev/api/network/upload/wx.uploadFile.html>
+[1.1.3]: <https://developers.weixin.qq.com/miniprogram/dev/api/network/download/wx.downloadFile.html>
+[1.1.4]: <https://developers.weixin.qq.com/miniprogram/dev/api/network/websocket/wx.connectSocket.html>
+[1.1.5]: <https://developers.weixin.qq.com/miniprogram/dev/api/network/udp/wx.createUDPSocket.html>
+[1.4.1]: <https://developers.weixin.qq.com/miniprogram/dev/api/network/mdns/wx.startLocalServiceDiscovery.html>
+[android.nsd]: <https://developer.android.google.cn/training/connect-devices-wirelessly/nsd>
 
 
 <hr id="storage"/>

@@ -136,6 +136,69 @@ wx.startLocalServiceDiscovery({
 
 > [dev/framework/ability/storage](https://developers.weixin.qq.com/miniprogram/dev/framework/ability/storage.html)
 
+每个小程序都有自己的本地缓存，可通过下列方法对本地缓存进行读写和清理：
+
+- [`wx.setStorage()`][2.1] , [`wx.setStorageSync()`][2.2]
+- [`wx.getStorage()`][2.3] , [`wx.getStorageSync()`][2.4]
+- [`wx.clearStorage()`][2.5] , [`wx.clearStorageSync()`][2.6]
+- [`wx.removeStorage()`][2.7] , [`wx.removeStorageSync()`][2.8]
+
+本地存储中单个 key 允许存储的最大数据长度为 1MB ，所有数据存储上限为 10MB 。
+
+```js
+wx.setStorage({
+  key: 'key',
+  data: 'value',
+  success () {},
+  fail () {}
+})
+
+try {
+  wx.setStorageSync('key', 'value')
+  // success
+} catch (e) {
+  // fail
+}
+```
+
+```js
+wx.getStorage({
+  key: 'key',
+  success (res) {
+    console.log(res.data)
+  }
+})
+
+try {
+  const value = wx.getStorageSync()
+  if (value) {
+    console.log(value)
+  }
+} catch (e) {
+  // fail
+}
+```
+
+隔离策略
+
+- 小程序本地存储以用户维度隔离
+- 同一台设备，用户 A 无法读取用户 B 的数据
+- 不同小程序之间也无法相互读写数据
+
+清理策略
+
+- 本地缓存的清理与代码包处理相同
+- 只有在代码包被清理时，本地缓存才会被清理
+
+[2.1]: <https://developers.weixin.qq.com/miniprogram/dev/api/storage/wx.setStorage.html>
+[2.2]: <https://developers.weixin.qq.com/miniprogram/dev/api/storage/wx.setStorageSync.html>
+[2.3]: <https://developers.weixin.qq.com/miniprogram/dev/api/storage/wx.getStorage.html>
+[2.4]: <https://developers.weixin.qq.com/miniprogram/dev/api/storage/wx.getStorageSync.html>
+[2.5]: <https://developers.weixin.qq.com/miniprogram/dev/api/storage/wx.clearStorage.html>
+[2.6]: <https://developers.weixin.qq.com/miniprogram/dev/api/storage/wx.clearStorageSync.html>
+[2.7]: <https://developers.weixin.qq.com/miniprogram/dev/api/storage/wx.removeStorage.html>
+[2.8]: <https://developers.weixin.qq.com/miniprogram/dev/api/storage/wx.removeStorageSync.html>
+
 
 
 <hr id="fs"/>
@@ -143,6 +206,58 @@ wx.startLocalServiceDiscovery({
 ## 3. 文件系统
 
 > [dev/framework/ability/file-system](https://developers.weixin.qq.com/miniprogram/dev/framework/ability/file-system.html)
+
+通过 [`wx.getFileSystemManager()`][3.1] 方法获取全局唯一的文件系统管理器 [`FileSystemManager`][3.2] 对象，
+通过此对象来进行所有文件系统的管理操作。
+
+```js
+var fs = wx.getFileSystemManager()
+```
+
+文件主要分为 `代码包文件` 和 `本地文件` 两大类：
+
+- 代码包文件 - 项目目录中的文件
+  - 访问 : 从项目根目录开始访问，不支持相对路径
+  - 修改 : 只能通过重新发布版本修改
+- 本地文件 - 通过调用接口本地产生，或通过网络下载的文件
+  - 本地临时文件 - 临时产生，随时会被回收，不限制存储大小
+  - 本地缓存文件 - 不能自定义目录和文件名
+  - 本地用户文件 - 允许自定义目录和文件名
+
+`本地缓存文件` 和 `本地用户文件` 是小程序通过接口将 `本地临时文件` 缓存后产生的文件，共计最多 10MB 存储。
+
+本地文件是指，小程序被用户添加到手机后，将有一块独立的文件区域存放的文件，且以小程序和用户维度隔离。
+
+本地文件的文件路径格式：
+
+```
+{{协议名}}://文件路径
+```
+
+- 其中 `协议名`
+  - 在 iOS/Android 客户端为 `wxfile`
+  - 在开发者工具上为 `http`
+
+```js
+wx.chooseImage({
+  count: 1,
+  success (res) {
+    // 图片的本地临时文件路径列表
+    var tempFilePaths = res.tempFilePaths
+  }
+})
+```
+
+可调用以下方法将 `本地临时文件` 转换为 `本地缓存文件` 或 `本地用户文件`
+
+- [`FileSystemManager.saveFile()`][3.3]
+- [`FileSystemManager.copyFile()`][3.4]
+
+
+[3.1]: <https://developers.weixin.qq.com/miniprogram/dev/api/file/wx.getFileSystemManager.html>
+[3.2]: <https://developers.weixin.qq.com/miniprogram/dev/api/file/FileSystemManager.html>
+[3.3]: <https://developers.weixin.qq.com/miniprogram/dev/api/file/FileSystemManager.saveFile.html>
+[3.4]: <https://developers.weixin.qq.com/miniprogram/dev/api/file/FileSystemManager.copyFile.html>
 
 
 

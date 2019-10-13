@@ -248,17 +248,44 @@ wx.chooseImage({
 })
 ```
 
+- [`wx.chooseImage()`][3.5]
+
 可调用以下方法将 `本地临时文件` 转换为 `本地缓存文件` 或 `本地用户文件`
 
 - [`FileSystemManager.saveFile()`][3.3]
 - [`FileSystemManager.copyFile()`][3.4]
+
+```js
+fs.saveFile({
+  tempFilePath: '',
+  success (res) {
+    // 存储后的本地缓存文件路径
+    console.log(res.savedFilePath)
+  }
+})
+```
+
+`本地用户文件` 从基础库 1.7.0 版本开始提出，小程序提供一个用户文件目录供开发者，开发者对此目录有完全自由读写权限。
+
+可以通过 `wx.env.USER_DATA_PATH` 获取用户文件目录。
+
+下面示例将在用户本地目录创建一个文件并写入内容：
+
+```js
+const fs = wx.getFileSystemManager()
+fs.writeFileSync(`${wx.env.USER_DATA_PATH}/hello.txt`, 'hello, world', 'utf8')
+```
+
+- [`FileSystemManager.writeFileSync()`][3.6]
+
 
 
 [3.1]: <https://developers.weixin.qq.com/miniprogram/dev/api/file/wx.getFileSystemManager.html>
 [3.2]: <https://developers.weixin.qq.com/miniprogram/dev/api/file/FileSystemManager.html>
 [3.3]: <https://developers.weixin.qq.com/miniprogram/dev/api/file/FileSystemManager.saveFile.html>
 [3.4]: <https://developers.weixin.qq.com/miniprogram/dev/api/file/FileSystemManager.copyFile.html>
-
+[3.5]: <https://developers.weixin.qq.com/miniprogram/dev/api/media/image/wx.chooseImage.html>
+[3.6]: <https://developers.weixin.qq.com/miniprogram/dev/api/file/FileSystemManager.writeFileSync.html>
 
 
 <hr id="canvas"/>

@@ -38,6 +38,8 @@
 
 ## 画布
 
+> [dev/component/canvas](https://developers.weixin.qq.com/miniprogram/dev/component/canvas.html)
+
 
 <hr id="open"/>
 

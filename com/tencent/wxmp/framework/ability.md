@@ -146,6 +146,9 @@ wx.startLocalServiceDiscovery({
 本地存储中单个 key 允许存储的最大数据长度为 1MB ，所有数据存储上限为 10MB 。
 
 ```js
+// 写入
+
+// 异步方式
 wx.setStorage({
   key: 'key',
   data: 'value',
@@ -153,6 +156,7 @@ wx.setStorage({
   fail () {}
 })
 
+// 同步方式
 try {
   wx.setStorageSync('key', 'value')
   // success
@@ -162,6 +166,9 @@ try {
 ```
 
 ```js
+// 获取
+
+// 异步方式
 wx.getStorage({
   key: 'key',
   success (res) {
@@ -169,6 +176,7 @@ wx.getStorage({
   }
 })
 
+// 同步方式
 try {
   const value = wx.getStorageSync()
   if (value) {
@@ -279,7 +287,6 @@ fs.writeFileSync(`${wx.env.USER_DATA_PATH}/hello.txt`, 'hello, world', 'utf8')
 - [`FileSystemManager.writeFileSync()`][3.6]
 
 
-
 [3.1]: <https://developers.weixin.qq.com/miniprogram/dev/api/file/wx.getFileSystemManager.html>
 [3.2]: <https://developers.weixin.qq.com/miniprogram/dev/api/file/FileSystemManager.html>
 [3.3]: <https://developers.weixin.qq.com/miniprogram/dev/api/file/FileSystemManager.saveFile.html>
@@ -288,12 +295,20 @@ fs.writeFileSync(`${wx.env.USER_DATA_PATH}/hello.txt`, 'hello, world', 'utf8')
 [3.6]: <https://developers.weixin.qq.com/miniprogram/dev/api/file/FileSystemManager.writeFileSync.html>
 
 
+
 <hr id="canvas"/>
 
 ## 4. 画布
 
 > [dev/framework/ability/canvas](https://developers.weixin.qq.com/miniprogram/dev/framework/ability/canvas.html)
 
+组件
+
+- 参考 @ [`<canvas>`](../component/component.md#canvas)
+
+API
+
+- 参考 @ [canvas](../api/canvas.md)
 
 
 <hr id="subpackages"/>

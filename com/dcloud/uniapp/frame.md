@@ -69,10 +69,32 @@ DCloud > uni-app > 介绍 > 框架简介
 
 ### 3.2 页面生命周期
 
+- `onLoad()`
+- `onShow()`
+- `onReady()`
+- `onHide()`
+- `onUnload()`
+- `onResize()`
+- `onPullDownRefresh()`
+- `onReachBottom()`
+- `onTabItemTap()`
+- `onShareAppMessage()`
+- `onPageScroll()`
+- `onNavigationBarButtonTap()`
+- `onBackPress()`
+- `onNavigationBarSearchInputChanged()`
+- `onNavigationBarSearchInputConfirmed()`
+- `onNavigationBarSearchInputClicked()`
 
 <hr id="route"/>
 
 ## 4. 路由
+
+应用页面路由全部交由框架统一管理。
+
+开发者须在 [`pages.json`](./collocation.md#pages) 文件里配置所有路由页面信息。
+
+uni-app 框架不支持 vue-router 。
 
 ### 4.1 路由跳转
 

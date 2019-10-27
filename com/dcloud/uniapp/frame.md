@@ -13,7 +13,7 @@ DCloud > uni-app > 介绍 > 框架简介
   - 路由跳转
   - 页面栈
 - [运行环境判断](#environment)
-- 页面样式布局
+- [页面样式布局](#style)
 - 模板标签
 - ES6 支持
 - NPM 支持
@@ -86,6 +86,9 @@ DCloud > uni-app > 介绍 > 框架简介
 - `onNavigationBarSearchInputConfirmed()`
 - `onNavigationBarSearchInputClicked()`
 
+
+[>> 回到页面顶部](#)
+
 <hr id="route"/>
 
 ## 4. 路由
@@ -116,7 +119,8 @@ uni-app 提供以下两种路由跳转方式：
 Tab 切换 | 页面全部出栈，新 Tab 页面入栈 | `uni.swithTab()`
 重加载 | 页面全部出栈，只留下新的页面 | `uni.reLaunch()`
 
-- > [top](#)
+
+[>> 回到页面顶部](#)
 
 <hr id="environment"/>
 
@@ -138,11 +142,55 @@ Tab 切换 | 页面全部出栈，新 Tab 页面入栈 | `uni.swithTab()`
   - 参考 @ [平台：条件编译](./platform.md)
 - 运行期判断
   - 使用 `uni.getSystemInfoSync().platform` 判断客户端环境。
+  - 平台环境返回 `android` , `ios` 或 `devtools`
+  - 所有小程序开发环境均返回 `devtools`
+
+编译期判断示例：
 
 ```js
-// 编译期判断
 
 // #ifdef H5
     alert("只有h5平台才有alert方法")
 // #endif
 ```
+
+运行期判断示例：
+
+```js
+switch (uni.getSystemInfoSync().platform) {
+  case 'android':
+    // todo...
+    break
+  case 'ios':
+    // todo...
+    break
+  default:
+    // todo...
+    break
+}
+```
+
+
+[>> 回到页面顶部](#)
+
+<hr id="style"/>
+
+## 6. 页面样式布局
+
+### 6.1 尺寸单位
+
+### 6.2 样式导入
+
+### 6.3 内联样式
+
+### 6.4 选择器
+
+### 6.5 全局样式
+
+### 6.6 CSS 变量
+
+### 6.7 固定值
+
+### 6.8 背景图片
+
+### 6.9 字体图标

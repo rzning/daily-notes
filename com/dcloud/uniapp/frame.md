@@ -12,7 +12,7 @@ DCloud > uni-app > 介绍 > 框架简介
 - [路由](#route)
   - 路由跳转
   - 页面栈
-- 运行环境判断
+- [运行环境判断](#environment)
 - 页面样式布局
 - 模板标签
 - ES6 支持
@@ -92,12 +92,57 @@ DCloud > uni-app > 介绍 > 框架简介
 
 应用页面路由全部交由框架统一管理。
 
-开发者须在 [`pages.json`](./collocation.md#pages) 文件里配置所有路由页面信息。
+开发者须在 [`pages.json`](./collocation.md#pages) 文件内配置所有路由页面信息。
 
 uni-app 框架不支持 vue-router 。
 
 ### 4.1 路由跳转
 
+uni-app 提供以下两种路由跳转方式：
+
+- 使用 [`navigator`](./component.md#navigator) 组件
+- 调用路由相关 [API](https://uniapp.dcloud.io/api/router) 接口
+
 ### 4.2 页面栈
 
-[top](#)
+框架以栈的形式管理当前所有页面。
+
+路由操作 | 页面栈 | 触发时机
+-|-|-
+初始化 | 新页面入栈 | 框架打开第一个页面
+打开新页面 | 新页面入栈 | `uni.navigateTo()`
+页面重定向 | 当前页面出栈，新页面入栈 | `uni.redirectTo()`
+页面返回 | 页面不断出栈 | `uni.navigateBack()`
+Tab 切换 | 页面全部出栈，新 Tab 页面入栈 | `uni.swithTab()`
+重加载 | 页面全部出栈，只留下新的页面 | `uni.reLaunch()`
+
+- > [top](#)
+
+<hr id="environment"/>
+
+## 5. 运行环境判断
+
+### 5.1 开发环境 和 生产环境
+
+框架通过 `process.env.NODE_ENV` 判断当前环境。
+
+- `development` 开发环境
+- `production` 生产环境
+
+### 5.2 判断平台
+
+平台判断有两种场景
+
+- 编译期判断
+  - 即条件编译，在不同平台编译出不同的代码。
+  - 参考 @ [平台：条件编译](./platform.md)
+- 运行期判断
+  - 使用 `uni.getSystemInfoSync().platform` 判断客户端环境。
+
+```js
+// 编译期判断
+
+// #ifdef H5
+    alert("只有h5平台才有alert方法")
+// #endif
+```

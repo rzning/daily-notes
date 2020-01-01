@@ -7,7 +7,7 @@
 
 - [Intersection Types](#intersection) - 交叉类型
 - [Union Types](#union) - 联合类型
-- Type Guards and Differentiating Types - 类型保护和区分类型
+- [Type Guards and Differentiating Types](#guards) - 类型守卫和区分类型
 - Nullable types - 可空类型
 - Type Aliases - 类型别名
 - String Literal Types - 字符串字面量类型
@@ -289,4 +289,25 @@ function funcB (value: T | U) {
     // ok.
   }
 }
+```
+
+<hr id="guards">
+
+## Type Guards and Differentiating Types
+
+类型守卫和区分类型
+
+### User-Defined Type Guards
+
+用户自定义类型守卫
+
+TypeScript 中的 类型守卫 ( type guard ) 为一些表达式，
+这些表达式会在代码运行时检查，以确保在某些范围内的类型。
+
+- Using type predicates
+
+类型谓语 ( type predicate )
+
+
+```ts
 ```

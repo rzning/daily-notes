@@ -304,10 +304,139 @@ function funcB (value: T | U) {
 TypeScript 中的 类型守卫 ( type guard ) 为一些表达式，
 这些表达式会在代码运行时检查，以确保在某些范围内的类型。
 
-- Using type predicates
+- **Using type predicates**
 
-类型谓语 ( type predicate )
+类型谓语 ( type predicate ) 可作为函数的返回类型，表示当前变量是某种类型，
+格式为 `parameterName is Type` ，其中 `parameterName` 必须是当前函数签名中参数的名称。
 
 
 ```ts
+interface T {
+  x: string
+  z: string
+}
+
+interface U {
+  y: string
+  z: string
+}
+
+/**
+ * 判断当前变量 v 是否为 T 类型
+ * 
+ * @param v 操作对象
+ */
+function isT (v: T | U): v is T {
+  return (<T>v).x !== undefined
+}
+
+/**
+ * 判断当前变量 v 是否为 U 类型
+ * 
+ * @param v 操作对象
+ */
+function isU (v: T | U): v is U {
+  return (<U>v).y !== undefined
+}
+
+function funcA (value: T | U) {
+  if (isT(value)) {
+    value.x = 'xxx'
+    // ok.
+  }
+
+  if (isU(value)) {
+    value.y = 'yyy'
+    // ok.
+  }
+}
+
+
+function funcB (value: T | U) {
+  if (isT(value)) {
+    value.x = 'xxx'
+    // ok.
+  } else {
+    value.y = 'yyy'
+    // ok.
+  }
+}
+
 ```
+
+使用 type predicate 语法， Typescript 不仅知道 `if` 分支中变量的类型，同样也知道 `else` 分支中变量的类型。
+
+比如上例 `funcB()` 函数 `if` 分支中 TypeScript 将 `value` 识别为 `T` 类型，
+并且由于 `value` 不是 `T` 类型，就是 `U` 类型，因此在 `else` 分支中 TypeScript 将 `value` 识别为 `U` 类型。
+
+```ts
+interface T {
+  x: string
+}
+
+interface U {
+  y: string
+}
+
+interface V {
+  z: string
+}
+
+
+function isT (v: T | U | V): v is T {
+  return (<T>v).x !== undefined
+}
+
+
+function func (value: T | U | V) {
+  if (isT(value)) {
+    value.x = 'xxx'
+    // ok.
+  } else {
+    value.y = 'yyy'
+    //    ^
+    // error: 类型“U | V”上不存在属性“y”。
+    //   类型“V”上不存在属性“y”。
+  }
+}
+```
+
+- **Using the in operator**
+
+使用 `in` 操作符也能缩小变量的类型范围。
+
+```ts
+interface T {
+  x: string
+}
+
+interface U {
+  y: string
+}
+
+function funcA (value: T | U) {
+
+  value.x = 'xx'
+  //    ^
+  // error: 类型“T | U”上不存在属性“x”。
+  //   类型“U”上不存在属性“x”。
+
+  if ('x' in value) {
+    value.x = 'xxx'
+    // ok.
+  } else {
+    value.y = 'yyy'
+    // ok.
+  }
+}
+
+function funcB (value: T | U) {
+  if ('x' in value) {
+    return value.x
+    // ok.
+  }
+  return value.y
+  // ok.
+}
+```
+

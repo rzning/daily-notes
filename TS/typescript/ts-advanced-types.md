@@ -8,7 +8,12 @@
 - [Intersection Types](#intersection) - 交叉类型
 - [Union Types](#union) - 联合类型
 - [Type Guards and Differentiating Types](#guards) - 类型守卫和区分类型
-- Nullable types - 可空类型
+  - User-Defined Type Guards - 用户自定义类型守卫
+    - Using type predicates - 使用类型谓语
+    - Using the in operator - 使用 `in` 操作符
+  - typeof type guards - `typeof` 类型守卫
+  - instanceof type guards - `instanceof` 类型守卫
+- [Nullable types](#nullable) - 可空类型
 - Type Aliases - 类型别名
 - String Literal Types - 字符串字面量类型
 - Numeric Literal Types - 数字字面量类型
@@ -401,7 +406,7 @@ function func (value: T | U | V) {
 }
 ```
 
-- **Using the in operator**
+- **Using the `in` operator**
 
 使用 `in` 操作符也能缩小变量的类型范围。
 
@@ -439,4 +444,112 @@ function funcB (value: T | U) {
   // ok.
 }
 ```
+
+### `typeof` type guards
+
+`typeof` 类型守卫只有以下两种形式可被识别：
+
+- `typeof v === 'typename'`
+- `typeof v !== 'typename'`
+
+其中 `typename` 必须是 `number` , `string` , `boolean` 或 `symbol` ，其他类型则不能被 TypeScript 识别为类型守卫。
+
+```ts
+interface T {
+  x: string
+}
+
+const value = { x: 'x' }
+
+if (typeof value === T) {
+  //                 ^
+  // error: “T”仅表示类型，但在此处却作为值使用。
+}
+```
+
+```ts
+function func (value: string | number) {
+  value.toUpperCase()
+  //    ^
+  // error: 类型“string | number”上不存在属性“toUpperCase”。
+  //   类型“number”上不存在属性“toUpperCase”。
+
+  if (typeof value === 'string') {
+    return value.toUpperCase()
+    // ok.
+  }
+  if (typeof value === 'number') {
+    return value.toFixed(2)
+    // ok.
+  }
+  throw new Error(`Expected string or number, got '${value}'.`);
+}
+```
+
+### `instanceof` type guards
+
+使用 `instanceof` 类型守卫是通过其构造函数缩小类型的一种方式。
+
+使用中，要求 `instanceof` 的右侧为一个构造函数，此时 TypeScript 将变量类型缩小到：
+
+1. 此构造函数的 `prototype` 属性的类型，类型 `any` 除外。
+2. 或由该类型的构造签名返回的联合类型
+
+```ts
+interface T {
+  x: string
+}
+
+function func (value: any) {
+  if (value instanceof T) {
+    //                 ^
+    // error: “T”仅表示类型，但在此处却作为值使用。
+  }
+}
+```
+
+```ts
+interface T {
+  x: string
+}
+
+class U implements T {
+  x: string
+  y: string
+}
+
+class V implements T {
+  x: string
+  z: string
+}
+
+function func (value: U | V) {
+  value.x = 'x'
+  // ok.
+
+  value.y = 'y'
+  //    ^
+  // error: 类型“U | V”上不存在属性“y”。
+  //   类型“V”上不存在属性“y”。
+
+  value.z = 'z'
+  //    ^
+  // error: 类型“U | V”上不存在属性“z”。
+  //   类型“U”上不存在属性“z”。
+
+  if (value instanceof U) {
+    value.y = 'yy'
+    // ok.
+  }
+
+  if (value instanceof V) {
+    value.z = 'zz'
+    // ok.
+  }
+}
+```
+
+<hr id="nullable" />
+
+## Nullable types
 

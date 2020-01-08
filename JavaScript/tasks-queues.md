@@ -9,13 +9,24 @@
 
 ---
 
-JavaScript 执行代码的顺序是，先执行主线程代码，然后是微任务队列代码，最后是宏任务队列代码，如此循环。
 
 浏览器的方法是宏任务，JavaScript 的是微任务。
 
 宏任务包括：script(全局任务), setTimeout, setInterval, setImmediate, I/O, UI rendering
 
 微任务包括: new Promise().then(回调), process.nextTick, Object.observe(已废弃), MutationObserver(html5新特性)
+
+### 事件循环
+
+
+
+JavaScript 执行代码的顺序是，先执行主线程代码，然后是微任务队列代码，最后是宏任务队列代码，如此循环。
+
+
+### 任务队列 Task Queue
+
+
+
 
 
 ### 示例

@@ -109,3 +109,173 @@ VuePress 遵循约定大于配置原则，推荐目录结构如下：
 [webpack-merge]: <https://github.com/survivejs/webpack-merge>
 [webpack-chain]: <https://github.com/neutrinojs/webpack-chain>
 
+## 🪐 全局计算属性
+
+- `$site` - 网站配置信息 `siteConfig`
+- `$page` - 当前页面信息
+- `$frontmatter` - 即 `$page.frontmatter`
+- `$lang` - 当前页面语言 = `'en-US'`
+- `$localePath` - 当前页面 locale 路径前缀 = `'/'` , `'/zh/'`
+- `$title` - 当前页面标题
+- `$description` - 当前页面描述
+- `themeConfig` - 即 `siteConfig.themeConfig`
+
+## 🌾Front Matter
+
+Vuepress 中任何包含 YAML front matter 的 Markdown 文件都将由 [gray-matter] 处理。
+
+[gray-matter]: <https://github.com/jonschlinkert/gray-matter>
+
+一个基本示例：
+
+```yaml
+---
+title: Blogging Like a Hacker
+lang: zh-CN
+---
+contents of article
+```
+
+在文件开头两个三短横虚线可以设置预定义变量或自定义变量。
+
+然后可以使用 `$frontmatter` 或 `$page.frontmatter` 来访问这些变量。
+
+- 预定义变量
+  - `title` - 当前页面标题
+  - `lang` - 当前页面语言 = `'en-US'`
+  - `description` - 当前页面描述
+  - `layout` - 当前页面使用的布局组件 = `'Layout'`
+  - `permalink` - 当前页面永久链接
+  - `metaTile` - 重写默认的 Meta Title = <code>\`${page.title} | ${siteConfig.title}\`</code>
+  - `meta` - 指定额外要注入的 Meta 标签 : `[{name, content}, ...]`
+
+- 默认主题预定义变量
+  - `navbar` - 开启导航栏 : `Boolean`
+  - `sidebar` - 开启侧边栏 : `Boolean | 'auto'`
+  - `prev` - 上一篇链接 : `Boolean | String`
+  - `next` - 下一篇链接 : `Boolean | String`
+
+## 🔗 永久链接
+
+使用全局配置来定义所有页面永久链接的格式：
+
+```js
+// .vuepress/config.js
+module.exports = {
+  permalink: '/:year/:month/:day/:slug'
+}
+```
+
+- 格式模板变量：
+  - `:year` - 年份，四位数字
+  - `:month` - 月份，两位数字
+  - `:i_month` - 月份，不带零
+  - `:day` - 日份，两位数字
+  - `:i_day` - 日份，不带零
+  - `:slug` - 蛞蝓化文件路径（不带扩展名）
+  - `:regular` - 基于目录结构生成文件路径（默认生成方式）
+
+也可以为单独页面设置永久链接：
+
+```markdown
+---
+title: Hello World
+permalink: /hello-world
+---
+
+Hello!
+```
+
+## 🧲 Markdown 插槽
+
+Vuepress 实现了 Markdown 内容的分发，
+你可以将文档分割成多个片段，以便在布局组件中灵活组合。
+
+在文件中使用 Markdown 具名插槽：
+
+```markdown
+::: slot name
+插槽 name 中的具体内容
+:::
+```
+
+然后在布局组件中利用 `<Content/>` 组件来使用该插槽：
+
+```html
+<Content slot-key="name" />
+```
+
+一个例子：
+
+```pug
+//- 布局组件
+.container
+  header
+    Content(slot-key="header")
+  main
+    Content
+  footer
+    Content(slot-key="footer")
+```
+
+若页面 Markdown 内容为:
+
+```md
+::: slot header
+# title
+:::
+
+- list item
+
+::: slot footer
+footer
+:::
+```
+
+则最终渲染出来的 HTML 结构为：
+
+```pug
+.container
+  header
+    .content.header
+      h1 title
+  main
+    .content.default
+      ul
+        li list item
+  footer
+    .content.footer
+      p footer
+```
+
+## 📜 术语
+
+- `layout`
+  - 当前页面布局组件名 `$page.frontmatter.layout`
+- `frontmatter`
+  - 当前页面级配置 `$page.frontmatter`
+- `permalink`
+  - 页面永久链接 `$page.frontmatter.permalink`
+- `regularPath`
+  - 当前页面基于目录结构生成的 URL `$page.regularPath`
+- `path`
+  - 页面实际 URL `$page.path` 其值为 `permalink` 或 `regularPath`
+- `headers`
+  - 页面中的标题集合 `$page.headers`
+- `siteConfig`
+  - 站点配置 `$site` 或 `Context.siteConfig`
+  - 即 `.vuepress/confing.js`
+- `themeConfig`
+  - 当前所使用的主题配置 `$themeConfig` 或 `Context.themeConfig`
+  - 即 `.vuepress/config.js` 中 `themeConfig` 的值
+- `themePath`
+  - 当前使用的主题所在的绝对路径 `Context.themeAPI.theme.path`
+- `themeEntry`
+  - 主题的配置文件 `Context.themeAPI.theme.entry`
+  - 即 `themePath/index.js`
+- `parentThemePath`
+  - 指父主题的所在绝对路径 `Context.themeAPI.parentTheme.path`
+  - 若当前使用的是派生主题时有效
+- `parentThemeEntry`
+  - 指父主题的主题配置文件 `Context.themeAPI.parentTheme.entry`
+  - 即 `parentThemePath/index.js`

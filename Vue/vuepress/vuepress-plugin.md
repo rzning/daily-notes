@@ -171,7 +171,46 @@ module.exports = (options, context) => ({
    * 指定应用增强文件的绝对路径
    * @type {(string|Array|AsyncFunction)}
    */
-  enhanceAppFiles: resolve(__dirname, 'client.js')
+  enhanceAppFiles: resolve(__dirname, 'client.js'),
+  /**
+   * 在编译期生成指定的客户端使用的模块
+   * 
+   * 本例中，使用此插件的用户可以使用以下方式使用动态生成的模块：
+   * 
+   * ```js
+   * import { SOURCE_DIR } from '@dynamic/constants'
+   * ```
+   */
+  clientDynamicModules () {
+    return {
+      // 模块文件名
+      name: 'constants.js',
+      // 文件内容
+      content: `export const SOURCE_DIR = '${context.sourceDir}'`
+    }
+  },
+  /**
+   * 扩展或修改页面信息 `$page` 对象
+   * - 此函数会在编译每个页面时各执行一次。
+   * - 以下划线开头的字段 `$page._*` 只能在编译期访问
+   * @param {Object} $page - 页面信息对象
+   * @param {string} $page._filePath - 源文件绝对路径
+   * @param {Object} $page._computed - 页面组件的[全局计算属性]{@link https://vuepress.vuejs.org/zh/guide/global-computed.html}
+   * @param {string} $page._content - 源文件原始内容字符串
+   * @param {string} $page._strippedContent - 源文件除去 Frontmattr 的内容字符串
+   * @param {string} $page.key - 当前页面唯一的 Hash Key
+   * @param {Object} $page.frontmatter - 当前页面级配置对象
+   * @param {string} $page.regularPath - 当前页面遵循目录层次结构的默认链接
+   * @param {string} $page.path - 当前页面实际链接
+   * @see {@link https://vuepress.vuejs.org/zh/guide/global-computed.html#page|$page}
+   */
+  extendPageData ($page) {
+    const { _content, frontmatter } = $page
+    // 1. 添加额外字段
+    $page.size = (_content.length / 1024).toFixed(2) + 'kb'
+    // 2. 修改 Frontmatter
+    frontmtter.sidebar = 'auto'
+  }
 })
 ```
 

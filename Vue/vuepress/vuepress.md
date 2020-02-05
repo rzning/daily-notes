@@ -120,7 +120,7 @@ VuePress 遵循约定大于配置原则，推荐目录结构如下：
 - `$description` - 当前页面描述
 - `themeConfig` - 即 `siteConfig.themeConfig`
 
-## 🌾Front Matter
+## 🌾 Front Matter
 
 Vuepress 中任何包含 YAML front matter 的 Markdown 文件都将由 [gray-matter] 处理。
 

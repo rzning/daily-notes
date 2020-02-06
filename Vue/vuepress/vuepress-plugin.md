@@ -210,8 +210,89 @@ module.exports = (options, context) => ({
     $page.size = (_content.length / 1024).toFixed(2) + 'kb'
     // 2. 修改 Frontmatter
     frontmtter.sidebar = 'auto'
+  },
+  /**
+   * 指定根组件 `mixin` 文件路径，可以在混入文件控制根组件生命周期
+   * @type {string}
+   */
+  clientRootMixin: require('path').resolve(__dirname, 'mixin.js'),
+  /**
+   * 额外页面源文件
+   * @typedef {Object} AdditionalPage
+   * @property {string} path - 页面访问路径
+   * @property {string} [filePath] - 源文件路径
+   * @property {string} [content] - 源文件内容
+   * @property {Object} [frontmatter] - 源文件配置对象
+   */
+  /**
+   * 增加额外的 Markdown 文件页面
+   * @type {AdditionalPage[]|AsyncFunction}
+   */
+  additionalPages: [
+    // 1. 指定文件路径
+    {
+      path: '/readme/',
+      filePath: require('path').resolve(__dirname, '../../README.md')
+    },
+    // 2. 直接给出文件内容
+    {
+      path: '/changelog/',
+      content: 'xxx'
+    },
+    // 3. 添加纯粹的路由
+    {
+      path: '/alpha',
+      frontmatter: {
+        layout: 'MyLayout'
+      }
+    }
+  ],
+  /**
+   * 指定全局 Vue 组件名称
+   * 
+   * VuePress 会自动将这些组件注入到布局组件之后：
+   * 
+   * ```html
+   *  <div id="app">
+   *    <div class="theme-container">
+   *      <!-- Layout Component Content -->
+   *    </div>
+   *    <div>
+   *      <OnePluginComp/>
+   *      <OtherPluginComp/>
+   *    </div>
+   *  </div>
+   * ```
+   * 
+   * @type {(string|string[])}
+   */
+  globalUIComponents: [
+    'OnePluginComp',
+    'OtherPluginComp'
+  ],
+  /**
+   * 注册核外的命令行指令
+   * @param {Object} 一个 [CAC]{@link https://github.com/cacjs/cac} 实例
+   */
+  extendCli (cli) {
+    cli.command('ask [person]', 'Ask someone how they feel')
+      .options('--war', 'outbreak of war')
+      .action((person = 'girl', options) => {
+        const { war } = options
+        if (war) {
+          console.log(`The ${person} is sadness.`)
+        } else {
+          console.log(`The ${person} is happy.`)
+        }
+      })
   }
 })
+
+/**
+ * 异步函数
+ * @typedef {function} AsyncFunction
+ * @async
+ */
 ```
 
 ## 🔮 Plugin Context

@@ -188,6 +188,10 @@ export default class HomePage extends Vue {
 
 ```ts
 import Vue, { ComponentOptions } from 'vue'
+
+/**
+ * 装饰器函数
+ */
 interface VueDecorator {
   // Class decorator
   (Ctor: typeof Vue): void
@@ -196,6 +200,10 @@ interface VueDecorator {
   // Parameter decorator
   (target: Vue, key: string, index: number): void
 }
+
+/**
+ * 创建装饰器的工厂方法
+ */
 interface CreateDecoratorFactory {
   /**
    * @param options Vue 组件配置对象，此对象的更改将影响所提供的组件
@@ -204,6 +212,7 @@ interface CreateDecoratorFactory {
    */
   (options: ComponentOptions<Vue>, key: string, index: number): void
 }
+
 /**
  * 创建自定义装饰器
  * @param {function} factory 一个工厂函数

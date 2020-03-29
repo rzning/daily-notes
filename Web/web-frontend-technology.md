@@ -9,6 +9,16 @@
   - HTML
   - CSS
 
+- Web 开发堆栈
+  - JAMStack
+    - JavaScript & API & Markup
+  - LAMP
+    - Linux & Apache & MySQL & PHP, Pearl, Python
+  - MEAN
+    - MongoDB & Express & Angular & Nodejs
+  - 相关帖子
+    - [Web 堆栈选择指南：JAMStack vs MEAN vs LAMP - 云+社区 - 腾讯云](https://cloud.tencent.com/developer/news/460837)
+
 - CSS 预处理
   - Sass
   - Less
@@ -16,12 +26,18 @@
   - PostCSS
 
 - HTML 预处理（模板引擎）
-  - Liquid
-  - Nunjucks
-  - EJS
-  - Pug
-  - Handlebars.js
-  - markdown
+  - Ruby
+    - [Liquid](https://github.com/Shopify/liquid)
+    - [Haml](http://haml.info/)
+  - Python
+    - [Jinja](https://github.com/pallets/jinja)
+  - JavaScript
+    - [Consolidate.js](https://github.com/tj/consolidate.js)
+    - [Handlebars.js](https://github.com/wycats/handlebars.js)
+    - [Nunjucks](https://github.com/mozilla/nunjucks)
+    - [EJS](https://github.com/mde/ejs)
+    - [Pug](https://github.com/pugjs/pug)
+  - Markdown
 
 - JavaScript 预处理
   - Babel
@@ -98,8 +114,15 @@
   - [Fastify](https://github.com/fastify/fastify)
 
 - 静态站点生成工具
-  - [Jekyll](https://github.com/jekyll/jekyll) - [zh-CN](https://www.jekyll.com.cn/)
-  - Hugo
+  - 顶级开源静态站点生成器排行榜
+    - [StaticGen](https://www.staticgen.com/)
+  - Ruby
+    - [Jekyll](https://github.com/jekyll/jekyll) - [zh-CN](https://www.jekyll.com.cn/)
+  - Go
+    - [Hugo](https://github.com/gohugoio/hugo)
+  - JavaScript
+    - [Metalsmith](https://github.com/segmentio/metalsmith)
+    - [Hexo](https://github.com/hexojs/hexo)
   - React
     - [Gatsby](https://github.com/gatsbyjs/gatsby)
     - [Docusaurus](https://github.com/facebook/docusaurus/)
@@ -110,6 +133,8 @@
 - Markdown
   - [Markdown Guide](https://github.com/mattcone/markdown-guide) - [zh-CN](https://markdown.bootcss.com/)
   - [MDX](https://github.com/mdx-js/mdx)
+  - [Marked](https://github.com/markedjs/marked)
+  - [markdown-it](https://github.com/markdown-it/markdown-it)
 
 - 用于 API 的数据查询
   - [GraphQL](https://github.com/graphql)

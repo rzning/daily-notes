@@ -328,7 +328,48 @@ const notebooks = elements.reduce((notebooks, element) => {
     // 实例加载后删除 <pre> 标签的文本内容
     onLoad: () => innerText.remove()
   })
+  notebooks.push(currentCell)
   return notebooks
 }, [])
 </script>
 ```
+
+### 2️⃣ 使用 Web Components
+
+将 Runkit 作为一个自定义组件 `<rk-embed>` 使用：
+
+```html
+<script src="https://embed.runkit.com"></script>
+<rk-embed>console.log("hello world")</rk-embed>
+<script>
+class RunKitEmbed extends HTMLElement {
+  constructor () {
+    super()
+    const wrapper = document.createElement('div')
+    wrapper.style = 'margin: 20pt'
+    const source = this.textContent
+    this.textContent = ''
+    const tempCodePlaceholder = document.createElement('pre')
+    tempCodePlaceholder.textContent = source
+
+    window.RunKit.createNotebook({
+      element: wrapper,
+      source,
+      onLoad () {
+        tempCodePlaceholder.remove()
+      }
+    })
+
+    this.appendChild(wrapper)
+    this.appendChild(tempCodePlaceholder)
+  }
+}
+customElements.define('rk-embed', RunKitEmbed)
+</script>
+```
+
+## 绑定 Bindings
+
+- [React Component](https://github.com/runkitdev/react-runkit)
+- [Ember Component](https://github.com/runkitdev/ember-runkit)
+- [Angular Component](https://github.com/runkitdev/angular-runkit)

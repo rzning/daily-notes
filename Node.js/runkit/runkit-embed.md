@@ -136,7 +136,7 @@ interface EmbedOptions {
    */
   source?: string
   /**
-   * 以 UTC 毫秒为单位的时间戳，重新创建包可用性状态。
+   * 以 UTC 毫秒为单位的时间戳，表示重新创建包可用性状态。
    * 此时间后没有发布到 NPM 的包在此 Embed 中可用。
    * 对于重现错误或保证依赖版本很有用。
    * 默认将时间戳设置为创建 Embed 时的时间。
@@ -167,5 +167,168 @@ interface EmbedOptions {
 > 因为它们通过 iframe 传值。
 
 ```ts
-interface NotebookEmbed {}
+interface NotebookEmbed {
+  /// 方法 Methods
+	destroy: () => void
+	evaluate: () => void
+
+  /// 事件 Events
+  /**
+   * 在计算一个单元格 ( Cell ) 后调用
+   */
+	onEvaluate: () => void
+  /**
+   * 完全加载后调用
+   */
+	onLoad: (arg: NotebookEmbed) => void
+	
+  // Called when the embed cell is resized.
+  /**
+   * 在调整一个嵌入式单元格 ( Embed Cell ) 大小后调用
+   */
+  onResize: (arg: {height: number}) => void
+  /**
+   * 当嵌入式实例被保存时调用
+   */
+	onSave: () => void
+	/**
+   * 当可共享 URL 或端点 URL 更改时调用
+   */
+	onURLChanged: (arg: {shareableURL: string, endpointURL: string}) => void
+
+	/// 属性 Properties
+  /**
+   * endpointURL
+   * 端点模式运行时可访问 URL
+   * @see https://runkit.com/docs/endpoint
+   */
+	getEndpointURL: () => Promise<string>	
+  /**
+   * environment
+   * 执行环境中的环境变量，可通过 `process.env` 访问，默认为 []
+   */
+	getEnvironment: () => Promise<Array<{name: string, value: string}>>
+	setEnvironment: (environment: Array<{name: string, value: string}>) => Promise<undefined>
+  /**
+   * evaluateOnLoad
+   * 是否在加载完成后立即执行
+   */
+	getEvaluateOnLoad: () => Promise<boolean>
+  /**
+   * gutterStyle
+   * 行号的显示位置，默认为 `outside`
+   */
+	getGutterStyle: () => Promise<"inside" | "none" | "outside">
+	setGutterStyle: (gutterStyle: "inside" | "none" | "outside") => Promise<undefined>
+	
+	// 
+  // Hides the "▶ Run" button. In Endpoint mode, Hides the endpoint URL.
+  /**
+   * hidesActionButton
+   * 是否隐藏 `▶ Run` 按钮。在 Endpoint 模式中，隐藏端点的访问 URL
+   */
+	getHidesActionButton: () => Promise<boolean>
+	setHidesActionButton: (hidesActionButton: boolean) => Promise<undefined>
+  /**
+   * hidesEndpointLogs
+   * 是否隐藏端点模式的日志
+   */
+	getHidesEndpointLogs: () => Promise<boolean>
+	setHidesEndpointLogs: (hidesEndpointLogs: boolean) => Promise<undefined>
+  /**
+   * minHeight
+   * 显示的最小高度，默认为 `73px`
+   */
+	getMinHeight: () => Promise<cssPxString>
+	setMinHeight: (minHeight: cssPxString) => Promise<undefined>
+  /**
+   * mode
+   * 当前为端点模式 ( Endpoint ) 还是默认模式 ( Default )
+   */
+	getMode: () => Promise<"endpoint" | "default">
+	setMode: (mode: "endpoint" | "default") => Promise<undefined>
+  /**
+   * nodeVersion
+   * Node 引擎应该满足的语义化版本，默认为 `10.x.x`
+   */
+	getNodeVersion: () => Promise<semverRange>
+	setNodeVersion: (nodeVersion: semverRange) => Promise<undefined>
+  /**
+   * source
+   * 当前嵌入的源代码
+   */
+	getSource: () => Promise<string> // The source code of the Embed.
+	setSource: (source: string) => Promise<undefined>
+	/**
+   * packageTimestamp
+   * 包的可用性状态时间戳
+   */
+	getPackageTimestamp: () => Promise<number | null>
+	setPackageTimestamp: (packageTimestamp: number | null) => Promise<undefined>
+  /**
+   * preamble
+   * 前置代码
+   */
+	getPreamble: () => Promise<string>
+	setPreamble: (preamble: string) => Promise<undefined>
+  /**
+   * readOnly
+   * 是否为只读模式
+   */
+	getReadOnly: () => Promise<boolean> 
+	setReadOnly: (readOnly: boolean) => Promise<undefined>
+  /**
+   * shareableURL
+   * 可用于共享给其他用户访问的 URL
+   */
+	getShareableURL: () => Promise<string>
+  /**
+   * requirePath
+   * 可以在另一个 Embeds 或 Runkit Notebook 中作为一个模块引用的路径
+   */
+	getRequirePath: () => Promise<string>
+  /**
+   * tabSize
+   * 缩进大小，默认为 4 个字符
+   */
+	getTabSize: () => Promise<number>
+	setTabSize: (tabSize: number) => Promise<undefined>
+  /**
+   * title
+   * 保存时使用的标题
+   */
+	getTitle: () => Promise<string>
+	setTitle: (title: string) => Promise<undefined>
+}
+```
+
+
+> 你可以下载我们提供的 [RunKit.d](https://runkit.com/assets/typedefs/RunKit.d.ts)
+> 文件，将这些类型集成到你的编辑器中，以达到智能感知。
+
+
+## 示例 Examples
+
+### 1️⃣ 改变行号 ( Gutter ) 的显示风格
+
+```html
+<script src="https://embed.runkit.com"></script>
+<style>.embed { overflow: visible; }</style>
+<pre class="embed" data-gutter="inside">console.log("hello inside");</pre>
+<pre class="embed" data-gutter="outside">console.log("hello outside");</pre>
+<pre class="embed" data-gutter="none">console.log("hello none");</pre>
+<script>
+const elements = [...document.getElementsByClassName('embed')]
+const notebooks = elements.reduce((notebooks, element) => {
+  const innerText = element.firstChild
+  const currentCell = window.RunKit.createNotebook({
+    element,
+    gutterStyle: element.getAttribute("data-gutter"),
+    source: innerText.textContent,
+    // 实例加载后删除 <pre> 标签的文本内容
+    onLoad: () => innerText.remove()
+  })
+  return notebooks
+}, [])
+</script>
 ```

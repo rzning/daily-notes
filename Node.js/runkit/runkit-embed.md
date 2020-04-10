@@ -373,3 +373,72 @@ customElements.define('rk-embed', RunKitEmbed)
 - [React Component](https://github.com/runkitdev/react-runkit)
 - [Ember Component](https://github.com/runkitdev/ember-runkit)
 - [Angular Component](https://github.com/runkitdev/angular-runkit)
+
+## OEmbed
+
+使用 OEmbed 嵌入现有的 Notebooks
+
+可通过 <https://embed.runkit.com/oembed> 访问我们的 OEmbed 终端。
+
+> [Example OEmbed link](https://embed.runkit.com/oembed?url=https://runkit.com/runkit/welcome)
+
+OEmbed 仅支持 JSON 格式的相应。
+
+有关如何实现协议的信息，请参阅 OEmbed 文档。
+
+> [OEmbed Documentation](http://oembed.com/)
+
+RunKit 支持 Notebooks 的自动发现。
+
+## 动态高度
+
+RunKit Embed 具有高度的交互性，因此他们希望根据用户交互来更改高度。
+
+如果你将 RunKit 与 [Embed.ly](https://embed.ly/) 一起使用，
+则使用它们的 [Platform.js](http://docs.embed.ly/docs/platformjs) 库以确保一切正常。
+
+如果你直接使用 OEmbed 则需要在页面上包含下面脚本或类似内容，以监听 Embed 高度的变化：
+
+```html
+<script>
+window.addEventListener('message', function(e) {
+  if (e.origin !== "https://runkit.com") {
+    return
+  }
+  try {
+    var data = JSON.parse(e.data)
+  } catch (e) {
+    return false
+  }
+  if (data.context !== 'iframe.resize') {
+    return false
+  }
+  var iframe = document.querySelector('iframe[src="' + data.src + '"]');
+  if (!iframe) {
+    return false
+  }
+  if (data.height) {
+    iframe.height = data.height;
+  }
+})
+</script>
+```
+
+此代码不是特定于 RunKit 的，而是许多站点可实现的行为。
+
+这是一个简单的协议，用于 iframe 向其父节点发送消息以更改其高度。
+
+## 作品展示 Showcase
+
+RunKit Embeds 通常使用在：
+
+- 许多网站上的文档说明
+  - [Map — Immutable.js](https://immutable-js.github.io/immutable-js/docs/#/Map)
+- 在博客文章中提供示例
+  - [MarcoPolo - Partially Functional](https://marcopolo.io/code/datafrog-js/)
+- 让访问者运行代码片段
+  - [Online payment processing for internet businesses - Stripe](https://stripe.com/)
+- 增强它们的网页
+  - [Express](http://expressjs.com/en/starter/hello-world.html)
+  - [Lodash](https://lodash.com/docs)
+  - [Ramda](http://ramdajs.com/docs/)

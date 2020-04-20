@@ -58,7 +58,7 @@ export default {
 
 现在将代码组织为每个函数都执行特定的功能，而不必总是通过选项来组织代码。
 
-新的 API 还是的在组件之间提取和重用逻辑变得更加简单。
+新的 API 还使得在组件之间提取和重用逻辑变得更加简单。
 
 ### 🔸 更好的类型推断
 
@@ -173,7 +173,7 @@ const state = reactive({ count: 0 })
 const double = computed(() => state.count * 2)
 ```
 
-`computed()` 函数返回的是什么？若猜测 `computed()` 的内部实现，我们可能会想到一下内容：
+`computed()` 函数返回的是什么？若猜测 `computed()` 的内部实现，我们可能会想到以下内容：
 
 ```js
 // 简化的伪代码
@@ -223,7 +223,11 @@ state.count++ // -> 2
 
 上例的 `double` 是一个我们称为 `ref` 的对象，因为它是对它所持有的内部值的响应式引用。
 
+- ref 对象有一个指向内部值的单一属性 `.value`
+
 使用 Composition API 时，响应式引用和模板引用的概念是统一的。
+
+> [Template Refs - Vue Composition API](https://composition-api.vuejs.org/api.html#template-refs)
 
 为了获得对模板中元素或组件实例的引用，我们可以像往常一样声明 `ref` 并从 `setup()` 中返回：
 
@@ -240,6 +244,7 @@ export default {
     const root = ref(null)
 
     onMounted(() => {
+      // 初始渲染后 DOM 元素将被分配给 ref
       console.log(root.value) // <div/>
     })
 
@@ -258,3 +263,150 @@ console.log(count.value) // 0
 count.value++
 console.log(count.value) // 1
 ```
+
+🔹 **Ref Unwrapping** 引用（Ref）展开
+
+我们可以将 ref 公开为渲染上下文的属性。
+
+在内部，Vue 将对 refs 进行特殊处理，这样当在渲染上下文中遇到 ref 时，该上下文直接暴露其内部值。
+
+这意味着在模板中，我们可以直接写 `{{count}}` 而不是 `{{count.value}}` 。
+
+下面是同一个的计数器示例的另一个版本，其使用了 `ref` 来替换 `reactive` ：
+
+```js
+import { ref, watchEffect } from 'vue'
+
+const count = ref(0)
+
+function increment() {
+  count.value++
+}
+
+const renderContext = {
+  count,
+  increment
+}
+
+watchEffect(() => {
+  renderTemplate(
+    `<button @click="increment">{{ count }}</button>`,
+    renderContext
+  )
+})
+```
+
+此外，当 ref 作为一个属性嵌套在一个反应性对象下时，它也会在访问时自动展开：
+
+```js
+const state = reactive({
+  count: 0,
+  double: computed(() => state.count * 2)
+})
+
+// 不必使用 `state.double.value`
+console.log(state.double)
+```
+
+🔹 **Usage in Components** 在组件中使用
+
+到目前为止，我们的代码已经提供了可以根据用户输入进行更新的工作 UI，但是该代码仅运行一次且不可重用。
+
+如果我们想重用逻辑，那么合理的下一步似乎是将其重构为一个函数：
+
+```js
+import { reactive, computed, watchEffect } from 'vue'
+
+function setup() {
+  const state = reactive({
+    count: 0,
+    double: computed(() => state.count * 2)
+  })
+
+  function increment() {
+    state.count++
+  }
+
+  return {
+    state,
+    increment
+  }
+}
+
+const renderContext = setup()
+
+watchEffect(() => {
+  renderTemplate(
+    `<button @click="increment">
+      Count is: {{ state.count }}, double is: {{ state.double }}
+    </button>`,
+    renderContext
+  )
+})
+```
+
+> 注意，上面的代码并不依赖于组件实例的存在。
+>
+> 实际上，到目前为止介绍的 API 都可以在组件上下文之外使用，
+> 这使我们能够在更广泛的场景中利用 Vue 的反应性系统 ( reactivity system ) 。
+
+现在，如果我们把【调用 `setup()` 、创建监视器、以及将模板渲染到框架】的任务放在一边，
+我们就可以仅使用 `setup()` 函数和模板来定义一个组件：
+
+```vue
+<template>
+  <button @click="increment">
+    Count is: {{ state.count }}, double is: {{ state.double }}
+  </button>
+</template>
+
+<script>
+import { reactive, computed } from 'vue'
+
+export default {
+  setup() {
+    const state = reactive({
+      count: 0,
+      double: computed(() => state.count * 2)
+    })
+
+    function increment() {
+      state.count++
+    }
+
+    return {
+      state,
+      increment
+    }
+  }
+}
+</script>
+```
+
+🔹 **Lifecycle Hooks** 生命周期钩子
+
+我们知道可以使用 `watchEffect()` 和 `watch` APIs 来应用基于状态变化的副作用。
+
+至于在不同的生命周期钩子中执行副作用，我们可以使用专用的 `onXXX` APIs （直接反映了现有的生命周期选项）：
+
+```js
+import { onMounted } from 'vue'
+
+export default {
+  setup() {
+    onMounted(() => {
+      console.log('component is mounted!')
+    })
+  }
+}
+```
+
+这些生命周期注册方法只能在 `setup()` 钩子调用当中使用。
+
+因为它们依赖于内部全局状态来定位当前活动实例。
+
+在没有当前活动实例的情况下调用它们将导致错误。
+
+它会自动推算出，使用内部全局状态调用 `setup()` 钩子的当前实例。
+
+这样设计是为了减少将逻辑提取到外部函数时的摩擦。

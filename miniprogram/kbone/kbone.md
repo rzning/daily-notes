@@ -1,7 +1,7 @@
 ---
 title       : kbone
 recorddate  : 2020-02-18
-repository  : https://github.com/wechat-miniprogram/kbone
+repository  : https://github.com/Tencent/kbone
 website     : https://wechat-miniprogram.github.io/kbone/docs/
 ---
 
@@ -66,10 +66,11 @@ yarn run build
 
 ## 🎨 kbone-ui
 
-[kbone-ui] 是一套同时支持小程序 ( kbone ) 和 Vue 框架开发的多端 UI 库。
+[kbone-ui] 是一套同时支持小程序 ( kbone ) 和 Vue 框架开发的多端 UI 库。对齐微信 [weui](https://weui.io/) 样式组件
 
 [kbone-ui]: <https://github.com/wechat-miniprogram/kbone-ui>
 
 ## 🔗 参考文章
 
 - [kbone，十分钟让 Vue 项目同时支持小程序 | 微信开放社区](https://developers.weixin.qq.com/community/develop/article/doc/000e48820100100f2269be0975b813)
+- [使用 vue-cli 3.x 快速搭建「vue + ts + kbone + kbone-ui + 云开发」项目](https://mp.weixin.qq.com/s/2sr7EUjgxm__JMmo0sP4HA)

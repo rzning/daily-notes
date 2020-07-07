@@ -54,3 +54,7 @@ stylelint
     console.error(err.stack)
   })
 ```
+
+## 参考
+
+- <https://stylelint.docschina.org/>

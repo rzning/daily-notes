@@ -530,3 +530,103 @@ Composition API 可以与现有的基于选项的 API 一起使用。
 
 ### 5️⃣ 插件开发
 
+如今许多 Vue 插件都会将属性注入 `this` 当中。
+
+例如 Vue Router 注入了 `this.$route` 和 `this.$router` ， Vuex 注入了 `this.$store` 。
+
+这使得类型推断变得棘手 ( Tricky ) ，因为每个插件都需要用户为注入的属性增加 Vue 类型定义。
+
+当使用 Composition API  时，由于不使用 `this` ，插件可以在内部使用【 依赖注入 ( `provide` & `inject` ) 】
+并公开为一个组合函数。
+
+定义一个插件：
+
+```js
+// store-plugin.js
+import { provide, inject } from 'vue'
+
+const StoreSymbol = Symbol()
+
+export function provideStore (store) {
+  provide(StoreSymbol, store)
+}
+
+export function useStore () {
+  const store = inject(StoreSymbol)
+  if (!store) {
+    throw(new Error('Store plugin error.'))
+  }
+  return store
+}
+```
+
+使用插件：
+
+```js
+// 根组件中提供数据
+import { provideStore } from 'path/to/store-plugin'
+import store from 'path/to/store'
+
+const App = {
+  setup () {
+    provideStore(store)
+  }
+}
+
+// 子组件中使用数据
+import { useStore } from 'path/to/store-plugin'
+
+const Child = {
+  setup () {
+    const store = useStore()
+  }
+}
+```
+
+注意，也可以通过 [全局 API 更改提案](rfc-0009) 中建议的应用程序 App 级别的 `provide` 来提供 `store` 数据。
+
+[rfc-0000]: <https://github.com/vuejs/rfcs/blob/master/active-rfcs/0009-global-api-change.md#provide--inject>
+
+定义插件：
+
+```js
+// store-plugin2.js
+import { inject } from 'vue'
+
+const StoreSymbol = Symbol()
+
+export function useStore () {
+  const store = inject(StoreSymbol)
+  //...
+}
+
+export default {
+  install (app, store) {
+    app.provide(StoreSymbol, store)
+  }
+}
+```
+
+使用插件：
+
+```js
+import { createApp } from 'vue'
+import App from './App.vue'
+import storePlugin from 'path/to/store-plugin2'
+import store from 'path/to/store'
+
+const app = createApp(App)
+
+app.use(storePlugin, store)
+
+app.mount('#app')
+```
+
+在子组件中使用注入还是跟 `useStore()` 风格是一样的。
+
+## 💔 缺点
+
+> - 引入 Ref 的开销
+> - Ref vs. Reactive
+> - 沉长的返回语句
+> - 更多的灵活性需要更多的自我约束

@@ -55,7 +55,7 @@ app.directive(/* ... */)
 
 app.config.globalProperties.customProperty = () => {}
 
-app.mount(App, '#app')
+app.mount('#app')
 ```
 
 ## 详细设计

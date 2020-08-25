@@ -1,7 +1,7 @@
 ---
 title       : Vuejs Composition API
 recorddate  : 2020-03-25
-updatedate  : [2020-08-13, 2020-08-15]
+updatedate  : [2020-08-13, 2020-08-15, 2020-08-16, 2020-08-25]
 ---
 
 # Vuejs RFCs Composition API
@@ -423,7 +423,7 @@ export default {
 
 🔹 什么是有组织的代码？
 
-让我们后退一步，考虑一下我们所说的【有组织的代码 ( Organized Code ) 】到底是什么意思。
+让我们后退一步，考虑一下我们所说的【有组织的代码】 ( Organized Code ) 到底是什么意思。
 
 保持代码井井有条 ( Organized ) 的最终目标应该是使代码更容易阅读和理解。
 
@@ -490,7 +490,7 @@ export default {
 
 ### 3️⃣ 逻辑提取和复用
 
-当涉及到跨组件提取和复用逻辑时【 组合式 API ( Composition API ) 】非常灵活。
+当涉及到跨组件提取和复用逻辑时【组合式 API 】 ( Composition API ) 非常灵活。
 
 组合函数并不依赖于微妙的 `this` 上下文，而是只依赖于它的参数和全局导入的 Vue API 。
 
@@ -523,7 +523,7 @@ export default {
 
 Composition API 可以与现有的基于选项的 API 一起使用。
 
-- Composition API 会在 2.x 版本的选项（ `data`, `computed` 和 `methods` ）之前解析，
+- Composition API 会在 2.x 版本的选项 ( `data`, `computed` & `methods` ) 之前解析，
   并且无法访问由这些选项定义的属性。
 
 - 从 `setup()` 函数返回的属性将被暴露给 `this` 对象，并可在 2.x 版本的选项中访问。
@@ -536,8 +536,8 @@ Composition API 可以与现有的基于选项的 API 一起使用。
 
 这使得类型推断变得棘手 ( Tricky ) ，因为每个插件都需要用户为注入的属性增加 Vue 类型定义。
 
-当使用 Composition API  时，由于不使用 `this` ，插件可以在内部使用【 依赖注入 ( `provide` & `inject` ) 】
-并公开为一个组合函数。
+当使用 Composition API  时，由于不使用 `this` ，插件可以在内部使用【依赖注入】
+( `provide` & `inject` ) 并公开为一个组合函数。
 
 定义一个插件：
 
@@ -630,3 +630,62 @@ app.mount('#app')
 > - Ref vs. Reactive
 > - 沉长的返回语句
 > - 更多的灵活性需要更多的自我约束
+
+### 🔸 引入 Refs 的开销
+
+从技术上讲 Ref 是此提案中唯一引入的“新”概念。
+
+引入 Ref 是为了将响应式的值作为变量传递，而无需依赖对 `this` 对象的访问。
+
+1. 当使用 Composition API 时，我们需要不断地将【响应式引用】 ( Refs ) 与普通值和对象区分开来，
+  因而增加了使用此 API 的精神负担。
+  通过使用命名约定或使用类型系统，可以极大地减轻这种心理负担。
+  例如为所有 Ref 变量添加 `xxxRef` 后缀。
+  换句话说，由于提高了代码组织的灵活性，因此组件逻辑可以被分割为一些小的函数，
+  些函数的局部上下文都很简单，引用的开销也比较容易管理。
+
+2. 由于需要通过 `.value` 访问，读取和修改 Ref 要比使用普通值更冗长。
+
+我们已经讨论过是否可以完全避免使用 Ref 概念，而只是用响应性对象，但是：
+
+- 计算值的 getters 可以返回基础类型，因此类似 Ref 的容器是不可避免的。
+
+- 一些只接收或返回基本类型的组合函数需要将其值包裹在对象中才能达到响应性目的。
+  若框架不提供标准实现，用户很可能最终会发明他们自己的类 Ref 模式，并导致生态系统碎片化。
+
+
+### 🔸 Ref vs. Reactvie
+
+可以理解的是，用户可能会对 `ref` 和 `reactive` 之间该使用哪一个感到困惑。
+
+首先要明白，这两个概念你必须都要理解，才能有效地使用 Composition API 。
+只是用一个很有可能会导致工作的复杂化或重复造轮子。
+
+使用 `ref` 和  `reactive` 之间的区别可以通过编写标准 JavaScript 逻辑的方式进行比较：
+
+```js
+// 1. 分离的变量
+let x = 0
+let y = 0
+function updatePosition (e) {
+  x = e.pageX
+  y = e.pageY
+}
+
+// 2. 单一对象
+const pos = { x: 0, y: 0 }
+function updatePosition (e) {
+  pos.x = e.pageX
+  pos.y = e.pageY
+}
+```
+
+- 若使用 `ref` 则在很大程度上是对上面第一种方式更详细的实现，以使基础类型值具有相应性。
+
+- 使用 `reactive` 基本和第二种方式相同，我们只需要使用 `reactvie()` 创建此对象，仅此而已。
+
+
+### 🔸 沉长的返回语句
+
+### 🔸 更多的灵活性需要更多的自我约束
+

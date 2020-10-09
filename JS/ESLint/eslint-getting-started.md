@@ -37,7 +37,7 @@ yarn run eslint yourfile.js
 
 ## 配置 Configuration
 
-运行 `eslint --init` 命令，奖在你项目目录中生成一个 `.eslintrc` 配置文件，内容类似于：
+运行 `eslint --init` 命令，将在你项目目录中生成一个 `.eslintrc` 配置文件，内容类似于：
 
 ```json
 {

@@ -84,6 +84,7 @@ WebWorker 与 SharedWorker 有以下区别：
 
 
 
+
 ## JavaScript 单线程
 
 所谓单线程是指，在 JavaScript 引擎中负责解析和执行 JavaScript 代码的线程只有一个，

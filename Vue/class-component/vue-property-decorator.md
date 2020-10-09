@@ -29,3 +29,16 @@ yarn add vue-property-decorator
 - `@Emit`
 - `@Ref`
 
+
+<section>
+
+<details>
+<summary>@prop</summary>
+
+```js
+var aaa = "aaaa"
+```
+
+</details>
+
+</section>

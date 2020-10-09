@@ -1,6 +1,6 @@
 # @vue/cli-plugin-unit-jest
 
-- [vue-cli/packages/@vue/cli-plugin-unit-jest/](
+- [vue-cli/packages/@vue/cli-plugin-unit-jest](
   https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-unit-jest
 )
   - [zh-CN](https://github.com/vuejs/vue-docs-zh-cn/tree/master/vue-cli-plugin-unit-jest)

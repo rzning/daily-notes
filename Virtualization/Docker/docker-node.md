@@ -1,5 +1,5 @@
 ---
-name        : markdown-it
+name        : docker-node
 recorddate  : 2020-09-10
 repository  : https://github.com/nodejs/docker-node
 website     : https://hub.docker.com/_/node/
@@ -37,6 +37,13 @@ $ docker build -t my-nodejs-app .
 
 $ docker run -it -rm --name my-running-app my-nodejs-app
 ```
+
+run 命令选项 | 说明
+-|-
+`-i` | 以交互模式运行容器
+`` | 
+`` | 
+`` | 
 
 若你使用 Docker Compose 则编写配置文件：
 

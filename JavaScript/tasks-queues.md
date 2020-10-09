@@ -26,6 +26,9 @@ JavaScript 执行代码的顺序是，先执行主线程代码，然后是微任
 ### 任务队列 Task Queue
 
 
+- [js中的宏任务与微任务 - 个人文章 - SegmentFault 思否](https://segmentfault.com/a/1190000020225668?utm_source=tag-newest)
+- [javascript的宏任务和微任务_宏任务和微任务_lc237423551的博客-CSDN博客](https://blog.csdn.net/lc237423551/article/details/79902106)
+- [js 宏任务和微任务 - wangziye - 博客园](https://www.cnblogs.com/wangziye/p/9566454.html)
 
 
 

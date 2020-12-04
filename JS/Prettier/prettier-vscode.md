@@ -229,3 +229,56 @@ prettier.embeddedLanguageFormatting # 是否格式化文件中嵌入的代码 `a
 
 ### 5.2 Extension Settings
 
+这些设置特定于 VS Code ，需要在 VS Code 设置文件中进行进行设置。
+
+```yaml
+prettier.enable # 是否启用 Prettier `true`
+prettier.requireConfig # 是否需要一个 Prettier 配置文件来格式化文件 `false`
+
+prettier.ignorePath # 提供忽略文件的路径 `.prettierignore` | `.gitignore` | `null`
+                    # 若设置了该值，则始终使用此值，并忽略本地忽略文件。
+
+prettier.configPath # 提供 Prettier 配置文件的自定义路径
+                    # 若设置了该值，则始终使用此值，并忽略本地配置文件。
+
+prettier.prettierPath # 提供一个到 Prettier 库的自定义路径
+                      # 此路径应指向模块文件夹，而不是 bin / script 路径
+                      # 即 `./node_modules/prettier` 而不是 `./bin/prettier`
+
+prettier.packageManager # 指定用于解析模板使用的包管理器 `npm` | `yarn` | `pnpm`
+                        # 仅当全局解析模块时，才有影响。
+
+prettier.resolveGlobalModules # 启用后，若无法解析本地模块时，此扩展将尝试使用
+                              # `prettier.packageManager` 指定的包管理器下的全局模块
+                              # 默认值 `false` ，建议尽可能使用本地模块。
+
+prettier.disableLanguages # 禁用此扩展的语言 ID 列表
+prettier.documentSelectors # 用于此扩展格式化程序的 glob 模式列表，比如 `**/*.abc`
+prettier.useEditorConfig # 解析配置时是否考虑 `.editorconfig` 配置 `true`
+prettier.withNodeModules # 是否处理 `node_modules` 文件夹中中文件 `false`
+```
+
+若你注册了扩展名为 `.abc` 的 glob 到 `prettier.documentSelectors` 文档选择器配置，
+可 Prettier 仍然不知道该如何处理此文件。
+
+```json
+{
+  "prettier.documentSelectors": ["**/*.abc"]
+}
+```
+
+为了告诉 Prettier 改如何格式化 `.abc` 文件类型，我们可以在 Prettier 配置中设置覆盖，
+使该文件类型使用 `babel` 解析器。
+
+```json
+{
+  "overrides": [
+    {
+      "files": "*.abc",
+      "options": {
+        "parser": "babel"
+      }
+    }
+  ]
+}
+```

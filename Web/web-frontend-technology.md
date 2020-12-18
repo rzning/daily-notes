@@ -43,6 +43,11 @@
   - Babel
   - TypeScript
 
+- JavaScript 解析器
+  - [Esprima](https://github.com/jquery/esprima)
+  - [Acorn](https://github.com/acornjs/acorn)
+  - [Espree](https://github.com/eslint/espree)
+
 - 编译构建工具
   - Webpack
   - Parcel

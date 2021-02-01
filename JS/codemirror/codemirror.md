@@ -56,3 +56,24 @@ npm install codemirror
 - 支持各种主题
   - [Theme Demo](https://codemirror.net/demo/theme.html)
 
+- 可调整大小以适应内容
+  - [Autoresize Demo](https://codemirror.net/demo/resize.html)
+  - [demo/resize.html](https://github.com/codemirror/CodeMirror/blob/master/demo/resize.html)
+
+- 内联和块状小部件
+  - [markText() replaceWith](https://codemirror.net/doc/manual.html#mark_replacedWith)
+  - [addLineWidget()](https://codemirror.net/doc/manual.html#addLineWidget)
+
+- 可编程 Gutters
+  - [Breakpoint Demo](https://codemirror.net/demo/marker.html)
+
+- 使文本范围具有样式化、只读或原子性
+  - [markText()](https://codemirror.net/doc/manual.html#markText)
+
+- 支持双向文本
+  - [Bi-directional Text Demo](https://codemirror.net/demo/bidi.html)
+  - [demo/bidi.html](https://github.com/codemirror/CodeMirror/blob/master/demo/bidi.html)
+
+- 还有很多其他方法和插件
+  - [methods](https://codemirror.net/doc/manual.html#api)
+  - [addons](https://codemirror.net/doc/manual.html#addons)

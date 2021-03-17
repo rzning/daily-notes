@@ -165,10 +165,75 @@ Basic.args = {
 
 - [Control Annotations](https://storybook.js.org/docs/react/essentials/controls/#annotation)
 
-
 ### 4️⃣ 我该如何禁用特定故事中某些字段的 Control ？
 
+`argTypes` 注解可用于隐藏特定行的 Controls 甚至隐藏行。
+
+假设你有一个带有 `borderWidth` 和 `label` 属性的按钮组件，
+您想要完全隐藏 `borderWidth` 行，并禁用特定故事上的 `label` 行控件，你可以这样做：
+
+```jsx
+import { Button } from './Button'
+
+export default {
+  title: 'Button',
+  component: Button
+}
+
+export const CustomControls = (args) => <Button {...args} />
+CustomControls.argTypes = {
+  borderWidth: {
+    table: { disable: true }
+  },
+  label: {
+    control: { disable: true }
+  }
+}
+```
+
+与故事参数( [Story Parameters] ) 一样， `args` 和 `argTypes` 注解也是层次化合并的，
+因此 Story 级注解将覆盖 Component 级注解。
+
+[Story Parameters]: <https://storybook.js.org/docs/react/writing-stories/parameters>
 
 ### 5️⃣ 如何在 MDX 中使用 Controls 插件？
 
+MDX 在底层将编译成组件故事格式 ( Component Story Format, CSF) ，
+因此上面的每个例子都可以使用 `args` 和 `argTypes` Props 进行直接映射。
 
+一个 CSF 示例：
+
+```jsx
+import { Button } from './Button'
+
+export default {
+  title: 'Button',
+  component: Button,
+  argTypes: {
+    background: { control: 'color' }
+  }
+}
+
+const Template = (args) => <Button {...args} />
+
+export const Basic = Template.bind({})
+Basic.args = {
+  label: 'hello',
+  background: '#ff0'
+}
+```
+
+使用 MDX 重写：
+
+```jsx
+import { Meta, Story } from '@storybook/addon-docs/blocks'
+import { Button } from './Button'
+
+<Meta title="Button" component={Button} argTypes={{ background: { control: 'color' } }} />
+
+export const Template = (args) => <Button {...args} />
+
+<Story name="Basic" args={{ label: 'hello', background: '#ff0' }}>
+  {Template.bind({})}
+</Story>
+```

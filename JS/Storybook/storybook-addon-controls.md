@@ -237,3 +237,160 @@ export const Template = (args) => <Button {...args} />
   {Template.bind({})}
 </Story>
 ```
+
+## 在 Vue 项目中的一个完整控件示例
+
+### [Button.vue](https://github.com/storybookjs/storybook/blob/next/examples/vue-kitchen-sink/src/stories/Button.vue)
+
+```vue
+<template>
+  <button
+    :class="['button', { rounded }]"
+    :style="{ color, borderColor: color }"
+    @click="onClick"
+    @dblclick="onDoubleClick"
+  >
+    <slot />
+  </button>
+</template>
+
+<script>
+export default {
+  name: 'Button',
+  props: {
+    rounded: {
+      type: Boolean,
+      default: false
+    },
+    color: {
+      type: String,
+      default: '#42b983'
+    }
+  },
+  methods: {
+    onClick(event) {
+      this.$emit('click', event)
+    },
+    onDoubleClick(event) {
+      this.$emit('double-click', event)
+    }
+  }
+}
+</script>
+
+<style scoped>
+.button {
+  border: 3px solid;
+  padding: 10px 20px;
+  background-color: white;
+  outline: none;
+}
+.rounded {
+  border-radius: 5px;
+}
+</style>
+```
+
+### [addon-controls.stories.js](https://github.com/storybookjs/storybook/blob/next/examples/vue-kitchen-sink/src/stories/addon-controls.stories.js)
+
+```js
+import MyButton from './Button.vue'
+
+const templateDecorator = () => ({
+  template:
+    '<div style="background-color: silver; padding: 10px;"><story/></div>'
+})
+
+export default {
+  title: 'Addon/Controls',
+  component: MyButton,
+  argTypes: {
+    color: { control: { type: 'color' } }
+  },
+  decorators: [templateDecorator]
+}
+
+const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { MyButton },
+  template: '<MyButton :color="color" :rounded="rounded">{{ label }}</MyButton>'
+})
+
+export const Rounded = Template.bind({})
+Rounded.args = {
+  rounded: true,
+  color: '#f00',
+  label: '一个圆角边缘的按钮'
+}
+
+export const Square = Template.bind({})
+Square.args = {
+  rounded: false,
+  color: '#00f',
+  label: '一个方形边缘的按钮'
+}
+```
+
+### [addon-controls.stories.mdx](https://github.com/storybookjs/storybook/blob/next/examples/vue-kitchen-sink/src/stories/addon-controls.stories.mdx)
+
+```jsx
+import { Meta, Canvas, Story, ArgsTable } from '@storybook/addon-docs/blocks'
+import MyButton from './Button.vue'
+import InfoButton from './components/InfoButton.vue'
+
+<Meta
+  title="Addon/ControlsMDX"
+  component={MyButton}
+  argTypes={{
+    color: { control: { type: 'color' } }
+  }}
+/>
+
+export const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { MyButton },
+  template: '<MyButton :color="color" :rounded="rounded">{{label}}</MyButton>'
+})
+
+# Addon-controls in MDX
+
+Controls 也可以在 MDX Stories 中定义和使用。
+
+## Rounded
+
+<Canvas>
+  <Story
+    name="Rounded"
+    args={{
+      rounded: true,
+      color: '#f00',
+      label: '一个圆角边缘的按钮'
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Rounded" />
+
+## Square
+
+<Canvas>
+  <Story
+    name="Square"
+    args={{
+      // rounded: false, 测试默认值处理
+      color: '#00f',
+      label: '一个方形边缘的按钮'
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Square" />
+
+## Multiple components
+
+<ArgsTable components={{ MyButton, InfoButton }} >
+```

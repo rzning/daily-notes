@@ -59,31 +59,30 @@ const e: object & string[] = ['string']
 
 ```ts
 interface T {
-  a: string
+  x: string
 }
 
 interface U {
-  b: string
+  y: string
 }
 
 const a: T & U = {}
 //    ^
 // error: 不能将类型“{}”分配给类型“T & U”。
-//   Property 'a' is missing in type '{}' but required in type 'T'.
+//   类型 "{}" 中缺少属性 "x"，但类型 "T" 中需要该属性。
 
-const b: T & U = { a: 'a' }
+const b: T & U = { x: 'x' }
 //    ^
-// error: 不能将类型“{ a: string; }”分配给类型“T & U”。
-//   Property 'b' is missing in type '{ a: string; }' but required in type 'U'.
+// error: 不能将类型“{ x: string; }”分配给类型“T & U”。
+//   类型 "{ x: string; }" 中缺少属性 "y"，但类型 "U" 中需要该属性。
 
-const c: T & U = { a: 'a', b: 'b' }
+const c: T & U = { x: 'x', y: 'y' }
 // ok.
 
-const d: T & U = { a: 'a', b: 'b', c: 'c' }
-//                                 ^
-// error: 不能将类型“{ a: string; b: string; c: string; }”分配给类型“T & U”。
-//   对象文字可以只指定已知属性，并且“c”不在类型“T & U”中。
-
+const d: T & U = { x: 'x', y: 'y', z: 'z' }
+//                                 ^^^^^^
+// error: 不能将类型“{ x: string; y: string; z: string; }”分配给类型“T & U”。
+//   对象文字可以只指定已知属性，并且“z”不在类型“T & U”中。
 ```
 
 

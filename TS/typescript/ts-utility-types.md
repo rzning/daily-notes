@@ -371,3 +371,206 @@ type T4 = ConstructorParameters<Function>
 ```
 
 </details>
+
+## ⒓ `ReturnType<Type>`
+
+```ts
+type ReturnType<T extends (...args: any) => any> = T extends (
+  ...args: any
+) => infer R ? R : any
+```
+
+获取函数 `Type` 的返回类型：
+
+<details>
+<summary>Example</summary>
+
+```ts
+type T0 = ReturnType<() => string>
+//    ^ = type T0 = string
+type T1 = ReturnType<(s: string) => void>
+//    ^ = type T1 = void
+type T2 = ReturnType<<T>() => T>
+//    ^ = type T2 = unknown
+type T3 = ReturnType<<T extends U, U extends number[]>() => T>
+//    ^ = type T3 = number[]
+
+declare function f1(): { a: number; b: string }
+type T4 = ReturnType<typeof f1>
+//    ^ = type T4 = {
+//        a: number;
+//        b: string;
+//    }
+
+type T5 = ReturnType<any>
+//    ^ = type T5 = any
+type T6 = ReturnType<never>
+//    ^ = type T6 = never
+
+type T7 = ReturnType<string>
+//                   ^^^^^^
+// error: 类型“string”不满足约束“(...args: any) => any”。
+// => type T7 = any
+
+type T8 = ReturnType<Function>
+//                   ^^^^^^^^
+// error: 类型“Function”不满足约束“(...args: any) => any”。
+//   类型“Function”提供的内容与签名“(...args: any): any”不匹配。
+// => type T8 = any
+```
+
+</details>
+
+## ⒔ `InstanceType<Type>`
+
+```ts
+type InstanceType<T extends new (...args: any) => any> = T extends new (
+  ...args: any
+) => infer R ? R : any
+```
+
+获取构造函数 `Type` 的返回类型：
+
+<details>
+<summary>Example</summary>
+
+```ts
+class C {
+  x = 0
+  y = 0
+}
+type T0 = InstanceType<typeof C>
+//    ^ = type T0 = C
+
+type T1 = InstanceType<any>
+//    ^ = type T1 = any
+type T2 = InstanceType<never>
+//    ^ = type T2 = never
+
+type T3 = InstanceType<string>
+//                     ^^^^^^
+// error: 类型“string”不满足约束“new (...args: any) => any”。
+// => type T3 = any
+
+type T4 = InstanceType<Function>
+//                     ^^^^^^^^
+// error: 类型“Function”不满足约束“new (...args: any) => any”。
+//   类型“Function”提供的内容与签名“new (...args: any): any”不匹配。
+// => type T4 = any
+```
+
+</details>
+
+## ⒕ `ThisParameterType<Type>`
+
+```ts
+type ThisParameterType<T> = T extends (
+  this: infer U, ...args: any[]
+) => any ? U : unknown
+```
+
+获取函数 `Type` 的 This 参数的类型：
+
+<details>
+<summary>Example</summary>
+
+```ts
+function toHex(this: Number) {
+  return this.toString(16)
+}
+
+function numberToString(n: ThisParameterType<typeof toHex>) {
+  //                    ^ = (parameter) n: Number
+  return toHex.apply(n)
+}
+```
+
+</details>
+
+## ⒖ `OmitThisParameter<Type>`
+
+```ts
+type OmitThisParameter<T> = unknown extends ThisParameterType<T>
+  ? T : T extends (...args: infer A) => infer R
+    ? (...args: A) => R : T
+```
+
+从函数 `Type` 中移除 This 参数：
+
+- 如果 `Type` 没有显式声明 This 参数，则简单返回 `Type` 类型；
+- 否则，将从 `Type` 创建一个不带 This 参数的新函数类型。
+- 函数泛型被抹去，只有最后的重载签名被传递到新的函数类型当中。
+
+<details>
+<summary>Example</summary>
+
+```ts
+function toHex(this: Number) {
+  return this.toString(16)
+}
+
+const fiveToHex: OmitThisParameter<typeof toHex> = toHex.bind(5)
+
+console.log(fiveToHex())
+
+type T1 = typeof toHex
+//    ^ = type T1 = (this: Number) => string
+type T2 = typeof fiveToHex
+//    ^ = type T2 = () => string
+```
+
+</details>
+
+## ⒗ `ThisType<Type>`
+
+```ts
+interface ThisType<T> {}
+```
+
+标记上下文 This 类型：
+
+- 不返回转换后的类型。
+- 必须启用 `--noImplicitThis` 标记。
+
+`ThisType<Type>` 标记接口 ( Marker Interface ) 只是在 `lib.d.ts` 中声明了一个空接口，
+除了在对象字面量的上下文类型中被识别之外，该接口的作用类似于任何空接口。
+
+
+<details>
+<summary>Example</summary>
+
+```ts
+type ObjectDescriptor<D, M> = {
+  data?: D
+  methods?: M & ThisType<D & M> // 方法中 `this` 的类型为 D & M
+}
+
+function makeObject<D, M>(desc: ObjectDescriptor<D, M>): D & M {
+  let data: object = desc.data || {}
+  let methods: object = desc.methods || {}
+  return { ...data, ...methods } as D & M
+}
+
+let obj = makeObject({
+  data: { x: 0, y: 0, z: 0 },
+  methods: {
+    moveBy(dx: number, dy: number) {
+      this.x += dx
+      //   ^ = (property) x: number
+      this.y += dy
+      //   ^ = (property) y: number
+
+      this.z = 'z'
+      // ^^^
+      // error: 不能将类型“string”分配给类型“number”。
+      // => (property) z: number
+    }
+  }
+})
+
+obj.x = 10
+obj.y = 20
+obj.moveBy(5, 5)
+```
+
+</details>

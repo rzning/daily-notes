@@ -38,7 +38,7 @@ module.exports = {
     // ESLint 内置的推荐配置
     'eslint:recommended',
     // 启用特定于 Typescript 插件中的规则
-    'plugin:@typescript-eslint/recomended'
+    'plugin:@typescript-eslint/recommended'
   ]
 }
 ```

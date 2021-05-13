@@ -88,7 +88,7 @@
   - Chai
   - expect
   - Should.js
-  - Mock.js
+  - [Mock.js](http://mockjs.com/)
   - [Mirage](https://github.com/miragejs/miragejs)
 
 - 工具类库

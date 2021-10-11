@@ -1,5 +1,3 @@
-
-
 # 1
 
 - [陪尤雨溪一起，实现 Vuex 无限层级类型推断。（TS 4.1 新特性） - SegmentFault 思否](https://segmentfault.com/a/1190000023931783)
@@ -129,3 +127,38 @@ declare function Vuex<Mutations, Modules>(
   options: VuexOptions<Mutations, Modules>
 ): Store<Mutations, Modules>
 ```
+
+# 2
+
+2021-10-11
+
+```ts
+type VuexOptions<M, N> = {
+  namespace: N
+  mutations: M
+}
+
+type Action<M, N> = N extends string ? `${N}/${keyof M & string}` : keyof M
+
+type Store<M, N> = {
+  dispatch(action: Action<M, N>): void
+}
+
+declare function Vuex<M, N>(options: VuexOptions<M, N>): Store<M, N>
+
+const store = Vuex({
+  namespace: 'cart' as const,
+  mutations: {
+    add() {},
+    remove() {}
+  }
+})
+
+store.dispatch('cart/add')
+store.dispatch('cart/remove')
+```
+
+# 3
+
+- [typescript 对 vuex 的全面支持 | Wynnyo Blog](http://wynnyo.com/archives/ts-vuex)
+- [vuex-ts-prompt - npm](https://www.npmjs.com/package/vuex-ts-prompt)

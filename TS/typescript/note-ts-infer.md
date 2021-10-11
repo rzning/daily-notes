@@ -9,7 +9,6 @@
   - 源码： [es5.d.ts](https://github.com/microsoft/TypeScript/blob/master/src/lib/es5.d.ts#L1504)
   - 示例： [utility-types.html#example-10](https://www.typescriptlang.org/docs/handbook/utility-types.html#example-10)
 
-
 ## 另见参考
 
 - [TypeScript 的 Infer 关键词 - 知乎](https://zhuanlan.zhihu.com/p/133249506)
@@ -18,82 +17,118 @@
     作为类型变量可以在三元表达式的 True 部分引用。
   - 而 `ReturnType` 正是使用这种方式提取到了函数的返回类型。
 
-
-### 2021-05-18
+## 2021-05-18
 
 [巧用 TypeScript（五） - infer - SegmentFault 思否](https://segmentfault.com/a/1190000018514540)
 
-- tuple 转 union
-  - `[string, number]` -> `string | number`
-  - ```ts
-    type ElementOf<T> = T extends Array<infer E> ? E : never
+### 一、 tuple 转 union
 
-    type ATuple = [string, number]
+`[string, number]` -> `string | number`
 
-    type ToUnion = ElementOf<ATuple>
-    // => type ToUnion = string | number
+```ts
+type ElementOf<T> = T extends Array<infer E> ? E : never
 
-    type T = ElementOf<['a', 'b', 3, number]>
-    // type T = number | "a" | "b"
-    ```
-  - 另一种解法：
-    ```ts
-    type TTuple = [string, number]
-    type Res = TTuple[number]
-    // => type Res = string | number
-    ```
+type ATuple = [string, number]
 
-- union 转 intersection
-  - `string | number` -> `string & number`
-  - 逆变位置上，同一类型变量的多个候选类型将会被推断为交叉类型
-    - <https://github.com/Microsoft/TypeScript/pull/21496>
-    - ```ts
-      type Bar<T> = T extends {
-        a: (x: infer U) => void; b: (x: infer U) => void
-      } ? U : never
-      interface A {}
-      interface B {}
-      type C = Bar<{ a: (x: A) => void; b: (x: B) => void }>
-      // => type C = A & B
-      ```
-  - 
-    ```ts
-    type UnionToIntersection<U> =
-      (U extends any ? (k: U) => void : never) extends (k: infer I) => void
-        ? I
-        : never
+type ToUnion = ElementOf<ATuple>
+// => type ToUnion = string | number
 
-    interface A {}
-    interface B {}
-    type C = UnionToIntersection<A | B>
-    // => type C = A & B
-    ```
+type T = ElementOf<['a', 'b', 3, number]>
+// type T = number | "a" | "b"
+```
 
-- 获取函数名：
+另一种解法：
 
-  - 
-    ```ts
-    type FuncName<T> = {
-      [P in keyof T]: T[P] extends Function ? P : never
-    }[keyof T]
+```ts
+type TTuple = [string, number]
+type Res = TTuple[number]
+// => type Res = string | number
+```
 
-    type A = {
-      name: string
-      setName(name: string): void
-      getName(): string
-    }
+### 二、 union 转 intersection
 
-    type B = FuncName<A>
-    // => type B = "setName" | "getName"
+`string | number` -> `string & number`
 
-    type Test<T> = {
-      [key in keyof T]: T[key] extends Function ? key : never
-    }
+> 逆变位置上，同一类型变量的多个候选类型将会被推断为交叉类型
+>
+> - <https://github.com/Microsoft/TypeScript/pull/21496>
+>
+> ```ts
+> type Bar<T> = T extends {
+>   a: (x: infer U) => void
+>   b: (x: infer U) => void
+> }
+>   ? U
+>   : never
+> interface A {}
+> interface B {}
+> type C = Bar<{ a: (x: A) => void; b: (x: B) => void }>
+> // => type C = A & B
+> ```
 
-    type C = Test<A>
-    // => type C = {
-    //   name: never;
-    //   setName: "setName";
-    //   getName: "getName";
-    // }
-    ```
+```ts
+type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (
+  k: infer I
+) => void
+  ? I
+  : never
+
+interface A {}
+interface B {}
+type C = UnionToIntersection<A | B>
+// => type C = A & B
+```
+
+获取函数名：
+
+```ts
+type FuncName<T> = {
+  [P in keyof T]: T[P] extends Function ? P : never
+}[keyof T]
+
+type A = {
+  name: string
+  setName(name: string): void
+  getName(): string
+}
+
+type B = FuncName<A>
+// => type B = "setName" | "getName"
+
+type Test<T> = {
+  [key in keyof T]: T[key] extends Function ? key : never
+}
+
+type C = Test<A>
+// => type C = {
+//   name: never;
+//   setName: "setName";
+//   getName: "getName";
+// }
+```
+
+## 2021-10-11
+
+获取对象指定属性值类型：
+
+```ts
+type PropType<T, Path extends string> = string extends Path
+  ? unknown
+  : Path extends keyof T
+  ? T[Path]
+  : Path extends `${infer K}.${infer R}`
+  ? K extends keyof T
+    ? PropType<T[K], R>
+    : unknown
+  : unknown
+
+declare function get<T, P extends string>(obj: T, path: P): PropType<T, P>
+
+const obj = { a: { b: { c: 42, d: 'hello' } } }
+
+const value = get(obj, 'a.b.d')
+// => const value: string
+
+const value2 = get(obj, 'a.b.c')
+// => const value2: number
+```

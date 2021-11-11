@@ -229,7 +229,7 @@ Basic.args = {
 import { Meta, Story } from '@storybook/addon-docs/blocks'
 import { Button } from './Button'
 
-<Meta title="Button" component={Button} argTypes={{ background: { control: 'color' } }} />
+<Meta title="Button" component={Button} argTypes={ { background: { control: 'color' } } } />
 
 export const Template = (args) => <Button {...args} />
 

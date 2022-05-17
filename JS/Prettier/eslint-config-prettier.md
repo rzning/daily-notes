@@ -2,9 +2,9 @@
 
 - <https://github.com/prettier/eslint-config-prettier>
 
-关闭所有不必要的或可能与 [Prettier] 冲突的规则。
+关闭所有不必要的或可能与 [Prettier][prettier] 冲突的规则。
 
-[Prettier]: <https://github.com/prettier/prettier>
+[prettier]: https://github.com/prettier/prettier
 
 ## Installation
 
@@ -16,10 +16,7 @@ yarn add --dev eslint-config-prettier
 
 ```json
 {
-  "extends": [
-    "some-other-config-you-use",
-    "prettier"
-  ]
+  "extends": ["some-other-config-you-use", "prettier"]
 }
 ```
 
@@ -38,3 +35,4 @@ yarn add --dev eslint-config-prettier
 
 > ❗❗ 提示：升级到 8.0.0 之后就无需添加类似 `"prettier/react"` 选项了，
 > 只需添加一个 `"prettier"` 就包括所有规则了。
+> 参见 : [更新日志-v8.0.0](https://github.com/prettier/eslint-config-prettier/blob/main/CHANGELOG.md#version-800-2021-02-21)

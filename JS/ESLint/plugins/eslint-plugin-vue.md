@@ -1,5 +1,8 @@
 # eslint-plugin-vue
 
+- <https://eslint.vuejs.org/>
+- <https://github.com/vuejs/eslint-plugin-vue>
+
 > Official ESLint plugin for Vue.js.
 
 此插件允许我们使用 ESLint 检查 `.Vue` 文件中的 `<template>` 和 `<script>` 标签内容，以及 `.js` 文件中的 Vue 代码。

@@ -18,8 +18,13 @@ export default defineUserConfig({
 
 ```ts
 export type DefaultThemeConfig = BaseDefaultThemeConfig & {
+  /**
+   * 默认主题插件配置
+   */
   themePlugins?: DefaultThemePluginsOptions
 }
+
+declare const defaultTheme: (config?: DefaultThemeConfig) => Theme
 ```
 
 ### 基础配置
@@ -266,6 +271,8 @@ type NavbarConfig = (NavbarItem | NavbarGroup | string)[]
 
 ### 侧边栏配置 Sidebar
 
+类型定义：
+
 ```ts
 type SidebarItem = {
   text: string
@@ -284,13 +291,168 @@ type SidebarGroup = SidebarItem & {
 type SidebarConfigArray = (SidebarItem | SidebarGroup | string)[]
 
 type SidebarConfig = SidebarConfigArray | Record<string, SidebarConfigArray>
+
+/**
+ *  默认主题选项
+ */
+type DefaultThemeOptions = {
+  // ...
+  /**
+   * 侧边栏配置
+   * @default 'auto'
+   */
+  sidebar?: 'auto' | false | SidebarConfig
+  // ...
+}
+```
+
+你可以通过页面的 `sidebar` Frontmatter 来覆盖这个全局配置。
+
+设置为 `false` 可以禁用侧边栏。
+
+若设置为 `'auto'` 则会根据页面标题自动生成侧边栏。
+
+手动配置侧边栏，可以将其设置为侧边栏数组 `SidebarConfigArray` ，其中每个元素是一个 `SidebarItem` 对象或者一个字符串：
+
+- `SidebarItem` 对象应该有一个 `text` 字段，有一个可选的 `link` 字段和一个可选的 `children` 字段。
+
+  - `children` 字段同样是一个 `SidebarConfigArray` 侧边栏数组。
+  - 当 `SidebarItem` 对象处于根节点时，还有一个额外可选的 `collapsible` 字段来控制它是否可折叠。
+
+- 字符串应为目标文件的路径，它将会被转换为 `SidebarItem` 对象：
+
+  - 将页面标题作为 `text`
+  - 页面路由路径作为 `link`
+  - 并根据页面小标题自动生成 `children`
+
+如果你想在不同子路径中使用不同的侧边栏，你可以将其配置为侧边栏对象格式，其中：
+
+- Key 为路径前缀
+- Value 为侧边栏数组 `SidebarConfigArray`
+
+示例一：
+
+```ts
+import { defineUserConfig, defaultTheme } from 'vuepress'
+
+export default defineUserConfig({
+  // ...
+  theme: defaultTheme({
+    // 侧边栏数组
+    // 所有页面会使用相同的侧边栏
+    sidebar: [
+      // SidebarItem
+      {
+        text: 'Foo',
+        link: '/foo/',
+        children: [
+          // SidebarItem
+          {
+            text: 'github',
+            link: 'https://github.com',
+            children: []
+          },
+          // 字符串 - 页面文件路径
+          '/foo/bar.md'
+        ]
+      },
+      // 字符串 - 页面文件路径
+      '/bar/README.md'
+    ]
+  })
+})
+```
+
+示例二：
+
+```ts
+import { defineUserConfig, defaultTheme } from 'vuepress'
+
+export default defineUserConfig({
+  // ...
+  theme: defaultTheme({
+    // 侧边栏对象
+    // 不同子路径下的页面会使用不同的侧边栏
+    sidebar: {
+      '/guide/': [
+        {
+          text: 'Guide',
+          children: ['/guide/README.md', '/guide/getting-started.md']
+        }
+      ],
+      '/reference/': [
+        {
+          text: 'Reference',
+          children: ['/reference/cli.md', '/reference/config.md']
+        },
+        {
+          // 可折叠的侧边栏
+          text: 'Bundlers Reference',
+          collapsible: true,
+          children: [
+            '/reference/bundler/vite.md',
+            '/reference/bundler/webpack.md'
+          ]
+        }
+      ]
+    }
+  })
+})
 ```
 
 ### 插件配置 ThemePlugins
 
+用于配置默认主题使用到的插件。
+
 ```ts
 type DefaultThemePluginsOptions = {
-  // ...
+  /**
+   * 是否启用 `@vuepress/plugin-active-header-links` 插件
+   * - 该插件会监听页面滚动事件。当页面滚动至某个 *标题锚点* 后，
+   *   如果存在对应的 *标题链接* ，那么该插件会将路由 Hash 更改为该 *标题锚点* 。
+   */
+  activeHeaderLinks?: boolean
+  /**
+   * 是否启用由 `@vuepress/plugin-back-to-top` 插件提供的回到顶部按钮
+   */
+  backToTop?: boolean
+  /**
+   * 是否启用由 `@vuepress/plugin-container` 支持的自定义容器
+   */
+  container?: {
+    tip?: boolean
+    warning?: boolean
+    danger?: boolean
+    details?: boolean
+    codeGroup?: boolean
+    codeGroupItem?: boolean
+  }
+  /**
+   * 是否启用 `@vuepress/plugin-external-link-icon` 插件
+   * - 该插件会为内容中的外部链接添加一个外部链接图标
+   */
+  externalLinkIcon?: boolean
+  /**
+   * 是否启用 `@vuepress/plugin-git` 插件
+   * - 该插件会收集你的页面的 Git 信息，包括创建和更新时间、贡献者等。
+   * - 默认主题的 `lastUpdated` 和 `contributors` 就是由该插件支持的
+   */
+  git?: boolean
+  /**
+   * 是否启用 `@vuepress/plugin-medium-zoom` 插件
+   * - 该插件将 `medium-zoom` 集成到 VuePress 中，为图片提供可缩放的功能。
+   */
+  mediumZoom?: boolean
+  /**
+   * 是否启用  `@vuepress/plugin-nprogress` 插件
+   * - 该插件在用户切换到另一个页面时会展示进度条。
+   */
+  nprogress?: boolean
+  /**
+   * 是否启用 `@vuepress/plugin-prismjs` 插件
+   * - 该插件使用 `Prism.js` 来为 Markdown 代码块启用代码高亮。
+   */
+  prismjs?: boolean
 }
 ```
 

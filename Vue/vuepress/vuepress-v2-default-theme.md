@@ -459,14 +459,91 @@ type DefaultThemePluginsOptions = {
 ## Frontmatter
 
 - 所有页面
+
+  - `externalLinkIcon: boolean` - 是否在当前页面的外部链接的后面添加外部链接图标
+  - `navbar: boolean` - 是否在当前页面展示导航栏
+  - `pageClass: string` - 为当前页面添加额外的类名
+
 - 首页
+
+  - `home: boolean` - 设定该页面是首页还是普通页面
+  - `heroImage: string` - 首页图片的 URL
+  - `heroImageDark: string` - 在夜间模式下使用的首页图片 URL
+  - `heroAlt: string` - 首页图片的 `alt` 属性，若未指定则默认使用 `heroText`
+  - `heroHeight: number = 280` - 首页图片 `<img>` 标签的 `height` 属性
+  - `heroText: string | null` - 首页的大标题，若未设置则默认使用站点的 `title` ，设为 `null` 可禁用首页大标题
+  - `tagLine: string | null` - 首页的标语，若不设置则默认使用站点的 `description`
+  - `actions: Array<{ text: string, link: string, type?: 'primary' | 'secondary' }>` - 配置首页按钮
+  - `features: Array<{ title: string, details: string }>` - 配置首页特性列表
+  - `footer: string` - 首页的页脚
+  - `footerHtml: boolean` - 是否允许页脚使用 HTML
+
 - 普通页面
+
+  - `editLink: boolean` - 是否在本页面启用 _编辑此页_ 链接
+  - `editLinkPattern: string` - 本页面中 _编辑此页_ 链接的 Pattern
+  - `lastUpdated: boolean` - 是否在本页面中启用 _最近更新时间戳_
+  - `contributors: boolean` - 是否在本页面中启用 _贡献者列表_
+  - `sidebar: false | 'auto' | SidebarConfigArray | SidebarConfigObject` - 配置本页面的侧边栏
+  - `sidebarDepth: number` - 配置本页面的侧边栏深度
+  - `prev: NavLink | string` - 上个页面的链接
+    - `type NavLink = { text: string, link: string }`
+  - `next: NavLink | string` - 下个页面的链接
 
 ## 内置组件
 
-- Badge
-- CodeGroup
-- CodeGroupItem
+### 徽章组件
+
+Badge
+
+```ts
+defineProps<{
+  type: 'tip' | 'warning' | 'danger'
+  text: string
+  vertical: 'top' | 'middle' | 'bottom' | undefined
+}>()
+```
+
+示例：
+
+```md
+<Badge type="tip" text="badge" vertical="top" />
+```
+
+### 代码块组
+
+CodeGroup 和 CodeGroupItem
+
+```ts
+const codeGroupItemProps = defineProps<{
+  title: string
+  active?: boolean
+}>()
+```
+
+示例：
+
+````md
+<CodeGroup>
+
+<CodeGroupItem title="NPM">
+
+```bash
+npm init
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="YARN" active>
+
+```bash
+yarn init
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+````
 
 ## Markdown
 
@@ -524,3 +601,7 @@ type DefaultThemePluginsOptions = {
 ### 组件替换
 
 ### 开发一个子主题
+
+```
+
+```

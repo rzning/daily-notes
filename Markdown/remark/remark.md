@@ -24,3 +24,11 @@ remark 中使用的语法树是 mdast ，它将 markdown 结构表示为 JSON �
 
 - unified - <https://github.com/unifiedjs/unified>
 - mdast - <https://github.com/syntax-tree/mdast>
+
+## remark-parse
+
+- [remark-parse](https://github.com/remarkjs/remark/tree/main/packages/remark-parse)
+
+This package is a unified (remark) plugin that defines how to take markdown as input and turn it into a syntax tree.
+
+这个包是一个 unified (remark) 插件，它定义了如何将 markdown 作为输入并将其转换为一个语法树。

@@ -6,27 +6,26 @@
 
 它会在组件示例 ( "stories" ) 旁边创建一个插件面板，这样你就可以实时编辑它们。
 
-Addons | [React] | [Vue] | [Angular] | [Web Components]
--|-|-|-|-
-[Controls] | ✅ | ✅ | ✅ | ✅ | ✅
+| Addons     | [React] | [Vue] | [Angular] | [Web Components] |
+| ---------- | ------- | ----- | --------- | ---------------- |
+| [Controls] | ✅      | ✅    | ✅        | ✅               |
 
 更多框架支持信息参考：
 
 - [Framework Support](https://storybook.js.org/docs/react/api/frameworks-feature-support)
 
-[Storybook]: <https://storybook.js.org/>
-[Controls]: <https://storybook.js.org/docs/react/essentials/controls>
-[React]: <https://storybook.js.org/docs/react>
-[Vue]: <https://storybook.js.org/docs/vue>
-[Angular]: <https://storybook.js.org/docs/angular>
-[Web Components]: <https://storybook.js.org/docs/web-components>
-
+[Storybook]: https://storybook.js.org/
+[Controls]: https://storybook.js.org/docs/react/essentials/controls
+[React]: https://storybook.js.org/docs/react
+[Vue]: https://storybook.js.org/docs/vue
+[Angular]: https://storybook.js.org/docs/angular
+[Web Components]: https://storybook.js.org/docs/web-components
 
 ## Installation
 
 Controls 是 [essentials] 的一部分，因此默认安装在所有新 Storybooks 中。
 
-[essentials]: <https://storybook.js.org/docs/react/essentials/introduction>
+[essentials]: https://storybook.js.org/docs/react/essentials/introduction
 
 如果你需要将它添加到你的 Storybook 中，你可以运行：
 
@@ -38,9 +37,7 @@ yarn add --dev @storybook/addon-controls
 
 ```js
 module.exports = {
-  addons: [
-    '@storybook/addon-controls'
-  ]
+  addons: ['@storybook/addon-controls']
 }
 ```
 
@@ -62,10 +59,9 @@ Knobs 也是一个成熟的插件，有很多在 addon-controls 中没有的选�
 
 ### 2️⃣ 如何从 addon-knobs 中迁移？
 
-
 如果你已经在使用 [Storybook Knobs][knobs] 你应该考虑迁移到 Controls 插件。
 
-[knobs]: <https://github.com/storybookjs/storybook/tree/master/addons/knobs>
+[knobs]: https://github.com/storybookjs/storybook/tree/master/addons/knobs
 
 这里有两个迁移示例：
 
@@ -138,7 +134,7 @@ Reflow.argTypes = {
 考虑下面例子：
 
 ```js
-import {Button} from 'some-external-library'
+import { Button } from 'some-external-library'
 
 export default {
   title: 'Button',
@@ -194,7 +190,7 @@ CustomControls.argTypes = {
 与故事参数( [Story Parameters] ) 一样， `args` 和 `argTypes` 注解也是层次化合并的，
 因此 Story 级注解将覆盖 Component 级注解。
 
-[Story Parameters]: <https://storybook.js.org/docs/react/writing-stories/parameters>
+[Story Parameters]: https://storybook.js.org/docs/react/writing-stories/parameters
 
 ### 5️⃣ 如何在 MDX 中使用 Controls 插件？
 
@@ -341,9 +337,11 @@ import InfoButton from './components/InfoButton.vue'
 <Meta
   title="Addon/ControlsMDX"
   component={MyButton}
-  argTypes={{
-    color: { control: { type: 'color' } }
-  }}
+  argTypes={
+    {
+      color: { control: { type: 'color' } }
+    }
+  }
 />
 
 export const Template = (args, { argTypes }) => ({

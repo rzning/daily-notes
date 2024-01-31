@@ -278,4 +278,92 @@ export interface Client extends EventEmitter {
 
 ## 示例 Examples
 
-<!-- todo... -->
+简单的普通 MQTT Server
+
+```js
+const aedes = require('aedes')()
+const server = require('net').createServer(aedes.handle)
+const post = 1883
+
+server.listen(post, () => {
+  console.log('服务器已启动并在监听端口：', port)
+})
+```
+
+Typescript
+
+```ts
+import Aedes from 'aedes'
+import { createServer } from 'net'
+
+const post = 1883
+
+const aedes = new Aedes()
+const server = createServer(aedes.handle)
+
+server.listen(port, () => {
+  console.log('服务器已启动并在监听端口：', port)
+})
+```
+
+使用服务器工厂的简单普通 MQTT Server
+
+```js
+const aedes = require('aedes')()
+const { createServer } = require('aedes-server-factory')
+const port = 1883
+
+const server = createServer(aedes)
+
+server.listen(port, function () {
+  console.log('服务器已启动并在监听端口：', port)
+})
+```
+
+MQTT over TLS / MQTTS
+
+```js
+const fs = require('fs')
+const aedes = require('aedes')()
+const port = 8883
+
+const options = {
+  key: fs.readFileSync('你的私钥文件.pem'),
+  cert: fs.readFileSync('你的公共证书文件.pem')
+}
+
+const server = require('tls').createServer(options, aedes.handle)
+
+server.listen(port, function () {
+  console.log('服务器已启动并在监听端口：', port)
+})
+```
+
+MQTT Server over WebSocket
+
+```js
+const aedes = require('aedes')()
+const httpServer = require('http').createServer()
+const ws = require('websocket-stream')
+const port = 8888
+
+ws.createServer({ server: httpServer }, aedes.handle)
+
+httpServer.listen(port, function () {
+  console.log('服务器已启动并在监听端口：', port)
+})
+```
+
+使用服务器工厂的 MQTT Server over WebSocket
+
+```js
+const aedes = require('aedes')()
+const { createServer } = require('aedes-server-factory')
+const port = 8888
+
+const httpServer = createServer(aedes, { ws: true })
+
+httpServer.listen(port, function () {
+  console.log('服务器已启动并在监听端口：', port)
+})
+```

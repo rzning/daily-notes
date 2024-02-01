@@ -62,6 +62,7 @@ client.on('message', (topic, message) => {
 
 - <https://test.mosquitto.org/>
 - <https://mqtt.eclipseprojects.io/>
+- <https://broker.emqx.io>
 
 ## Command Line Tools
 
@@ -101,7 +102,7 @@ Launch 'mqtt help [command]' to know more about the commands.
 Done.
 ```
 
-订阅命令帮助信息：
+订阅 subscribe 命令帮助信息：
 
 ```sh
 $ mqtt help sub
@@ -134,7 +135,7 @@ Available options:
 Done.
 ```
 
-发布命令帮助信息：
+发布 publish 命令帮助信息：
 
 ```sh
 $ mqtt help pub

@@ -178,7 +178,7 @@ output.html 输出：
 <section class="right"> 这是右侧边栏 这是更多内容 </section>
 ```
 
-### 标签
+### 标签 Tags
 
 <details>
 <summary>if</summary>
@@ -331,32 +331,381 @@ var points = [
 
 <details>
 <summary>extends</summary>
+
+`extends` 用于指定模板继承：
+
+```jinja
+{% extends "base.html" %}
+
+{% extends parentTemplate %}
+
+{% extends name + ".html" %}`.
+```
+
 </details>
 
 <details>
 <summary>block</summary>
+
+`block` 用于在模板上定义一个区块，并用名称标识它，以便在模板继承中使用。
+
+父模板定义的区块，子模板可以用新内容覆盖它们。
+
+```jinja
+{% block css %}
+<link rel="stylesheet" href="app.css" />
+{% endblock %}
+```
+
+在循环中定义区块：
+
+```jinja
+{% for item in items %}
+{% block item %}{{ item }}{% endblock %}
+{% endfor %}
+```
+
+子模版中覆盖 `item` 区块内容：
+
+```jinja
+{% extends "item.njk" %}
+
+{% block item %}
+条目的名称是： {{ item.name }}
+{% endblock %}
+```
+
+你还可以在子模板中调用 `super()` 函数来渲染父区块中的内容。
+
 </details>
 
 <details>
 <summary>include</summary>
+
+`include` 用来引入其他模板，这可以帮助我们将模板切分成更小的部分。
+
+```jinja
+{% include "item.njk" %}
+```
+
+在循环中引入模板：
+
+```jinja
+{% for item in items %}
+{% include "item.njk" %}
+{% endfor %}
+```
+
 </details>
 
 <details>
 <summary>import</summary>
+
+`import` 用来加载一个不同的模板，并允许你访问其导出的值。
+
+模板中定义的宏 ( Macros ) 和使用 `set` 定义的顶级域值将会导出，允许你在不同模板中访问它们。
+
+默认情况，从 `import` 导入的模板没有当前模板的上下文，因此它们不能访问当前模板中的任何变量。
+
+例如，在表单模板 `forms.njk` 中定义了字段 `field` 和标签 `label` 宏：
+
+```jinja
+{% macro field(name, value='', type='text') %}
+<div class="field">
+  <input type="{{ type }}" name="{{ name }}"
+         value="{{ value | escape }}" />
+</div>
+{% endmacro %}
+
+{% macro label(text) %}
+<div>
+  <label>{{ text }}</label>
+</div>
+{% endmacro %}
+```
+
+使用 `import` 导入上面模板，并将其导出值绑定到 `forms` 变量上：
+
+```jinja
+{% import "forms.njk" as forms %}
+
+{{ forms.label('用户名') }}
+{{ forms.field('user') }}
+{{ forms.label('密码') }}
+{{ forms.field('pass', type='password') }}
+```
+
+你也可以使用 `from import` 命令将模板中的指定值导入到当前命名控件中：
+
+```jinja
+{% from "forms.njk" import field, label as description %}
+
+{{ description('用户名') }}
+{{ field('user') }}
+{{ description('密码') }}
+{{ field('pass', type='password') }}
+```
+
+在 `import` 命令末尾添加 `with context` 可使导入的模板使用当前上下文进行处理：
+
+```jinja
+{% from "forms.njk" import field with context %}
+```
+
 </details>
 
 <details>
 <summary>raw</summary>
+
+如果你想输出任何特殊的 nunjacks 标签，比如 `{{` ，
+你可以使用 `{% raw %}` 块，其中的任何内容都将作为纯文本输出。
+
 </details>
 
 <details>
 <summary>verbatim</summary>
+
+`{% verbatim %}` 与 `{% raw %}` 具有相同的行为。
+它是为了与 Twig 逐字标签兼容而添加的。
+
 </details>
 
 <details>
 <summary>filter</summary>
+
+`filter` 区块允许你使用区块中的内容调用过滤器：
+
+```jinja
+{% filter title %}
+愿原力与你同在 may the force be with you
+{% endfilter %}
+
+{% filter replace("force", "forth") %}
+may the force be with you
+{% endfilter %}
+```
+
 </details>
 
 <details>
 <summary>call</summary>
+
+`call` 区块允许使用标记内的所有文本调用宏。
+
+如果希望将大量内容传递到宏中，这将非常有用。
+
+在宏中，你可以调用 `caller()` 获取这些内容。
+
+```jinja
+{% macro add(x, y) %}
+{{ caller() }}: {{ x + y }}
+{% endmacro%}
+
+{% call add(1, 2) -%}
+结果是：
+{%- endcall %}
+```
+
+上例将输出："结果是：3"
+
 </details>
+
+### 位置 positional 参数和关键字 keyword 参数
+
+```jinja
+{% macro foo(x, y, z=5, w=6) %}
+{{ x }}, {{ y }}, {{ z }}, {{ w}}
+{% endmacro %}
+
+{{ foo(1, 2) }}        -> 1, 2, 5, 6
+{{ foo(1, 2, w=10) }}  -> 1, 2, 5, 10
+
+{# 将位置参数指定为关键字参数 #}
+{{ foo(20, y=21) }}     -> 20, 21, 5, 6
+
+
+{# 使用位置参数代替关键字参数 #}
+{{ foo(5, 6, 7, 8) }}   -> 5, 6, 7, 8
+
+{# 跳过位置参数 #}
+{{ foo(8, z=7) }}      -> 8, , 7, 6
+```
+
+### 注释 Comments
+
+可以使用 `{#` 和 `#}` 编写注释。在渲染时，注释被完全去除。
+
+```jinja
+{# 循环遍历所有用户 #}
+{% for user in users %}...{% endfor %}
+```
+
+### 空白字符控制 Whitespace Control
+
+模板引擎默认会逐字输出变量和标记块以外的所有内容，并保留文件中的所有空白。
+
+你可以在开始 / 结束块或变量中添加 `-` 号来告诉引擎删除所有前导或尾随空格。
+
+- `-%}` - 去除标签右侧的空白字符
+- `{%-` - 去除标签之前的空白字符
+
+```jinja
+{% for i in [1,2,3,4,5] -%}
+  {{ i }}
+{%- endfor %}
+```
+
+上面代码将准确输出 `12345` 。
+
+### 表达式 Expressions
+
+你可以使用 JavaScript 中常用的类型字面量表达式：
+
+- Strings: `"How are you?"`
+- Numbers: `40`, `30.123`
+- Arrays: `[1, 2, "array"]`
+- Dicts: `{ one: 1, two: 2 }`
+- Boolean: `true`, `false`
+
+1️⃣ 数学运算 Math
+
+| 加法     | 减法        | 除法     | 取整除         | 取模   | 乘法           | 乘方  |
+| -------- | ----------- | -------- | -------------- | ------ | -------------- | ----- |
+| Addition | Subtraction | Division | Floor Division | Modulo | Multiplication | Power |
+| `+`      | `-`         | `/`      | `//`           | `%`    | `*`            | `**`  |
+
+```jinja
+{{ 2 + 3 }}
+```
+
+2️⃣ 比较运算符 Comparisons
+
+`==` , `===` , `!=` , `!==` , `>` , `>=` , `<` , `<=`
+
+```jinja
+{% if i == 0 %}...{% endif %}
+```
+
+3️⃣ 逻辑运算符 Logic
+
+- `and` - 与
+- `or` - 或
+- `not` - 非
+- 使用 `( ... )` 进行分组
+
+```jinja
+{% if (x < 5 or y < 5) and not foo %}...{% endif %}
+```
+
+4️⃣ 条件表达式 IF Expression
+
+类似于 JavaScript 的三元运算符 ( Ternary Operator ) ，可以使用 if 内联表达式：
+
+```jinja
+{{ "true" if foo else "false" }}
+
+{# 给 foo 指定默认值 #}
+{{ baz(foo if foo else "default") }}
+
+{# else 是可选的 #}
+{{ "true" if foo }}
+```
+
+5️⃣ 函数调用 Function Calls
+
+如果你已经将 JavaScript 方法传递给模板，则可以直接调用：
+
+```jinja
+{{ foo(1, 2, 3) }}
+```
+
+6️⃣ 正则表达式 Regular Expressions
+
+可以像 JavaScript 一样创建者则表达式，但需要使用 `r` 作为前缀：
+
+```jinja
+{% set regExp = r/^foo.*/g %}
+{% if regExp.test('foo') %}
+  Foo in the house!
+{% endif %}
+```
+
+正则支持下列标识：
+
+- `g` : 全局应用 apply globally
+- `i` : 不区分大小写 case insensitive
+- `m` : 多行 multiline
+- `y` : 粘性 sticky
+
+### 自动转义 Autoescaping
+
+如果在环境变量中指定了 autoescaping 则所有的输出都将自动转义，以确保安全输出。
+
+可以使用安全 `safe` 过滤器来取消转义。
+
+```jinja
+{{ foo }}           // &lt;span%gt;
+{{ foo | safe }}    // <span>
+```
+
+关闭全局自动转义，可以使用转义 `escape` 过滤器手动转义变量：
+
+```jinja
+{{ foo }}           // <span>
+{{ foo | escape }}  // &lt;span&gt;
+```
+
+### 全局函数 Global Functions
+
+1️⃣ `range([start], stop, [step])`
+
+遍历指定范围的数字：
+
+- `start` - 起始数字，默认为 `0`
+- `stop` - 结束数字
+- `step` - 间隔，默认为 `1`
+
+```jinja
+{% for i in range(0, 5) -%}
+  {{ i }},
+{%- endfor %}
+
+{# 输出 : 0,1,2,3,4 #}
+```
+
+2️⃣ `cycler(item1, item2, ...itemN)`
+
+循环遍历多个值：
+
+```jinja
+{% set cls = cycler("odd", "even") %}
+{% for row in rows %}
+  <div class="{{ cls.next() }}">{{ row.name }}</div>
+{% endfor %}
+```
+
+上例输出中奇数行的类名为 `odd` ，偶数行的类名为 `even` 。
+
+你可以使用 `current` 属性来访问当前项，上面例子中为 `cls.current` 。
+
+3️⃣ `joiner([separator])`
+
+使用逗号等分隔符组合多个项目时，可使用 joiner 去除第一次调用
+
+- `separator` - 自定义分隔符，默认为 ',' 逗号。
+
+```jinja
+{% set tags = ['food', 'beer', 'dessert'] %}
+{% set comma = joiner() %}
+
+{% for tag in tags -%}
+  {{ comma() }} {{ tag }}
+{%- endfor %}
+```
+
+上例将输出： `food, beer, dessert` 。
+
+## 参考
+
+- [Nunjucks 中文网](https://www.nunjucks.cn/)
+- [Nunjucks 中文文档 - BootCSS](https://nunjucks.bootcss.com/)

@@ -121,3 +121,115 @@ permalink: bundle.css
 ```html
 <link rel="stylesheet" href="/bundle.css" />
 ```
+
+### 3️⃣ 使用 Eleventy 自定义模板
+
+你可以在 Eleventy 中添加 `js` 和 `css` 甚至是 `scss` 作为自定义模板。
+
+这也允许你使用 Sass, PostCSS 或者 LightningCSS 对 CSS 进行后期处理。
+
+或者使用 ESBuild, Rollup, Webpack 等对客户端 JavaScript 进行处理，并将处理后的内容写入输出文件夹。
+
+这也允许你在捆绑代码 ( Bundle Code ) 中使用浏览器不支持的特性，比如 嵌套 CSS TypeScript 或者 JSX 等。
+
+---
+
+示例：在 Eleventy 中对 CSS 和 JavaScript 进行后期处理
+
+- [CSS and JavaScript as first-class citizens in Eleventy — Vadim Makeev](https://pepelsbey.dev/articles/eleventy-css-js/)
+
+在项目中，将 `index.css` 和 `index.js` 文件链接到 HTML 页面，在这两个文件中又导入了其他模块。
+
+```css
+/* src/styles/index.css */
+@import 'blocks/page.css';
+@import 'blocks/header.css';
+@import 'blocks/content.css';
+```
+
+```js
+/* index.js */
+import './modules/menu.js'
+import './modules/video.js'
+import './modules/podcast.js'
+```
+
+使用 PostCSS 处理 CSS ：
+
+- 将 `src/styles/index.css` 和它引用的所有文件合并起来，输出到 `dist/styles/index.css` 文件。
+
+```js
+// 使用插件来处理文件
+const postcss = require('postcss')
+// 将所有导入的文件缝合在一起
+const postcssImport = require('postcss-import')
+// 填充 ( Polyfill ) 现代的媒体查询 ( Media Query ) 语法
+const postcssMediaMinmax = require('postcss-media-minmax')
+// 自动修复基于 browserslist 配置的前缀属性
+const autoprefixer = require('autoprefixer')
+// 将结果最小化
+const postcssCsso = require('postcss-csso')
+
+// 默认情况下 CSS 文件不会被 Eleventy 处理。
+// 为了处理它们，需要使用 addTemplateFormats() 方法将 CSS 添加到模板格式列表中：
+config.addTemplateFormats('css')
+
+// 配置 Eleventy 处理 CSS 的过程：
+config.addExtension('css', {
+  outputFileExtension: 'css',
+  compile: async (content, path) => {
+    // 过滤掉除 index.css 以外的所有其他 CSS 文件。
+    // 这里只需要处理 index.css ，其余的 CSS 文件将被导入到这个文件中。
+    if (path !== './src/styles/index.css') {
+      return
+    }
+
+    // 返回一个异步函数
+    return async () => {
+      // 对 index.css 进行处理，并将处理结果返回
+      // 这里需要将 path 传递给 PostCSS ，以让它能计算出其余文件的相对位置
+      let output = await postcss([
+        postcssImport,
+        postcssMediaMinmax,
+        autoprefixer,
+        postcssCsso
+      ]).process(content, {
+        from: path
+      })
+
+      return output.css
+    }
+  }
+})
+```
+
+使用 ESBuild 处理 JavaScript ：
+
+- 处理 `src/scripts/index.js` 和其引用的所有模块的内容作为一个文件返回，并输出到 `dist` 目录。
+
+```js
+const esbuild = require('esbuild')
+
+config.addTemplateFormats('js')
+
+config.addExtension('js', {
+  outputFileExtension: 'js',
+  compile: async (content, path) => {
+    if (path !== './src/scripts/index.js') {
+      return
+    }
+
+    return async () => {
+      let output = await esbuild.build({
+        target: 'es2020',
+        entryPoints: [path],
+        minify: true,
+        bundle: true,
+        write: false
+      })
+
+      return output.outputFiles[0].text
+    }
+  }
+})
+```

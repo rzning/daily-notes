@@ -233,3 +233,108 @@ config.addExtension('js', {
   }
 })
 ```
+
+## 布局 Layouts
+
+Eleventy Layouts 是特殊的模板，可以用来包装其他内容。
+
+为表示一段内容应该被包含在模板中，可以在 FrontMatter 中使用 `layout` 属性：
+
+```njk
+---
+layout: mylayout.njk
+title: 我的有关 Nunjucks 的博客文章
+---
+<h1>{{ title }}</h1>
+```
+
+这将在 _includes_ 文件夹中寻找寻找 `_includes/mylayout.njk` 文件。
+
+- 你可以在布局文件中使用任何模板语言，它不需要与内容的模板语言相匹配，
+
+  - 例如你可以在 `ejs` 模板中使用 `njk` 布局。
+
+- 布局可以包含子目录
+
+  - `layouts/base.njk` 将映射到 `_includes/layouts/base.njk` 。
+
+- 若想让 Eleventy 布局和包含文件夹分开，你可以使用独立的文件夹。
+
+  - 在配置文件中设置 `dir.layouts` 属性。
+
+接下来创建 mylayout.njk 布局文件：
+
+```html
+---
+title: 我的博客
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }}</title>
+  </head>
+  <body>
+    {{ content | safe }}
+  </body>
+</html>
+```
+
+布局模板将用子模版的内容填充 `content` 数据。
+
+### 数据级联合并优先级
+
+当数据在 Eleventy 数据级联中合并时，数据源的优先级顺序由高到低为：
+
+1. 计算数据
+2. 模板中的 FrontMatter 数据
+3. 模板数据文件
+4. 目录数据文件
+5. 布局中的 FrontMatter 数据（在 v1.0 中移除）
+6. 配置 API 全局数据
+7. 全局数据文件
+
+### 布局别名
+
+```js
+// .eleventy.js
+
+module.exports = function (eleventyConfig) {
+  // 定义 post 布局指向 layouts/post.njk
+  eleventyConfig.addLayoutAlias('post', 'layouts/post.njk')
+}
+```
+
+### 防止布局中的双重转义
+
+| 模板语言   | 未转义内容              | 转义输出                |
+| ---------- | ----------------------- | ----------------------- |
+| Nunjucks   | `{{ content \| safe }}` | `{{ value }}`           |
+| EJS        | `<%- content %>`        | `<%= value %>`          |
+| Handlebars | `{{{ content }}}`       | `{{ value }}`           |
+| Mustache   | `{{{ content }}}`       | `{{ value }}`           |
+| Liquid     | `{{ content }}`         | `{{ value \| escape }}` |
+| HAML       | `! #{ content }`        | `= #{ content }`        |
+| Pug        | `!{content}`            | `#{value}`              |
+
+### 省略布局文件扩展名
+
+省略布局文件扩展名（如 `layout: mylayout` ），
+会导致 Eleventy 循环遍历所有支持的模板格式 ( `mylayout.*` ) 以查找匹配的布局文件。
+
+这种方法有以下缺点：
+
+1. 运行更慢。指定文件扩展名可绕过文件搜索。
+2. 如果你有多个具有相同名称和不同扩展名的布局文件，将会出现歧义。
+
+你可以使用下面选项在项目中禁用省略扩展名布局：
+
+```js
+// .eleventy.js
+
+module.exports = function (eleventyConfig) {
+  eleventyConfig.setLayoutResolution(false)
+}
+```

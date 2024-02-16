@@ -338,3 +338,187 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.setLayoutResolution(false)
 }
 ```
+
+## 集合（使用标签）Collections ( Using Tags )
+
+分页 ( pagination ) 允许你遍历数据集以创建多个模板，而集合 ( collection ) 允许你以有趣的方式对内容进行分组。
+
+Eleventy 使用标签 `tags` 构建内容集合。
+
+对于博客站点，可以使用 `tags: post` 标记文章，例如下面 `mypost.md` 文件：
+
+```yaml
+---
+tags: post
+title: 博文标题
+---
+```
+
+这将会把 `mypost.md` 和所有其他使用 post 标签的内容一起放到 post 集合中。
+
+可以使用 `collections` 对象来引用此集合，并创建所有帖子的列表：
+
+```njk
+<ul>
+{%- for post in collections.post -%}
+  <li>{{ post.data.title }}</li>
+{%- endfor -%}
+</ul>
+```
+
+使用 `eleventyImport` 对象声明你使用的任何集合，以将其关系通知给智能增量生成 ( Smarter Incremental Builds ) 。
+
+```yaml
+---
+eleventyImport:
+  collections: ['post']
+---
+```
+
+可在当前页面使用 `aria-current` 标记：
+
+```njk
+<ul>
+{%- for post in collections.post -%}
+  <li{% if page.url == post.url %} aria-current="page"{% endif %}>{{ post.data.title }}</li>
+{%- endfor -%}
+</ul>
+```
+
+这将会在 CSS 样式中提供一个钩子，使用它的属性选择器：
+
+```css
+[aria-current='page'] {
+  /* ... */
+}
+```
+
+默认情况 Eleventy 将所有内容放入了 `collections.all` 集合中：
+
+```njk
+<ul>
+{%- for post in collections.all -%}
+  <li><a href="{{ post.url }}">{{ post.url }}</a></li>
+{%- endfor -%}
+</ul>
+```
+
+可以使用 `eleventyExcludeFromCollections` 标记，从集合中排除当前内容：
+
+```
+---
+eleventyExcludeFromCollections: true
+tags: post
+---
+这将在 `collections.all` 和 `collections.post` 集合中不可用。
+```
+
+设置单个或多个标签：
+
+```yaml
+---
+# 单个标签
+tags: cat
+
+# 多个单词的单个标签
+tags: cat and dog
+
+# 单行的多个标签
+tags: ['cat', 'dog']
+
+# 多行的多个标签
+tags:
+  - cat
+  - dog
+
+# 使用 override: 前缀取消级联时的深度数据合并
+override:tags: []
+---
+```
+
+集合项数据结构：
+
+- `page` - 当前页面变量中的所有内容
+- `data` - 包括从布局继承来的所有数据
+- `rawInput` - 该模板的原始输入
+- `content` - 此模板渲染后的内容，不包括布局包装
+
+```js
+{
+  page: {
+    inputPath: './test1.md',
+    url: '/test1/',
+    date: new Date()
+    // ...
+  },
+  data: {
+    title: 'Test Title',
+    tags: ['tag1', 'tag2'],
+    date: 'Last Modified'
+    // ...
+  },
+  content: '<h1>Test Title</h1>\n\n<p>This is text content…',
+  // Pre-release only: v3.0.0-alpha.1
+  rawInput: '<h1>{{ title }}</h1>\n\n<p>This is text content…'
+}
+```
+
+使用 Configuration API 自定义集合：
+
+- `eleventyConfig.addCollection()` - 新建集合
+
+- `collectionApi`
+
+  - `getAll()` - 获取所有未排序项
+  - `getAllSorted()` - 获取使用默认排序算法排序后的所有项
+  - `getFilteredByTag('tagName')` - 获取与指定标签匹配的内容
+  - `getFilteredByTags('tagName', ...)` - 获取与多个标签匹配的内容
+  - `getFilteredByGlob( glob )` - 获取文件名与指定 glob 匹配的所有文件
+
+```js
+// .eleventy.js
+
+module.exports = function (eleventyConfig) {
+  // 获取所有内容
+  eleventyConfig.addCollection('allMyContent', function (collectionApi) {
+    return collectionApi.getAll()
+  })
+
+  // 自定义筛选：找到数据中存在 myCustomDataKey 属性的项
+  eleventyConfig.addCollection('keyMustExistInData', function (collectionApi) {
+    return collectionApi.getAll().filter(function (item) {
+      return 'myCustomDataKey' in item.data
+    })
+  })
+
+  // 自定义排序
+  eleventyConfig.addCollection('myCustomSort', function (collectionApi) {
+    return collectionApi.getAll().sort(function (a, b) {
+      //return a.date - b.date; // 按日期升序
+      return b.date - a.date // 按日期降序
+      //return a.inputPath.localeCompare(b.inputPath); // 按路径升序
+      //return b.inputPath.localeCompare(a.inputPath); // 按路径降序
+    })
+  })
+
+  // 使用默认排序的倒序排列
+  eleventyConfig.addCollection('myPostsReverse', function (collectionApi) {
+    return collectionApi.getAllSorted().reverse()
+  })
+
+  // 获取与 post 标签匹配的内容
+  eleventyConfig.addCollection('myPosts', function (collectionApi) {
+    return collectionApi.getFilteredByTag('post')
+  })
+
+  // 获取 _posts/ 目录下所有 Markdown 文件
+  eleventyConfig.addCollection('posts', function (collectionApi) {
+    return collectionApi.getFilteredByGlob('_posts/*.md')
+  })
+
+  // 获取 posts/ 和 notes/ 目录下所有 Markdown 文件
+  eleventyConfig.addCollection('posts', function (collectionApi) {
+    return collectionApi.getFilteredByGlob(['posts/*.md', 'notes/*.md'])
+  })
+}
+```

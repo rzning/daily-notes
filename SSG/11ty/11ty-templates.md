@@ -522,3 +522,268 @@ module.exports = function (eleventyConfig) {
   })
 }
 ```
+
+## 从数据创建页面 Create Pages From Data
+
+分页 Pagination 特性用于遍历任何数据，以创建多个输出文件。
+
+- 分页可以用于传统样式的分页输出：
+
+  - 例如 `/result/page-0/`, `/result/page-1/`
+
+- 分页也可以遍历对象并输出任何永久链接 `permalink` 值。
+
+下面是一个基于 JSON 文件数据动态构建页面的示例：
+
+定义存储在 `_data/staffs.json` 文件中的数据：
+
+```json
+[
+  {
+    "name": "张三",
+    "age": 26
+  },
+  {
+    "name": "李四",
+    "age": 33
+  },
+  {
+    "name": "王五",
+    "age": 28
+  }
+]
+```
+
+使用下面 `staff-pages.njk` 模板，为每位员工生成页面：
+
+```njk
+---
+pagination:
+    data: staffs
+    size: 1
+    alias: staff
+permalink: "staffs/{{ staff.name | slugify }}/"
+---
+
+{{ staff.name }} 的年龄是 {{ staff.age }} 岁。
+```
+
+此模板将生成三个文件，每个文件对于一个员工。当员工数据被添加或编辑时，模板页面将自动更新。
+
+> `page` 是保留字，因此不能使用 `alias: page`
+
+## 分页 Pagination
+
+分页允许你遍历数据集，并从单个模板创建多个文件。
+
+输入数据可以是在 FrontMatter 定义的数组或对象，或者使用全局数据。
+
+你也可以对一个集合进行分页，例如为你的贴子生成一个易于理解的列表。
+
+在模板 FrontMatter 中使用 `pagination` 关键字定义分页。
+
+定义分页及其选项：
+
+```yaml
+---
+pagination:
+  # 指向目标数据集
+  data: <数据来源>
+  # 每页包含数据项数量
+  size: 2
+  # 定义数据项别名
+  alias: item
+  # 若目标数据集为空，则以空数组渲染第一页
+  generatePageOnEmptyData: true
+  # 遍历对象，取属性值
+  # 使用 Object.values() 而不是 Object.keys()
+  resolve: values
+  # 使用筛选从分页数据中删除指定值
+  filter: []
+  # 倒序
+  reverse: true
+  # 将所有分页添加到集合，否则只会将第一页添加到集合
+  addAllPagesToCollections: true
+---
+```
+
+### 对 Array 分页
+
+下面模板 `paged.njk` 将创建两个页面，每个页面将显示来自 `testdata` 的两个项。
+
+- `_site/paged/index.html`
+- `_site/paged/1/index.html`
+
+输出路径可以使用永久链接 `permalink` 属性进行配置。
+
+```njk
+---
+pagination:
+  data: testdata
+  size: 2
+testdata:
+ - item1
+ - item2
+ - item3
+ - item4
+---
+<ol>
+{%- for item in pagination.items %}
+  <li>{{ item }}</li>
+{% endfor -%}
+</ol>
+```
+
+模板中 `pagination` 具有下列属性：
+
+```js
+var pagination = {
+  // 当前页面数据块的数组
+  items: [],
+  // 当前页码
+  pageNumber: 0
+
+  // 所有页面 URL 构成的数组
+  hrefs: [],
+  href: {
+    next: '<a href="...">下一页</a>',
+    previous: '<a href="...">上一页</a>',
+    first: '...',
+    last: '...',
+  },
+
+  // 所有分页数据块的数组
+  pages: [],
+  page: {
+    // 下一页的数据块
+    next: {},
+    // 上一页的数据块
+    previous: {},
+    first: {},
+    last: {},
+  }
+}
+```
+
+### 对 Object 分页
+
+```njk
+---
+pagination:
+  data: testdata
+  size: 2
+testdata:
+  itemkey1: itemvalue1
+  itemkey2: itemvalue2
+  itemkey3: itemvalue3
+  itemkey4: itemvalue4
+permalink: "test/page-{{ pagination.pageNumber + 1 }}/index.html"
+---
+<ol>
+{%- for item in pagination.items %}
+  <li>{{ item }} = {{ testdata[item] }}</li>
+{% endfor -%}
+</ol>
+```
+
+上例将生成两个文件：
+
+- `test/page-1/index.html`
+
+  - itemkey1 = itemvalue1
+  - itemkey2 = itemvalue2
+
+- `test/page-2/index.html`
+
+  - itemkey3 = itemvalue3
+  - itemkey4 = itemvalue4
+
+```njk
+---
+pagination:
+  data: testdata
+  size: 1
+  resolve: values
+  alias: item
+  filter:
+    - itemkey3
+testdata:
+  itemkey1: Item Value 1
+  itemkey2: Item Value 2
+  itemkey3: Item Value 3
+  itemkey4: Item Value 4
+permalink: "test/page-{{ item | slugify }}/index.html"
+---
+当前值为 {{ item }}
+```
+
+> slugify 过滤器用于将字符串转换为适合 URL 中使用的格式。
+>
+> - 移除所有特殊字符，将所有字母转为小写，空格使用 `-` 替换。
+> - 例如 `"Hello, World!"` 使用 Slugify 转换为 `"hello-world"` 。
+
+上例将生成三个文件：
+
+- `test/page-item-value-1/index.html`
+
+  - 当前值为 Item Value 1
+
+- `test/page-item-value-2/index.html`
+
+  - 当前值为 Item Value 2
+
+- `test/page-item-value-4/index.html`
+
+  - 当前值为 Item Value 4
+
+### 对 Collection 分页
+
+```njk
+---
+title: 我的贴子
+pagination:
+  data: collections.post
+  size: 6
+  alias: posts
+---
+
+<ol>
+{% for post in posts %}
+  <li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
+{% endfor %}
+</ol>
+```
+
+上例可生成一个博客链接列表。
+
+### 使用 Before 回调函数
+
+使用 `before()` 回调，可在分页发生之前对数据进行修改、筛选或其他任何操作，以得到合适的分页数据。
+
+```jsx
+---js
+{
+  pagination: {
+    data: "testdata",
+    size: 2,
+    before: function(paginationData, fullData) {
+      // 为每项数据添加一个后缀
+      return paginationData.map(entry => `${entry} ...`);
+    }
+  },
+  testdata: [
+    "item1",
+    "item2",
+    "item3",
+    "item4"
+  ]
+}
+---
+<!-- 模板的其余部分 -->
+```
+
+数据修改执行顺序：
+
+1. `before` 回调
+2. `reverse` 反转
+3. `filter` 过滤

@@ -28,13 +28,16 @@ sass --watch styles.scss:styles.css --style nested
 ```css
 div {
   padding: 20px;
-  margin: 20px; }
+  margin: 20px;
+}
 
 .one {
-  background: red; }
+  background: red;
+}
 
 .two {
-  background: yellow; }
+  background: yellow;
+}
 ```
 
 ### 2. `:expanded`
@@ -72,11 +75,18 @@ sass --watch styles.scss:styles.css --style compact
 ```
 
 ```css
-div { padding: 20px; margin: 20px; }
+div {
+  padding: 20px;
+  margin: 20px;
+}
 
-.one { background: red; }
+.one {
+  background: red;
+}
 
-.two { background: yellow; }
+.two {
+  background: yellow;
+}
 ```
 
 ### 4. `:compressed`
@@ -91,12 +101,19 @@ sass --watch styles.scss:styles.css --style compressed
 ```
 
 ```css
-div{padding:20px;margin:20px}.one{background:red}.two{background:yellow}
+div {
+  padding: 20px;
+  margin: 20px;
+}
+.one {
+  background: red;
+}
+.two {
+  background: yellow;
+}
 ```
-
 
 ### 参考
 
 - [Sass Output Style - Quackit](https://www.quackit.com/sass/tutorial/sass_output_style.cfm)
 - [Sass - Output Style - Tutorialspoint](https://www.tutorialspoint.com/sass/sass_output_style.htm)
-

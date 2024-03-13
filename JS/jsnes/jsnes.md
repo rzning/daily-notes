@@ -19,7 +19,10 @@ $ yarn add jsnes
 unpkg:
 
 ```html
-<script type="text/javascript" src="https://unpkg.com/jsnes/dist/jsnes.min.js"></script>
+<script
+  type="text/javascript"
+  src="https://unpkg.com/jsnes/dist/jsnes.min.js"
+></script>
 ```
 
 ## Usage
@@ -27,10 +30,10 @@ unpkg:
 ```js
 // 初始化并设置输出
 var nes = new jsnes.NES({
-  onFrame (frameBuffer) {
+  onFrame(frameBuffer) {
     // ...
   },
-  onAudioSample (left, right) {
+  onAudioSample(left, right) {
     // ...
   }
 })

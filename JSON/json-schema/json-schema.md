@@ -5,7 +5,6 @@
 
 JSON Schema 是一个词汇表，可用于注释 ( anotate ) 和验证 ( validate ) JSON 文档。
 
-
 ## 标准化 Standardization
 
 - [JSON Schema (core)](https://datatracker.ietf.org/doc/draft-handrews-json-schema/)

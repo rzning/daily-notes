@@ -4,7 +4,6 @@
 - <http://www.list.org/>
 - <https://gitlab.com/mailman>
 
-
 Mailman, the GNU Mailing List Manager
 
 - <https://wiki.list.org/>

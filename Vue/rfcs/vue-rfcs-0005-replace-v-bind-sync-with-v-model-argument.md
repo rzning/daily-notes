@@ -1,13 +1,13 @@
 ---
-title       : Vuejs Replace v-bind's .sync With v-model Argument
-recorddate  : 2020-03-20
+title: Vuejs Replace v-bind's .sync With v-model Argument
+recorddate: 2020-03-20
 ---
 
 # Vuejs RFCs v-bind 的 .sync 修饰符替换为 v-model 上的参数
 
 [Vuejs-RFC-0005-replace-v-bind-sync-with-v-model-argument][rfc-0005]
 
-[rfc-0005]: <https://github.com/vuejs/rfcs/blob/master/active-rfcs/0005-replace-v-bind-sync-with-v-model-argument.md>
+[rfc-0005]: https://github.com/vuejs/rfcs/blob/master/active-rfcs/0005-replace-v-bind-sync-with-v-model-argument.md
 
 适用版本： 3.x
 

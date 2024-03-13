@@ -2,10 +2,10 @@
 
 ```js
 /**
- * @param {(...args: any[]) => any} func 
- * @param {any} context 
+ * @param {(...args: any[]) => any} func
+ * @param {any} context
  */
- function memoize (func, context) {
+function memoize(func, context) {
   const cache = Object.create(null)
   context = context || func
   return (...args) => {
@@ -19,7 +19,6 @@
   }
 }
 ```
-
 
 ## 相关帖子
 

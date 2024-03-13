@@ -35,7 +35,7 @@
 ```html
 <head>
   <!-- Vssue 的样式文件 -->
-  <link rel="stylesheet" href="https://unpkg.com/vssue/dist/vssue.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/vssue/dist/vssue.min.css" />
 </head>
 <body>
   <div id="vssue-container"></div>
@@ -79,7 +79,7 @@ export default {
   components: {
     Vssue: VssueComponent
   },
-  data () {
+  data() {
     return {
       title: 'Vssue Demo',
       options: {

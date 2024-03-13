@@ -16,13 +16,12 @@
 
 云开发为开发者提供完整原生云端支持和微信服务支持。
 
-能力 | 说明
--|-
-云函数 | 在服务器端运行的代码
-数据库 | 一个可在前端操作，也能使用云函数读写的 JSON 数据库
-存储 | 可在前端直接上传/下载云端文件，也可在云开发控制台可视化管理
-云调用 | 基于云函数免鉴权使用开放接口能力
-
+| 能力   | 说明                                                        |
+| ------ | ----------------------------------------------------------- |
+| 云函数 | 在服务器端运行的代码                                        |
+| 数据库 | 一个可在前端操作，也能使用云函数读写的 JSON 数据库          |
+| 存储   | 可在前端直接上传/下载云端文件，也可在云开发控制台可视化管理 |
+| 云调用 | 基于云函数免鉴权使用开放接口能力                            |
 
 <hr id="quickstart"/>
 
@@ -53,7 +52,6 @@
   - 管理存储空间
   - 查看云函数列表及操作日志
 
-
 <hr id="capabilities"/>
 
 ## 3. 基础能力
@@ -66,12 +64,12 @@
 
 一个数据库可以有多个集合，集合中有多条记录（JSON 对象）。
 
-关系型 | 文档型
--|-
-数据库 `database` | 数据库 `database`
-表 `table` | 集合 `collection`
-行 `row` | 记录 `record` / `doc`
-列 `column` | 字段 `field`
+| 关系型            | 文档型                |
+| ----------------- | --------------------- |
+| 数据库 `database` | 数据库 `database`     |
+| 表 `table`        | 集合 `collection`     |
+| 行 `row`          | 记录 `record` / `doc` |
+| 列 `column`       | 字段 `field`          |
 
 数据库 API 分小程序端和服务器端两部分。
 
@@ -89,15 +87,18 @@
 const db = wx.cloud.database()
 
 // 2.
-db.collection('books').where({
-  publishInfo: {
-    year: 2006
-  }
-}).get({ // 3.
-  success (res) {
-    console.log(res)
-  }
-})
+db.collection('books')
+  .where({
+    publishInfo: {
+      year: 2006
+    }
+  })
+  .get({
+    // 3.
+    success(res) {
+      console.log(res)
+    }
+  })
 ```
 
 - 参考 @ [数据库指引](./guide.md#database)
@@ -110,17 +111,14 @@ db.collection('books').where({
 
 ### 3.5 HTTP API
 
-
 <hr id="environment"/>
 
 ## 4. 资源环境
 
 > [dev/wxcloud/basis/concepts/environment](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/concepts/environment.html)
 
-
 <hr id="quota"/>
 
 ## 5. 配额说明
 
 > [dev/wxcloud/billing/quota](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/billing/quota.html)
-

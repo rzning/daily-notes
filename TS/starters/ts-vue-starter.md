@@ -1,14 +1,14 @@
 ---
-title       : "TypeScript Vue Starter"
-recorddate  : 2020-02-20
-repository  : https://github.com/microsoft/TypeScript-Vue-Starter
+title: 'TypeScript Vue Starter'
+recorddate: 2020-02-20
+repository: https://github.com/microsoft/TypeScript-Vue-Starter
 ---
 
 TypeScript Vue Starter
 
 ## [Single File Components][sfc]
 
-[sfc]: <https://github.com/Microsoft/TypeScript-Vue-Starter#single-file-components>
+[sfc]: https://github.com/Microsoft/TypeScript-Vue-Starter#single-file-components
 
 要在 TypeScript 中使用单文件组件 `.vue` 文件，需要做一些准备。
 
@@ -19,9 +19,9 @@ TypeScript Vue Starter
   - 其作用是在与正则匹配的文件名后面附加 `.ts` 后缀
   - `appendTsSuffixTo: [/\.vue$/]`
 
-[vue-loader]: <https://github.com/vuejs/vue-loader>
-[ts-loader]: <https://github.com/TypeStrong/ts-loader>
-[appendtssuffixto]: <https://github.com/TypeStrong/ts-loader#appendtssuffixto>
+[vue-loader]: https://github.com/vuejs/vue-loader
+[ts-loader]: https://github.com/TypeStrong/ts-loader
+[appendtssuffixto]: https://github.com/TypeStrong/ts-loader#appendtssuffixto
 
 接下来还要做一件事是：
 
@@ -32,9 +32,9 @@ TypeScript Vue Starter
 ```ts
 // src/vue-shims.d.ts
 
-declare module "*.vue" {
-    import Vue from "vue";
-    export default Vue;
+declare module '*.vue' {
+  import Vue from 'vue'
+  export default Vue
 }
 ```
 

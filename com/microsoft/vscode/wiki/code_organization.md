@@ -16,13 +16,13 @@
 
 核心（core）分为以下几层：
 
-Layer | Description
-:-:|-
-base | 提供通用工具类（utilities）和用户界面构件块（building blocks）
-platform | 定义服务注入（injection）支持，和代码的基本服务
-editor | 摩纳哥编辑器（Monaco editor）可作为一个独立的可下载组件
-languages | 实现多种语言作为扩展使用，并且我们将会把更多的语言迁移到扩展
-workbench | 作为 Monaco editor 的宿主，并为 viewlets 提供框架，例如资源管理器（Explorer）、状态栏（Status Bar）或菜单栏（Menu Bar），利用 [Electron] 实现代码桌面应用程序
+|   Layer   | Description                                                                                                                                                   |
+| :-------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|   base    | 提供通用工具类（utilities）和用户界面构件块（building blocks）                                                                                                |
+| platform  | 定义服务注入（injection）支持，和代码的基本服务                                                                                                               |
+|  editor   | 摩纳哥编辑器（Monaco editor）可作为一个独立的可下载组件                                                                                                       |
+| languages | 实现多种语言作为扩展使用，并且我们将会把更多的语言迁移到扩展                                                                                                  |
+| workbench | 作为 Monaco editor 的宿主，并为 viewlets 提供框架，例如资源管理器（Explorer）、状态栏（Status Bar）或菜单栏（Menu Bar），利用 [Electron] 实现代码桌面应用程序 |
 
 ## Target Environments 目标环境
 
@@ -33,13 +33,13 @@ workbench | 作为 Monaco editor 的宿主，并为 viewlets 提供框架，例�
 
 在代码中，我们区分了以下目标环境:
 
-Target Enviroment | Description | May use code from
-:-:|-|-
-common | 源代码只需要基本的 JavaScript APIs 并在所有其他 target environments 中运行 | \
-browser | 源代码需要浏览器 APIs 例如操作 DOM | common
-node | 源代码需要 [nodejs] APIs | common
-electron-browser | 源码需要 [Electron renderer-process] APIs | common, browser, node
-electron-main | 源码需要 [Electron main-process] APIs | common, node
+| Target Enviroment | Description                                                                | May use code from     |
+| :---------------: | -------------------------------------------------------------------------- | --------------------- |
+|      common       | 源代码只需要基本的 JavaScript APIs 并在所有其他 target environments 中运行 | \                     |
+|      browser      | 源代码需要浏览器 APIs 例如操作 DOM                                         | common                |
+|       node        | 源代码需要 [nodejs] APIs                                                   | common                |
+| electron-browser  | 源码需要 [Electron renderer-process] APIs                                  | common, browser, node |
+|   electron-main   | 源码需要 [Electron main-process] APIs                                      | common, node          |
 
 ## Dependency Injection 依赖注入
 
@@ -80,7 +80,6 @@ instantiationService.createInstance(Client)
 
 通常，这是作为一个贡献被注册时为你做的，比如 Viewlet 或 Language。
 
-
 ## Code Editor source organization 代码编辑器源码组织
 
 ```yaml
@@ -108,12 +107,9 @@ VS Code 工作台 `vs/workbench` 是由很多东西组成的，提供了丰富�
 - 一个部件永远不能触及另一个部件的内部（内部是指一个部件内的任何东西，不是在单一的普通 API 文件）。
 - 在让一部件依赖于另一部件之前，请三思：这真的需要吗？是否可以通过使用工作台的可扩展性来避免依赖关系？
 
-
-
-[extension API]: <https://code.visualstudio.com/docs/extensions/overview>
-[Electron]: <http://electron.atom.io/>
-[TypeScript]: <https://github.com/microsoft/typescript>
-[nodejs]: <https://nodejs.org/>
-[Electron renderer-process]: <https://github.com/atom/electron/tree/master/docs#modules-for-the-renderer-process-web-page>
-[Electron main-process]: <https://github.com/atom/electron/tree/master/docs#modules-for-the-main-process>
-
+[extension API]: https://code.visualstudio.com/docs/extensions/overview
+[Electron]: http://electron.atom.io/
+[TypeScript]: https://github.com/microsoft/typescript
+[nodejs]: https://nodejs.org/
+[Electron renderer-process]: https://github.com/atom/electron/tree/master/docs#modules-for-the-renderer-process-web-page
+[Electron main-process]: https://github.com/atom/electron/tree/master/docs#modules-for-the-main-process

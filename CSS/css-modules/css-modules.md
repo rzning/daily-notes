@@ -27,7 +27,6 @@ import styles from './style.css'
 // import { mainColor } from './style.css'
 
 element.innerHTML = `<div class="${styles.mainColor}"> Content </div>`
-
 ```
 
 ## Naming 命名
@@ -88,7 +87,7 @@ element.innerHTML = `<div class="${styles.mainColor}"> Content </div>`
 
 ```css
 .otherClassName {
-  composes: className from './style.css'
+  composes: className from './style.css';
 }
 ```
 
@@ -123,7 +122,6 @@ element.innerHTML = `<div class="${styles.mainColor}"> Content </div>`
 ### Webpack
 
 Webpack 的 [css-loader](https://github.com/webpack/css-loader) 在模块模式下将每个本地范围的标识符替换为一个全局惟一名称，并将其导出。
-
 
 ### Server-side and static websites
 

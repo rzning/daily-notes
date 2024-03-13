@@ -1,13 +1,13 @@
 ---
-title       : Vuejs Optional Props Declaration
-recorddate  : 2020-03-23
+title: Vuejs Optional Props Declaration
+recorddate: 2020-03-23
 ---
 
 # Vuejs RFCs 可选的 Props 声明
 
 [Vuejs-RFC-0010-optional-props-declaration][rfc-0010]
 
-[rfc-0010]: <https://github.com/vuejs/rfcs/blob/master/active-rfcs/0010-optional-props-declaration.md>
+[rfc-0010]: https://github.com/vuejs/rfcs/blob/master/active-rfcs/0010-optional-props-declaration.md
 
 适用版本： 2.x & 3.x
 
@@ -42,7 +42,7 @@ export default {}
 ### 函数式组件
 
 ```js
-const FunctionalComp = props => {
+const FunctionalComp = (props) => {
   return h('div', props.foo)
 }
 ```

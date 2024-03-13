@@ -44,6 +44,7 @@ Visual Studio Code Remote - SSH 扩展允许你打开任何运行有 SSH 服务�
   并输入与上一步相同的 `user@hostname`
 
 - 若 VSCode 不能自动检测到连接的服务器类型，你需要手动选择。
+
   - Linux
   - Windows
   - macOS
@@ -56,9 +57,6 @@ Visual Studio Code Remote - SSH 扩展允许你打开任何运行有 SSH 服务�
 
 ### 断开与远程主机的连接
 
-
 ### 记住主机和高级设置
 
-
 ## 管理扩展
-

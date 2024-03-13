@@ -3,7 +3,7 @@
 Stylus Supremacy 是一个用于格式化 [Stylus] 文件的 JavaScript 库。
 你也可以说是一个适用于 Stylus 语言的美化器 ( Beautifier ) 。
 
-[Stylus]: <http://stylus-lang.com/>
+[Stylus]: http://stylus-lang.com/
 
 ## Command-line Usage
 
@@ -150,8 +150,8 @@ console.log(result)
 
 > 配置文件默认使用 [JSON5] 进行解析，从 2.1.1 版本开始支持 [YAML 1.2] 解析。
 
-[JSON5]: <https://json5.org/>
-[YAML 1.2]: <https://yaml.org/spec/1.2/spec.html>
+[JSON5]: https://json5.org/
+[YAML 1.2]: https://yaml.org/spec/1.2/spec.html
 
 ## Stylint Compatibility
 

@@ -56,8 +56,8 @@ options:
 您可以基于已有的 TextMate 颜色主题创建，或者从头创建一个新的主题。
 
 - 如果你打算使用 `Developer: Generate Color Theme From Current Settings`
-（开发人员：从当前设置生成颜色主题）命令创建一个主题，也就是从你的设置中获取定制颜色，
-你需要从一个新的扩展开始（推荐你这样做）。
+  （开发人员：从当前设置生成颜色主题）命令创建一个主题，也就是从你的设置中获取定制颜色，
+  你需要从一个新的扩展开始（推荐你这样做）。
 - 从一个 TextMate 颜色主题开始，将从一个现有的主题开始，可用于 `.tmTheme`。
 
 生成器将：
@@ -74,7 +74,7 @@ options:
 创建一个扩展，来贡献一个用于着色器的语言。
 
 - 提示输入一个现有的 TextMate 语言文件（`.tmLanguage`、`.plist` 或 `.json`）的位置（URL 或文件路径）。
-这个文件将被导入到新扩展。要开始一个新的语法，您可以通过传递一个空名称来跳过它。
+  这个文件将被导入到新扩展。要开始一个新的语法，您可以通过传递一个空名称来跳过它。
 - 提示输入扩展名称（identifier），并将在当前目录中创建该名称的文件夹。
 
 一旦创建，使用 VS Code 打开创建的文件夹，并运行扩展以测试新主题。
@@ -88,7 +88,7 @@ options:
 创建一个扩展，来贡献一个新的代码片段。
 
 - 提示输入一个包含 TextMate 片段（`.tmSnippet`）或 Sublime 片段（`.sublime-snippet`）的目录位置。
-这些文件将被转换成一个 VS Code 代码片段文件。
+  这些文件将被转换成一个 VS Code 代码片段文件。
 - 提示输入这些代码片段将被激活的语言名称。
 - 提示输入扩展名称（identifier），并将在当前目录中创建该名称的文件夹。
 
@@ -115,11 +115,11 @@ options:
 
 根据您的平台，它位于以下文件夹：
 
-Platform | Folder
--|-
-Windows | `%USERPROFILE%\.vscode\extensions`
-macOS   | `~/.vscode/extensions`
-Linux   | `~/.vscode/extensions`
+| Platform | Folder                             |
+| -------- | ---------------------------------- |
+| Windows  | `%USERPROFILE%\.vscode\extensions` |
+| macOS    | `~/.vscode/extensions`             |
+| Linux    | `~/.vscode/extensions`             |
 
 如果你希望在每次运行代码时加载你的扩展，请将你的项目复制到 `.vscode/extensions` 下的新文件夹中，
 例如 `~/.vscode/extensions/myextension`。
@@ -130,6 +130,6 @@ Linux   | `~/.vscode/extensions`
 - [Hello World][next2] - 尝试此演练来构建您的第一个扩展。
 - [Additional Extension Examples][next3] - 看看我们的示例扩展项目列表。
 
-[next1]: <https://code.visualstudio.com/docs/extensions/publish-extension>
-[next2]: <https://code.visualstudio.com/docs/extensions/example-hello-world>
-[next3]: <https://code.visualstudio.com/docs/extensions/samples>
+[next1]: https://code.visualstudio.com/docs/extensions/publish-extension
+[next2]: https://code.visualstudio.com/docs/extensions/example-hello-world
+[next3]: https://code.visualstudio.com/docs/extensions/samples

@@ -13,70 +13,69 @@
 // node.js 工具库，中间层
 
 Function.prototype.bind = function (context) {
-  var self = this;
+  var self = this
   return function () {
     self.apply(context, arguments)
   }
 }
 
-function isFunction (fn) {
+function isFunction(fn) {
   if (typeof fn === 'function') {
-    return true;
+    return true
   }
-  return false;
+  return false
 }
 
 function myPromise(handle) {
-  this.status = 'Pending';
-  this.val = void 0;
-  this.resolveArr = [];
-  this.rejectArr = [];
+  this.status = 'Pending'
+  this.val = void 0
+  this.resolveArr = []
+  this.rejectArr = []
 
   this.resolve = function (value) {
     if (this.status !== 'Pending') {
-      return;
+      return
     }
-    this.status = 'Resolve';
+    this.status = 'Resolve'
 
-    this.val = value;
+    this.val = value
 
-    var callback;
+    var callback
     setTimeout(() => {
-      while (callback = this.resolveArr.shift()) {
-        callback(this.val);
+      while ((callback = this.resolveArr.shift())) {
+        callback(this.val)
       }
     })
   }
   this.reject = function (err) {
     if (this.status !== 'Pending') {
-      return;
+      return
     }
     this.status = 'Reject'
 
-    this.val = err;
+    this.val = err
   }
 
   try {
     handle(this.resolve.bind(this), this.reject.bind(this))
-  }
-  catch (err) {
-    throw err;
+  } catch (err) {
+    throw err
   }
 }
 
 myPromise.prototype.then = function (onSuccess, onError) {
-  var val = this.val;
-  var status = this.status;
+  var val = this.val
+  var status = this.status
   return new myPromise((resolve, reject) => {
     var run = function (fn, handle) {
       try {
         if (!isFunction(onSuccess)) {
           fn(onSuccess)
         } else {
-          let res = handle(val);
-          resolve(res);
+          let res = handle(val)
+          resolve(res)
         }
-      } catch(err) {
+      } catch (err) {
         reject(err)
       }
     }
@@ -109,22 +108,22 @@ myPromise.prototype.then = function (onSuccess, onError) {
 
     switch (status) {
       case 'Pending':
-        this.resolveArr.push(onSuccess);
-        break;
+        this.resolveArr.push(onSuccess)
+        break
       case 'Resolve':
-        run(resolve, onSuccess);
-        break;
+        run(resolve, onSuccess)
+        break
       case 'Reject':
-        run(reject, onError);
-        break;
+        run(reject, onError)
+        break
     }
   })
 }
 
 new myPromise((resolve, reject) => {
   setTimeout(() => {
-    resolve(4);
-  }, 2000);
+    resolve(4)
+  }, 2000)
 }).then((res) => {
   console.log(res)
 })

@@ -21,7 +21,6 @@ TypeScript 提供了几种实用工具类型以便利常见的类型转换。这
 - ⒖ `OmitThisParameter<Type>`
 - ⒗ `ThisType<Type>`
 
-
 ## ⒈ `Partial<Type>`
 
 ```ts
@@ -298,7 +297,9 @@ type T1 = NonNullable<string[] | null | undefined>
 ```ts
 type Parameters<T extends (...args: any) => any> = T extends (
   ...args: infer P
-) => any ? P : never
+) => any
+  ? P
+  : never
 ```
 
 获取函数 `Type` 的参数类型来构造一个元组类型：
@@ -343,9 +344,8 @@ type T7 = Parameters<Function>
 ## ⒒ `ConstructorParameters<Type>`
 
 ```ts
-type ConstructorParameters<
-  T extends new (...args: any) => any
-> = T extends new (...args: infer P) => any ? P : never
+type ConstructorParameters<T extends new (...args: any) => any> =
+  T extends new (...args: infer P) => any ? P : never
 ```
 
 获取构造函数 `Type` 的参数类型来构造一个元组类型：
@@ -377,7 +377,9 @@ type T4 = ConstructorParameters<Function>
 ```ts
 type ReturnType<T extends (...args: any) => any> = T extends (
   ...args: any
-) => infer R ? R : any
+) => infer R
+  ? R
+  : any
 ```
 
 获取函数 `Type` 的返回类型：
@@ -426,7 +428,9 @@ type T8 = ReturnType<Function>
 ```ts
 type InstanceType<T extends new (...args: any) => any> = T extends new (
   ...args: any
-) => infer R ? R : any
+) => infer R
+  ? R
+  : any
 ```
 
 获取构造函数 `Type` 的返回类型：
@@ -464,9 +468,9 @@ type T4 = InstanceType<Function>
 ## ⒕ `ThisParameterType<Type>`
 
 ```ts
-type ThisParameterType<T> = T extends (
-  this: infer U, ...args: any[]
-) => any ? U : unknown
+type ThisParameterType<T> = T extends (this: infer U, ...args: any[]) => any
+  ? U
+  : unknown
 ```
 
 获取函数 `Type` 的 This 参数的类型：
@@ -490,9 +494,12 @@ function numberToString(n: ThisParameterType<typeof toHex>) {
 ## ⒖ `OmitThisParameter<Type>`
 
 ```ts
-type OmitThisParameter<T> = unknown extends ThisParameterType<T>
-  ? T : T extends (...args: infer A) => infer R
-    ? (...args: A) => R : T
+type OmitThisParameter<T> =
+  unknown extends ThisParameterType<T>
+    ? T
+    : T extends (...args: infer A) => infer R
+      ? (...args: A) => R
+      : T
 ```
 
 从函数 `Type` 中移除 This 参数：
@@ -534,7 +541,6 @@ interface ThisType<T> {}
 
 `ThisType<Type>` 标记接口 ( Marker Interface ) 只是在 `lib.d.ts` 中声明了一个空接口，
 除了在对象字面量的上下文类型中被识别之外，该接口的作用类似于任何空接口。
-
 
 <details>
 <summary>Example</summary>

@@ -2,8 +2,6 @@
 
 - <https://storybook.js.org/docs/react/api/csf>
 
-
-
 组件故事格式 ( CSF ) 是编写故事的推荐方法。
 它是一个基于 ES6 模块的开放标准，可以移植到 Storybook 之外。
 
@@ -119,7 +117,6 @@ Text.args = {
   label: 'Hello',
   onClick: action('clicked')
 }
-
 ```
 
 ## Non-story Exports

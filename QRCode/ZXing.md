@@ -4,8 +4,6 @@
 
 ZXing ("Zebra Crossing") barcode scanning library for Java, Android
 
-
-
 ## Links
 
 - Decoder Online - <https://zxing.org/w/decode.jspx>

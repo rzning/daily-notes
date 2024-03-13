@@ -7,6 +7,7 @@
 Flow 和 Babel 可以很好地结合在一起，因此对于已经使用 Babel 的 React 用户来说，采用 Flow 并不费事。
 
 > 如果你需要在 Babel 中配置 Flow 可以参考：
+>
 > - <https://flow.org/en/docs/tools/babel/>
 
 Flow 在 Create React App 中可以开箱即用，只需安装 Flow 并创建一个 `.flowconfig` 配置文件即可：
@@ -41,7 +42,6 @@ import { Component } from 'react'
 import PropTypes from 'prop-types'
 
 class MyComponent extends Component {
-
   static propTypes = {
     foo: PropTypes.number.isRequired,
     bar: PropTypes.string
@@ -66,13 +66,12 @@ type Props = {
 }
 
 class MyComponent extends Component<Props> {
-
   render() {
     return <div>{this.props.bar}</div>
   }
 }
 
-<MyComponent foo={28} />
+;<MyComponent foo={28} />
 ```
 
 > 如果你不需要再次使用 `Props` 类型，你也可以使用内联方式定义：
@@ -90,7 +89,9 @@ class MyComponent extends Component<Props> {
 
 import * as React from 'react'
 
-type Props = { /* ... */ }
+type Props = {
+  /* ... */
+}
 
 type State = {
   count: number
@@ -114,8 +115,9 @@ class MyComponent extends React.Component<Props, State> {
   }
 }
 
-<MyComponent />
+;<MyComponent />
 ```
+
 添加静态 `defaultProps` 属性：
 
 ```js
@@ -138,7 +140,7 @@ class MyComponent extends React.Component<Props> {
   }
 }
 
-<MyComponent bar={'abc'} />
+;<MyComponent bar={'abc'} />
 ```
 
 ### 3.2 Stateless Functional Components
@@ -170,7 +172,7 @@ MyComponent.defaultProps = {
 
 如果你正在使用 Flow ，我们建议你使用属性初始化器 ( [property initializer] ) 语法，因为它是最简单的静态类型。
 
-[property initializer]: <https://babeljs.io/docs/plugins/transform-class-properties>
+[property initializer]: https://babeljs.io/docs/plugins/transform-class-properties
 
 属性初始化器语法如下所示：
 
@@ -214,21 +216,20 @@ class MyComponent extends React.Component<{}, { count: number }> {
 
 React 提供的 `SyntheticEvent<T>` 类型如下：
 
-合成事件类型 | DOM 事件
--|-
-`SyntheticEvent<T>` | Event
-`SyntheticAnimationEvent<T>` | AnimationEvent
-`SyntheticCompositionEvent<T>` | CompositionEvent
-`SyntheticInputEvent<T>` | InputEvent
-`SyntheticUIEvent<T>` | UIEvent
-`SyntheticFocusEvent<T>` | FocusEvent
-`SyntheticKeyboardEvent<T>` | KeyboardEvent
-`SyntheticMouseEvent<T>` | MouseEvent
-`SyntheticDragEvent<T>` | DragEvent
-`SyntheticWheelEvent<T>` | WheelEvent
-`SyntheticTouchEvent<T>` | TouchEvent
-`SyntheticTransitionEvent<T>` | TransitionEvent
-
+| 合成事件类型                   | DOM 事件         |
+| ------------------------------ | ---------------- |
+| `SyntheticEvent<T>`            | Event            |
+| `SyntheticAnimationEvent<T>`   | AnimationEvent   |
+| `SyntheticCompositionEvent<T>` | CompositionEvent |
+| `SyntheticInputEvent<T>`       | InputEvent       |
+| `SyntheticUIEvent<T>`          | UIEvent          |
+| `SyntheticFocusEvent<T>`       | FocusEvent       |
+| `SyntheticKeyboardEvent<T>`    | KeyboardEvent    |
+| `SyntheticMouseEvent<T>`       | MouseEvent       |
+| `SyntheticDragEvent<T>`        | DragEvent        |
+| `SyntheticWheelEvent<T>`       | WheelEvent       |
+| `SyntheticTouchEvent<T>`       | TouchEvent       |
+| `SyntheticTransitionEvent<T>`  | TransitionEvent  |
 
 ## 5. ref functions
 

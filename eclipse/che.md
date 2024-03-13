@@ -1,8 +1,8 @@
 ---
-title       : Eclipse Che
-recorddate  : 2020-04-04
-repository  : https://github.com/eclipse/che
-website     : http://eclipse.org/che
+title: Eclipse Che
+recorddate: 2020-04-04
+repository: https://github.com/eclipse/che
+website: http://eclipse.org/che
 ---
 
 # Che

@@ -1,9 +1,10 @@
 ---
-title       : "入门 - Touch WX"
-author      : Rzning
-date        : 2018-08-05 17:28:00 +0800
-modified    : 2018-08-05 17:28:00 +0800
+title: '入门 - Touch WX'
+author: Rzning
+date: 2018-08-05 17:28:00 +0800
+modified: 2018-08-05 17:28:00 +0800
 ---
+
 # Touch WX 入门
 
 - <http://www.wetouch.net/touchwx_doc/quickstart/>

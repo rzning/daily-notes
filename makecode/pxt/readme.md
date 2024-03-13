@@ -1,5 +1,4 @@
-Microsoft MakeCode
-==================
+# Microsoft MakeCode
 
 - <https://github.com/Microsoft/pxt>
 - <https://makecode.com/>
@@ -108,11 +107,10 @@ $ svgo svgicons/myicon.svg
 $ npm run test:all
 ```
 
-
-[PXT]: <https://github.com/Microsoft/pxt>
-[TypeScript]: <https://github.com/Microsoft/TypeScript>
-[Blockly]: <https://github.com/google/blockly>
-[VS Code]: <https://github.com/Microsoft/vscode>
-[Monaco Code Editor]: <https://github.com/Microsoft/monaco-editor>
-[Code Navigation]: <https://code.visualstudio.com/docs/editor/editingevolved>
-[ARM Thumb]: <https://en.wikipedia.org/wiki/ARM_architecture#Thumb>
+[PXT]: https://github.com/Microsoft/pxt
+[TypeScript]: https://github.com/Microsoft/TypeScript
+[Blockly]: https://github.com/google/blockly
+[VS Code]: https://github.com/Microsoft/vscode
+[Monaco Code Editor]: https://github.com/Microsoft/monaco-editor
+[Code Navigation]: https://code.visualstudio.com/docs/editor/editingevolved
+[ARM Thumb]: https://en.wikipedia.org/wiki/ARM_architecture#Thumb

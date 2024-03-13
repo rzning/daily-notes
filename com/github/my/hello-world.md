@@ -1,6 +1,6 @@
 # Newbie
-新手上路，我的第一个仓库，参照 [Hello-world - GitHub Guides](https://guides.github.com/activities/hello-world/) 教程。
 
+新手上路，我的第一个仓库，参照 [Hello-world - GitHub Guides](https://guides.github.com/activities/hello-world/) 教程。
 
 ## GitHub
 
@@ -10,7 +10,6 @@ GitHub 是一个代码托管平台，用于版本控制和协作。
 
 ![:octocat:](https://assets-cdn.github.com/images/icons/emoji/octocat.png)
 
-
 ## 第一步，新建仓库
 
 一个仓库（repository）通常用来组织一个独立的项目。
@@ -18,13 +17,12 @@ GitHub 是一个代码托管平台，用于版本控制和协作。
 ### :one: Create a Repository
 
 1. 点击页面右上角的加号（+）下拉按钮，然后选择 **New repository** 。
-2. 在 **Repository name** 位置输入仓库名称 `newbie` 。
+2. 在 **Repository name** 位置输入仓库名称 `daily-notes` 。
 3. 在 **Description** 位置写一个简短的描述。
 4. 勾选 **Initialize this repository with a README** ，用于创建一个默认的 README.md 文件。
 5. 点击 **Create repository** 。
 
 :candy: 完成新仓库创建。
-
 
 ## 第二步，新建分支
 
@@ -34,12 +32,11 @@ GitHub 是一个代码托管平台，用于版本控制和协作。
 
 ### :two: Create a Branch
 
-1. 切换到新建仓库 `newbie` 主页。
+1. 切换到新建仓库 `daily-notes` 主页。
 2. 点击文件列表顶部的名为 `branch:master` 的下拉按钮。
 3. 创建名为 `readme-edits` 的分支。
 
 :cherries: 此时仓库就有了名为 `master` 和 `read-edits` 两个分支。
-
 
 ## 第三步，编辑和提交修改
 
@@ -57,12 +54,11 @@ GitHub 是一个代码托管平台，用于版本控制和协作。
 
 :dango: 此次更改只会作用于 `readme-edits` 分支上的 README 文件。
 
-
 ## 第四步，创建一个合并请求
 
 合并请求（Pull Requests）是 GitHub 上协作的核心。
 
-当你打开一个 *pull request* 时，你将提出你的改进建议，并请求某人进行审查。
+当你打开一个 _pull request_ 时，你将提出你的改进建议，并请求某人进行审查。
 若采纳了你的改进请求，就会将其合并到他们的分支。
 
 下面将会为刚才对 README 文件所做的更改，打开一个合并请求。
@@ -86,15 +82,15 @@ GitHub 是一个代码托管平台，用于版本控制和协作。
 ### :five: Merge Pull Request
 
 1. 在刚才新创建的 Pull Request 详情页面，点击绿色的 **Merge pull request** 按钮的右侧下拉部位，选择合并方式。有以下三种合并方式。
-    - **Merge pull request** - 将此分支的所有提交（commit）合并到基本分支。
-    - **Squash and merge** - 只将此分支的当前提交（commit）合并到基本分支。
-    - **Rebase and merge** - 重置此分支的当前提交（commit）并合并到基本分支。
+   - **Merge pull request** - 将此分支的所有提交（commit）合并到基本分支。
+   - **Squash and merge** - 只将此分支的当前提交（commit）合并到基本分支。
+   - **Rebase and merge** - 重置此分支的当前提交（commit）并合并到基本分支。
 2. 点击当前选中的合并方式按钮。
 3. 点击 **Confirm merge** 按钮确认合并。
 4. 由于当前分支 `readme-edits` 的所有改动都合并到了 `master` 主分支，此时可以点击紫色框里的 **Delete branch** 按钮来删除当前分支。
 
 :cherry_blossom: 完成对一次 Pull Request 的采纳。
 
-
 ---
-*:octocat: Rzning*
+
+_:octocat: Rzning_

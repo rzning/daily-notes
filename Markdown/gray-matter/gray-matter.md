@@ -32,7 +32,7 @@ const res = matter(str)
 
 ```html
 ---
-title : Hello
+title: Hello
 name: home
 ---
 
@@ -86,12 +86,15 @@ const result = matter('---\ntitle: Front Matter\n---\ncontent')
 ## API
 
 - `matter(str, options)`
+
   - 解析指定内容的 Front Matter 信息
 
 - `stringify(str, obj, options)`
+
   - 将对象字符串化为 YAML 或指定的语言，并将其附加到给定字符串
 
 - `read(filepath, options)`
+
   - 同步方式读取文件内容，并解析其中的 Front Matter 信息
 
 - `test(str, options)`
@@ -166,7 +169,7 @@ const result = matter(str, {
   engines: {
     toml: {
       parse: toml.parse.bind(toml),
-      stringify () {
+      stringify() {
         throw new Error('cannot stringify to TOML')
       }
     }

@@ -63,7 +63,7 @@ VS Code 还有一个 JSON with Comments ( jsonc ) 模式。
 
 为了理解 JSON 文件的结构，我们使用 JSON 模式 ( [JSON Schema] ) 。
 
-[JSON Schema]: <https://json-schema.org/>
+[JSON Schema]: https://json-schema.org/
 
 JSON Schema 描述了 JSON 文件的形状，以及值集、默认值和描述。
 
@@ -71,10 +71,9 @@ VS Code 提供了 JSON 支持，并且支持 JSON Schema Draft 7 。
 
 诸如 [JSON Schema Store] 之类的服务器为大多数常见的基于 JSON 的配置文件提供了 Schema 定义。
 
-[JSON Schema Store]: <https://www.schemastore.org>
+[JSON Schema Store]: https://www.schemastore.org
 
 然而， Schema 也可以在 VS Code 工作区的文件中定义，也可以在 VS Code 设置文件中定义。
-
 
 JSON 文件与 Schema 的关联可以在 JSON 文件自身中使用 `$schema` 属性完成。
 也可以使用 VS Code 用户或工作区设置（文件 > 首选项 > 设置）下的 `json.schemas` 进行关联。
@@ -83,7 +82,7 @@ JSON 文件与 Schema 的关联可以在 JSON 文件自身中使用 `$schema` �
 
 下面示例中 JSON 文件指定其内容遵循 [CoffeeLint] Schema ：
 
-[CoffeeLint]: <http://www.coffeelint.org/>
+[CoffeeLint]: http://www.coffeelint.org/
 
 ```json
 {
@@ -94,13 +93,13 @@ JSON 文件与 Schema 的关联可以在 JSON 文件自身中使用 `$schema` �
 
 > 注意：此语法是特定于 VS Code 的，而不是 [JSON Schema Specification] 的一部分。
 
-[JSON Schema Specification]: <https://json-schema.org/latest/json-schema-core.html#rfc.section.7>
+[JSON Schema Specification]: https://json-schema.org/latest/json-schema-core.html#rfc.section.7
 
 ### 7.2 在用户设置中映射
 
 一下用户设置摘录显示了 `.babelrc` 文件如何映射 [babelrc] Schema ：
 
-[babelrc]: <https://babeljs.io/docs/en/config-files>
+[babelrc]: https://babeljs.io/docs/en/config-files
 
 ```json
 "json.schemas": [

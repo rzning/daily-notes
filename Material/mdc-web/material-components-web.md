@@ -1,8 +1,8 @@
 ---
-title       : Material Components for the Web
-recorddate  : 2020-03-15
-repository  : https://github.com/material-components/material-components-web
-website     : https://material.io/develop/web
+title: Material Components for the Web
+recorddate: 2020-03-15
+repository: https://github.com/material-components/material-components-web
+website: https://material.io/develop/web
 ---
 
 # MDC Web
@@ -24,15 +24,14 @@ MDC Web 是 [Material Design Lite][MDL] 的后继产品。
 - 设计指南 [Material Design Guidelines][MDG]
 - 所有组件 [All Components][Components]
 
-
-[MD]: <https://www.material.io/>
-[MDG]: <https://material.io/design>
-[MDL]: <https://getmdl.io/>
-[Architecture]: <https://github.com/material-components/material-components-web/blob/master/docs/code/architecture.md>
-[Frameworks]: <https://github.com/material-components/material-components-web/blob/master/docs/framework-wrappers.md>
-[Getting Started Guide]: <https://github.com/material-components/material-components-web/blob/master/docs/getting-started.md>
-[Catalog]: <https://material-components.github.io/material-components-web-catalog>
-[Components]: <https://github.com/material-components/material-components-web/blob/master/packages>
+[MD]: https://www.material.io/
+[MDG]: https://material.io/design
+[MDL]: https://getmdl.io/
+[Architecture]: https://github.com/material-components/material-components-web/blob/master/docs/code/architecture.md
+[Frameworks]: https://github.com/material-components/material-components-web/blob/master/docs/framework-wrappers.md
+[Getting Started Guide]: https://github.com/material-components/material-components-web/blob/master/docs/getting-started.md
+[Catalog]: https://material-components.github.io/material-components-web-catalog
+[Components]: https://github.com/material-components/material-components-web/blob/master/packages
 
 ## 🚀 Quick Start
 
@@ -40,11 +39,14 @@ MDC Web 是 [Material Design Lite][MDL] 的后继产品。
 
 ```html
 <!-- MDC Web 所需的样式 -->
-<link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"
+/>
 
 <!-- 渲染文本域组件 -->
 <label class="mdc-text-field">
-  <input type="text" class="mdc-text-field__input" aria-labelledby="my-label">
+  <input type="text" class="mdc-text-field__input" aria-labelledby="my-label" />
   <span class="mdc-floating-label" id="my-label">Label</span>
   <div class="mdc-line-ripple"></div>
 </label>
@@ -54,9 +56,10 @@ MDC Web 是 [Material Design Lite][MDL] 的后继产品。
 
 <!-- 实例化用到的文本域组件 -->
 <script>
-  mdc.textField.MDCTextField.attachTo(document.querySelector('.mdc-text-field'));
+  mdc.textField.MDCTextField.attachTo(document.querySelector('.mdc-text-field'))
 </script>
 ```
+
 通过 NPM　使用：
 
 > 这里假设你已经配置了将 Sass 编译为 CSS 的 webpack
@@ -71,7 +74,7 @@ HTML
 
 ```html
 <label class="mdc-text-field">
-  <input type="text" class="mdc-text-field__input" aria-labelledby="my-label">
+  <input type="text" class="mdc-text-field__input" aria-labelledby="my-label" />
   <span class="mdc-floating-label" id="my-label">Label</span>
   <div class="mdc-line-ripple"></div>
 </label>
@@ -80,7 +83,7 @@ HTML
 CSS
 
 ```css
-@import "@material/textfield/mdc-text-field";
+@import '@material/textfield/mdc-text-field';
 ```
 
 JavaScript
@@ -91,6 +94,4 @@ import { MDCTextField } from '@material/textfield/index'
 const textField = new MDCTextField(document.querySelector('.mdc-text-field'))
 ```
 
-
 ## 🧩 Components
-

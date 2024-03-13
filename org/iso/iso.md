@@ -1,7 +1,7 @@
 ---
-title   : "ISO - International Organization for Standardization"
-date    : 2020-02-18
-website : https://www.iso.org/
+title: 'ISO - International Organization for Standardization'
+date: 2020-02-18
+website: https://www.iso.org/
 ---
 
 > International Organization for Standardization
@@ -13,8 +13,8 @@ ISO 是一个独立的非政府国际组织，拥有 164 个国家标准机构�
 
 ## 什么是标准？
 
-> International Standards make things work. 
-> 
+> International Standards make things work.
+>
 > 国际标准使事情奏效。
 
 它们为产品，服务和系统提供世界一流的规格，以确保质量，安全和效率。它们有助于促进国际贸易。

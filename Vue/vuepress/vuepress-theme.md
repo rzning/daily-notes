@@ -109,7 +109,7 @@ module.exports = {
   plugins: [
     [
       '@vuepress/pwa',
-      { 
+      {
         serviceWorker: true,
         updatePopup: true
       }
@@ -150,7 +150,7 @@ module.exports = {
  * @param {Router} data.router - 当前应用的路由实例
  * @param {Object} data.siteData - 站点元数据
  */
-export default (data) =>{
+export default (data) => {
   const { Vue, options, router, siteData } = data
   // ...
 }

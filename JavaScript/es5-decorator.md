@@ -1,6 +1,6 @@
 ---
-title       : ECMAScript Decorator
-recorddate  : 2020-03-13
+title: ECMAScript Decorator
+recorddate: 2020-03-13
 ---
 
 装饰器 ( Decorator ) 是一种与类 ( class ) 相关的语法，用来注释或修改类和类方法。
@@ -9,18 +9,26 @@ recorddate  : 2020-03-13
 
 ```ts
 interface TypedPropertyDescriptor<T> {
-    enumerable?: boolean
-    configurable?: boolean
-    writable?: boolean
-    value?: T
-    get?: () => T
-    set?: (value: T) => void
+  enumerable?: boolean
+  configurable?: boolean
+  writable?: boolean
+  value?: T
+  get?: () => T
+  set?: (value: T) => void
 }
 
 type ClassDecorator = <T extends Function>(target: T) => T | void
 type PropertyDecorator = (target: Object, propertyKey: string | symbol) => void
-type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void
-type ParameterDecorator = (target: Object, propertyKey: string | symbol, parameterIndex: number) => void
+type MethodDecorator = <T>(
+  target: Object,
+  propertyKey: string | symbol,
+  descriptor: TypedPropertyDescriptor<T>
+) => TypedPropertyDescriptor<T> | void
+type ParameterDecorator = (
+  target: Object,
+  propertyKey: string | symbol,
+  parameterIndex: number
+) => void
 ```
 
 1. 类装饰 Class Decorator
@@ -38,7 +46,7 @@ class MyClass {
   //...
 }
 
-function testable (target) {
+function testable(target) {
   target.isTestable = true
 }
 
@@ -63,7 +71,7 @@ A = decorator(A) || A
 /**
  * @param {class} target 所修饰的目标类
  */
-function testable (target) {
+function testable(target) {
   //...
 }
 ```
@@ -101,14 +109,16 @@ obj.isTestable // true
 通过装饰器实现混入功能：
 
 ```js
-function mixins (...objects) {
+function mixins(...objects) {
   return function (target) {
     Object.assign(target.prototype, ...objects)
   }
 }
 
 @mixins({
-  foo() { console.log('foo') }
+  foo() {
+    console.log('foo')
+  }
 })
 class MyClass {}
 
@@ -127,7 +137,7 @@ obj.foo() // 'foo'
  * @param {string} name 当前修饰的属性名
  * @param {PropertyDecorator} descriptor 当前属性描述对象
  */
-function readonly (target, name, descriptor) {
+function readonly(target, name, descriptor) {
   descriptor.writable = false
   return descriptor
 }
@@ -143,7 +153,9 @@ interface PropertyDescriptor {
 
 class Person {
   @readonly
-  name () { return `${this.first} ${this.last}` }
+  name() {
+    return `${this.first} ${this.last}`
+  }
 }
 
 // 相当于
@@ -156,7 +168,7 @@ Object.defineProperty(Person.prototype, 'name', descriptor)
 多个装饰器将从外到内注册，然后由内向外执行：
 
 ```js
-function dec (id) {
+function dec(id) {
   console.log('evaluated', id)
   return function (target, property, descriptor) {
     console.log('executed', id)
@@ -166,7 +178,7 @@ function dec (id) {
 class MyClass {
   @dec(1)
   @dec(2)
-  method () {}
+  method() {}
 }
 
 // evaluated 1

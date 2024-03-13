@@ -8,5 +8,4 @@ GFM 是严格的 [CommonMark] 的超集。
 
 Markdown 是用于编写结构化文档的纯文本格式。
 
-
-[CommonMark]: <https://github.com/commonmark/commonmark-spec>
+[CommonMark]: https://github.com/commonmark/commonmark-spec

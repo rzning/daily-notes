@@ -80,7 +80,6 @@
 
 - HTML标准包括用于 Web 的核心标记语言 HTML，以及许多 API，如 Web Sockets, Web Workers, localStorage 等。
 
-
 ### [Infra](https://infra.spec.whatwg.org/)
 
 <img alt="Infra" crossorigin height="60" style="float:right" src="https://resources.whatwg.org/logo-infra.svg" />

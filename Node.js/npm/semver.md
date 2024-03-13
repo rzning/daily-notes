@@ -44,13 +44,13 @@ Semantic Versioning Specification 2.0.0
 
 一个比较器 `comparator` 由一个运算符 `operator` 和一个版本号 `version` 组成。
 
-operators | description | notes
-:-:|-|-
-`<` | Less than | 小于
-`<=` | Less than or equal to | 小于或等于
-`>` | Greater than | 大于
-`>=` | Greater than or equal to | 大于或等于
-`=` | Equal ( optional ) | 相等，若省略则默认相等
+| operators | description              | notes                  |
+| :-------: | ------------------------ | ---------------------- |
+|    `<`    | Less than                | 小于                   |
+|   `<=`    | Less than or equal to    | 小于或等于             |
+|    `>`    | Greater than             | 大于                   |
+|   `>=`    | Greater than or equal to | 大于或等于             |
+|    `=`    | Equal ( optional )       | 相等，若省略则默认相等 |
 
 比较器可以通过空格连接起来，形成一个比较器集 `comparator set` ，其结果由它所包含的所有比较器的交集 ( intersection ) 来满足。
 
@@ -74,18 +74,16 @@ not:   v1.2.8, v2.0.0
 
 Comparison 比较
 
-method | description
--|-
-`gt(v1, v2)` | `v1 > v2`
-`gte(v1, v2)` | `v1 >= v2`
-`lt(v1, v2)` | `v1 < v2`
-`lte(v1, v2)` | `v1 <= v2`
-`eq(v1, v2)` | `v1 == v2`
-`neq(v1, v2)` | `v1 != v2`
-`cmp(v1, comparator, v2)` | 传入相应比较字符串，用于以上比较
-`compare(v1, v2)` | 返回 `0` : `v1 == v2` , `1` : `v1 > v2` , `-1` : `v1 < v2`
-`rcompare(v1, v2)` | 与 `compare()` 方法相反
-`compareBuild(v1, v2)` | 与 `compare()` 方法类似
-`diff(v1, v2)` | 根据发布类型返回两个版本的差异，若版本相同则返回 `null`
-
-
+| method                    | description                                                |
+| ------------------------- | ---------------------------------------------------------- |
+| `gt(v1, v2)`              | `v1 > v2`                                                  |
+| `gte(v1, v2)`             | `v1 >= v2`                                                 |
+| `lt(v1, v2)`              | `v1 < v2`                                                  |
+| `lte(v1, v2)`             | `v1 <= v2`                                                 |
+| `eq(v1, v2)`              | `v1 == v2`                                                 |
+| `neq(v1, v2)`             | `v1 != v2`                                                 |
+| `cmp(v1, comparator, v2)` | 传入相应比较字符串，用于以上比较                           |
+| `compare(v1, v2)`         | 返回 `0` : `v1 == v2` , `1` : `v1 > v2` , `-1` : `v1 < v2` |
+| `rcompare(v1, v2)`        | 与 `compare()` 方法相反                                    |
+| `compareBuild(v1, v2)`    | 与 `compare()` 方法类似                                    |
+| `diff(v1, v2)`            | 根据发布类型返回两个版本的差异，若版本相同则返回 `null`    |

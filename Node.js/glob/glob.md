@@ -8,7 +8,6 @@
 
 ![glob-logo](https://raw.githubusercontent.com/isaacs/node-glob/master/logo/glob.png)
 
-
 ## Usage 使用
 
 ```sh
@@ -25,18 +24,18 @@ glob('**/*.js', options, function (err, files) {
 
 ## Glob Primer 入门
 
-标识 | 解释
--|-
-`{A,...}` | 模式分组，如 `a{/b/c,bcd}` 将扩展为 `a/b/c` 和 `abcd`
-`*` | 匹配 0 个或多个字符
-`?` | 匹配 1 个字符
-`[...]` | 匹配一个字符范围，与 RegExp 正则类似，若范围的首字符是 `!` 或 `^` 则匹配不在范围内的任意字符
-`!(A|B|...)` | 匹配与提供的任何模式都不匹配的任何内容
-`?(A|B|...)` | 匹配 0 个或 1 个提供的模式
-`+(A|B|...)` | 匹配 1 个或多个提供的模式
-`*(A|B|...)` | 匹配 0 个或多个提供的模式
-`@(A|B|...)` | 完全匹配提供的一种模式
-`**` | 若路径部分中只有一个 `globstar` 则匹配 0 个或多个搜索匹配项的目录和子目录。它不会对符号链接目录进行查找。
+| 标识      | 解释                                                                                                      |
+| --------- | --------------------------------------------------------------------------------------------------------- | ----- | -------------------------------------- |
+| `{A,...}` | 模式分组，如 `a{/b/c,bcd}` 将扩展为 `a/b/c` 和 `abcd`                                                     |
+| `*`       | 匹配 0 个或多个字符                                                                                       |
+| `?`       | 匹配 1 个字符                                                                                             |
+| `[...]`   | 匹配一个字符范围，与 RegExp 正则类似，若范围的首字符是 `!` 或 `^` 则匹配不在范围内的任意字符              |
+| `!(A      | B                                                                                                         | ...)` | 匹配与提供的任何模式都不匹配的任何内容 |
+| `?(A      | B                                                                                                         | ...)` | 匹配 0 个或 1 个提供的模式             |
+| `+(A      | B                                                                                                         | ...)` | 匹配 1 个或多个提供的模式              |
+| `\*(A     | B                                                                                                         | ...)` | 匹配 0 个或多个提供的模式              |
+| `@(A      | B                                                                                                         | ...)` | 完全匹配提供的一种模式                 |
+| `**`      | 若路径部分中只有一个 `globstar` 则匹配 0 个或多个搜索匹配项的目录和子目录。它不会对符号链接目录进行查找。 |
 
 ### 1. Dots 点
 
@@ -72,7 +71,6 @@ a*s*d*f
 - `man 5 gitignore`
 - [minimatch](https://github.com/isaacs/minimatch) -- JavaScript 中的 glob 最小匹配实用程序
 
-
 ## Function 函数
 
 ### `glob.hasMagic(pattern, [options])`
@@ -80,7 +78,6 @@ a*s*d*f
 ### `glob(pattern, [options], callback)`
 
 ### `glob.sync(pattern, [options])`
-
 
 ## Class: glob.Glob 类
 
@@ -103,7 +100,7 @@ var mg = new Glob(pattern, options, callback)
  * @param {Object} options 选项
  * @param {GlobCallback} callback 发生错误或找到匹配项时的回调
  */
-function Glob (pattern, options, callback) {}
+function Glob(pattern, options, callback) {}
 
 /**
  * @callback GlobCallback
@@ -111,5 +108,3 @@ function Glob (pattern, options, callback) {}
  * @param {Array<String>} matches 找到的与模式匹配的文件名
  */
 ```
-
-

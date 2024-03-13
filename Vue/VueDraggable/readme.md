@@ -44,10 +44,15 @@ For Browser:
 ```vue
 <template>
   <div class="container">
-    <draggable v-model="myArray" :options="dragOptions" @start="drag=true" @end="drag=false">
+    <draggable
+      v-model="myArray"
+      :options="dragOptions"
+      @start="drag = true"
+      @end="drag = false"
+    >
       <transition-group>
         <div v-for="item in myArray" :key="item.id">
-          {{item.name}}
+          {{ item.name }}
         </div>
       </transition-group>
     </draggable>
@@ -75,11 +80,10 @@ export default {
     }
   }
   methods: {
-  
+
   }
 }
 </script>
-
 ```
 
 ## Props
@@ -194,7 +198,11 @@ function onMoveCallback(evt, originalEvent) {
 示例：
 
 ```vue
-<draggable element="el-collapse" :list="list" :component-data="getComponentData()">
+<draggable
+  element="el-collapse"
+  :list="list"
+  :component-data="getComponentData()"
+>
   <el-collapse-item v-for="item in list"
     :title="item.title" :name="item.name" :key="item.name">
     <div>
@@ -237,7 +245,7 @@ methods: {
 注意 SortableJS `OnMove` 回调将被映射为 `move` prop
 
 ```vue
-<draggable :list="list" @end="onEnd">
+<draggable :list="list" @end="onEnd"></draggable>
 ```
 
 ### change 事件
@@ -259,5 +267,4 @@ methods: {
 
 ## Slots
 
-
-[Sortable.js]: <https://github.com/RubaXa/Sortable>
+[Sortable.js]: https://github.com/RubaXa/Sortable

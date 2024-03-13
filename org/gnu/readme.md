@@ -2,7 +2,6 @@
 
 - <http://www.gnu.org/>
 
-
 GNU 是 GNU's Not Unix! 的首字母递归缩写形式
 
 GNU 于 1983 年由 Richard Stallman（rms）发起，

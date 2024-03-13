@@ -9,13 +9,13 @@
 
 RESTful API 是使用 HTTP 中的请求类型来标识对资源的操作。
 
-格式 | 说明
--|-
-`GET /ticket` | 获取 ticket 列表
-`GET /ticket/:id` | 查看某个具体的 ticket
-`POST /ticket` | 新建一个 ticket
-`PUT /ticket/:id` | 更新指定 id 的 ticket
-`DELETE /ticket/:id` | 删除指定 id 的 ticekt
+| 格式                 | 说明                  |
+| -------------------- | --------------------- |
+| `GET /ticket`        | 获取 ticket 列表      |
+| `GET /ticket/:id`    | 查看某个具体的 ticket |
+| `POST /ticket`       | 新建一个 ticket       |
+| `PUT /ticket/:id`    | 更新指定 id 的 ticket |
+| `DELETE /ticket/:id` | 删除指定 id 的 ticekt |
 
 ## 创建 RESTful Controller
 
@@ -41,20 +41,17 @@ thinkjs controller user -r
 修改 `src/config/router.js` 添加如下配置：
 
 ```js
-module.exports = [
-  ['/user/:id?', 'rest']
-]
+module.exports = [['/user/:id?', 'rest']]
 ```
 
 通过自定义路由，将 `/user/:id` 相关的请求指定为 REST Controller
 
 然后就可以通过以下方式对其访问了：
 
-请求 | 说明 | 执行
--|-|-
-`GET /user` | 获取用户列表 | `getAction`
-`GET /user/:id` | 获取某个用户 | `getAction`
-`POST /user` | 添加一个用户 | `postAction`
-`PUT /user/:id` | 更新某个用户 | `putAction`
-`DELETE /user/:id` | 删除某个用户 | `deleteAction`
-
+| 请求               | 说明         | 执行           |
+| ------------------ | ------------ | -------------- |
+| `GET /user`        | 获取用户列表 | `getAction`    |
+| `GET /user/:id`    | 获取某个用户 | `getAction`    |
+| `POST /user`       | 添加一个用户 | `postAction`   |
+| `PUT /user/:id`    | 更新某个用户 | `putAction`    |
+| `DELETE /user/:id` | 删除某个用户 | `deleteAction` |

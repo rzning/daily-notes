@@ -49,11 +49,14 @@ fetchPolyfill(...)
 ## 4️⃣ 语法
 
 ```js
-fetch(url, options).then(function (response) {
-  // 处理 HTTP 响应
-}, function (error) {
-  // 处理网络错误
-})
+fetch(url, options).then(
+  function (response) {
+    // 处理 HTTP 响应
+  },
+  function (error) {
+    // 处理网络错误
+  }
+)
 ```
 
 ```js
@@ -140,7 +143,7 @@ fetch('/avatars', {
 Handling HTTP error statuses
 
 ```js
-function checkStatus (response) {
+function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response
   } else {
@@ -150,7 +153,7 @@ function checkStatus (response) {
   }
 }
 
-function parseJSON (response) {
+function parseJSON(response) {
   return response.json()
 }
 

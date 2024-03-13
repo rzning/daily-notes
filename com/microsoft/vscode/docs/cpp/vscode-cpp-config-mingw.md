@@ -5,7 +5,7 @@
 在本教程中，你将配置 VSCode 使用 [mingw-w64] 中的 GCC C++ 编译器 ( g++ ) 和 GDB 调试器，
 来创建在 Windows 上运行的程序。
 
-[mingw-w64]: <http://www.mingw-w64.org>
+[mingw-w64]: http://www.mingw-w64.org
 
 本教程不介绍 GCC, GDB, Mingw-w64 或 C++ 语言。
 

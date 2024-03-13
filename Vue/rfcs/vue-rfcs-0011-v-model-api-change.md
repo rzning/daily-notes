@@ -1,13 +1,13 @@
 ---
-title       : Vuejs v-model API Change
-recorddate  : 2020-03-24
+title: Vuejs v-model API Change
+recorddate: 2020-03-24
 ---
 
 # Vuejs RFCs v-model API 更改
 
 [Vuejs-RFC-0011-v-model-api-change][rfc-0011]
 
-[rfc-0011]: <https://github.com/vuejs/rfcs/blob/master/active-rfcs/0011-v-model-api-change.md>
+[rfc-0011]: https://github.com/vuejs/rfcs/blob/master/active-rfcs/0011-v-model-api-change.md
 
 适用版本： 3.x
 
@@ -17,7 +17,7 @@ recorddate  : 2020-03-24
 
 这是建立在 [rfc-0005] （使用 `v-model` 参数替换 `v-bind` 的 `.sync` 修饰符）之上的。
 
-[rfc-0005]: <https://github.com/vuejs/rfcs/blob/master/active-rfcs/0005-replace-v-bind-sync-with-v-model-argument.md>
+[rfc-0005]: https://github.com/vuejs/rfcs/blob/master/active-rfcs/0005-replace-v-bind-sync-with-v-model-argument.md
 
 ## 📜 详细设计
 
@@ -27,8 +27,8 @@ recorddate  : 2020-03-24
 
 ```js
 h(Comp, {
-  modelValue: foo,
-  'onUpdate:modelValue': value => (foo = value)
+  'modelValue': foo,
+  'onUpdate:modelValue': (value) => (foo = value)
 })
 ```
 
@@ -40,8 +40,8 @@ h(Comp, {
 
 ```js
 h(Comp, {
-  value: foo,
-  'onUpdate:value': value => (foo = value)
+  'value': foo,
+  'onUpdate:value': (value) => (foo = value)
 })
 ```
 
@@ -68,9 +68,9 @@ h(Comp, {
 
 ```js
 h(Comp, {
-  modelValue: text,
-  'onUpdate:modelValue': value => (text = value),
-  modelModifiers: {
+  'modelValue': text,
+  'onUpdate:modelValue': (value) => (text = value),
+  'modelModifiers': {
     foo: true,
     bar: true
   }
@@ -90,12 +90,12 @@ h(Comp, {
 
 ```js
 h(Comp, {
-  foo: text,
-  'onUpdate:foo': value => (text = value),
-  fooModifiers: { trim: true },
-  bar: number,
-  'onUpdate:bar': value => (bar = value),
-  barModifiers: { number: true },
+  'foo': text,
+  'onUpdate:foo': (value) => (text = value),
+  'fooModifiers': { trim: true },
+  'bar': number,
+  'onUpdate:bar': (value) => (bar = value),
+  'barModifiers': { number: true }
 })
 ```
 
@@ -106,7 +106,7 @@ h(Comp, {
 这种策略并不能很好地处理动态元素或输入类型：
 
 ```html
-<input :type="dynamicType" v-model="foo">
+<input :type="dynamicType" v-model="foo" />
 ```
 
 编译器无法在编译时猜测正确的 prop/event 组合，因此必须生成
@@ -119,8 +119,8 @@ h(Comp, {
 
 ```js
 h('input', {
-  modelValue: foo,
-  'onUpdate:modelValue': value => {
+  'modelValue': foo,
+  'onUpdate:modelValue': (value) => {
     foo = value
   }
 })

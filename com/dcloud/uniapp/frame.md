@@ -31,27 +31,25 @@ DCloud > uni-app > 介绍 > 框架简介
 - 数据绑定及事件处理依赖 [Vue.js 规范](https://cn.vuejs.org/v2/guide/instance.html)，同时增加应用及页面 [生命周期](#lifecycle)
 - 为兼容多端运行，建议使用 [flex 弹性盒子布局](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout)
 
-
 <hr id="structure"/>
 
 ## 2. 目录结构
 
-目录/文件 | 说明 | 参考
--|-|-
-`components/` | uni-app 组件目录
-`hybrid/` | 本地网页目录 | [web-view](./component.md#web-view)
-`platforms/` | 各平台专用页面目录
-`pages/` | 业务页面文件目录
-`static/` | 静态资源目录
-`wxcomponents/` | 小程序组件目录 | [小程序组件](#mp-components)
-`main.js` | Vue 初始化入口文件
-`App.vue` | Vue 主组件，配置 App 全局样式及监听 | [应用生命周期](#lifecycle)
-`manifest.json` | 应用配置文件 | [应用配置项列表](./collocation.md#manifest)
-`pages.json` | 页面配置文件 | [页面配置项列表](./collocation.md#pages)
+| 目录/文件       | 说明                                | 参考                                        |
+| --------------- | ----------------------------------- | ------------------------------------------- |
+| `components/`   | uni-app 组件目录                    |
+| `hybrid/`       | 本地网页目录                        | [web-view](./component.md#web-view)         |
+| `platforms/`    | 各平台专用页面目录                  |
+| `pages/`        | 业务页面文件目录                    |
+| `static/`       | 静态资源目录                        |
+| `wxcomponents/` | 小程序组件目录                      | [小程序组件](#mp-components)                |
+| `main.js`       | Vue 初始化入口文件                  |
+| `App.vue`       | Vue 主组件，配置 App 全局样式及监听 | [应用生命周期](#lifecycle)                  |
+| `manifest.json` | 应用配置文件                        | [应用配置项列表](./collocation.md#manifest) |
+| `pages.json`    | 页面配置文件                        | [页面配置项列表](./collocation.md#pages)    |
 
 - `static/` 目录的 JS 文件不会被编译。
 - CSS, LESS, SCSS 等资源不要放在 `static/` 目录，建议将这些公用资源放在 `common/` 目录。
-
 
 <hr id="lifecycle">
 
@@ -59,13 +57,13 @@ DCloud > uni-app > 介绍 > 框架简介
 
 ### 3.1 应用生命周期
 
-函数 | 说明
--|-
-`onLaunch()` | 框架初始化完成时触发
-`onShow()` | 框架启动，或从后台进入前台显示时触发
-`onHide()` | 框架从前台进入后台时触发
-`onError()` | 框架报错时触发
-`onUniViewMessage()` | 监听 `nvue` 页面发送的数据，参考 [nvue 向 vue 通讯](https://uniapp.dcloud.io/use-weex?id=nvue-%e5%90%91-vue-%e9%80%9a%e8%ae%af)
+| 函数                 | 说明                                                                                                                            |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `onLaunch()`         | 框架初始化完成时触发                                                                                                            |
+| `onShow()`           | 框架启动，或从后台进入前台显示时触发                                                                                            |
+| `onHide()`           | 框架从前台进入后台时触发                                                                                                        |
+| `onError()`          | 框架报错时触发                                                                                                                  |
+| `onUniViewMessage()` | 监听 `nvue` 页面发送的数据，参考 [nvue 向 vue 通讯](https://uniapp.dcloud.io/use-weex?id=nvue-%e5%90%91-vue-%e9%80%9a%e8%ae%af) |
 
 ### 3.2 页面生命周期
 
@@ -85,7 +83,6 @@ DCloud > uni-app > 介绍 > 框架简介
 - `onNavigationBarSearchInputChanged()`
 - `onNavigationBarSearchInputConfirmed()`
 - `onNavigationBarSearchInputClicked()`
-
 
 [>> 回到页面顶部](#)
 
@@ -110,15 +107,14 @@ uni-app 提供以下两种路由跳转方式：
 
 框架以栈的形式管理当前所有页面。
 
-路由操作 | 页面栈 | 触发时机
--|-|-
-初始化 | 新页面入栈 | 框架打开第一个页面
-打开新页面 | 新页面入栈 | `uni.navigateTo()`
-页面重定向 | 当前页面出栈，新页面入栈 | `uni.redirectTo()`
-页面返回 | 页面不断出栈 | `uni.navigateBack()`
-Tab 切换 | 页面全部出栈，新 Tab 页面入栈 | `uni.swithTab()`
-重加载 | 页面全部出栈，只留下新的页面 | `uni.reLaunch()`
-
+| 路由操作   | 页面栈                        | 触发时机             |
+| ---------- | ----------------------------- | -------------------- |
+| 初始化     | 新页面入栈                    | 框架打开第一个页面   |
+| 打开新页面 | 新页面入栈                    | `uni.navigateTo()`   |
+| 页面重定向 | 当前页面出栈，新页面入栈      | `uni.redirectTo()`   |
+| 页面返回   | 页面不断出栈                  | `uni.navigateBack()` |
+| Tab 切换   | 页面全部出栈，新 Tab 页面入栈 | `uni.swithTab()`     |
+| 重加载     | 页面全部出栈，只留下新的页面  | `uni.reLaunch()`     |
 
 [>> 回到页面顶部](#)
 
@@ -148,9 +144,8 @@ Tab 切换 | 页面全部出栈，新 Tab 页面入栈 | `uni.swithTab()`
 编译期判断示例：
 
 ```js
-
 // #ifdef H5
-    alert("只有h5平台才有alert方法")
+alert('只有h5平台才有alert方法')
 // #endif
 ```
 
@@ -169,7 +164,6 @@ switch (uni.getSystemInfoSync().platform) {
     break
 }
 ```
-
 
 [>> 回到页面顶部](#)
 

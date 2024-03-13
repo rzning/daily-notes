@@ -5,7 +5,6 @@ The speed of containers, the security of VMs
 - <https://katacontainers.io/>
 - <https://github.com/kata-containers/runtime>
 
-
 ### 参考
 
 - [Kata Container 介绍 - 码迷](http://www.mamicode.com/info-detail-2696327.html)

@@ -64,20 +64,20 @@ greeter.greet()
  *~ loaded outside a module loader environment, declare that global here.
  *~ Otherwise, delete this declaration.
  */
-export as namespace myClassLib;
+export as namespace myClassLib
 
 /*~ This declaration specifies that the class constructor function
  *~ is the exported object from the file
  */
-export = MyClass;
+export = MyClass
 
 /*~ Write your module's methods and properties in this class */
 declare class MyClass {
-  constructor(customGreeting?: string);
+  constructor(customGreeting?: string)
 
-  greet: void;
+  greet: void
 
-  myMethod(opts: MyClass.MyClassMethodOptions): number;
+  myMethod(opts: MyClass.MyClassMethodOptions): number
 }
 
 /*~ If you want to expose types from your module as well, you can
@@ -90,8 +90,8 @@ declare class MyClass {
  */
 declare namespace MyClass {
   export interface MyClassMethodOptions {
-    width?: number;
-    height?: number;
+    width?: number
+    height?: number
   }
 }
 ```

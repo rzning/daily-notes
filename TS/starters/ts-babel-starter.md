@@ -1,7 +1,7 @@
 ---
-title       : TypeScript-Babel-Starter
-recorddate  : 2020-02-20
-repository  : https://github.com/microsoft/TypeScript-Babel-Starter
+title: TypeScript-Babel-Starter
+recorddate: 2020-02-20
+repository: https://github.com/microsoft/TypeScript-Babel-Starter
 ---
 
 使用 Babel 将 TypeScript 转换为 JavaScript 并使用 TypeScript 进行类型检查。

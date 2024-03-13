@@ -15,13 +15,13 @@
 
 像 [Babel] , [React] , [Angular] , [Ember] , [Meteor] , [Jest] 等项目都在一个存储库中开发所有的包。
 
-[monorepos]: <https://github.com/babel/babel/blob/master/doc/design/monorepo.md>
-[Babel]: <https://github.com/babel/babel/tree/master/packages>
-[React]: <https://github.com/facebook/react/tree/master/packages>
-[Angular]: <https://github.com/angular/angular/tree/master/modules>
-[Ember]: <https://github.com/emberjs/ember.js/tree/master/packages>
-[Meteor]: <https://github.com/meteor/meteor/tree/devel/packages>
-[Jest]: <https://github.com/facebook/jest/tree/master/packages>
+[monorepos]: https://github.com/babel/babel/blob/master/doc/design/monorepo.md
+[Babel]: https://github.com/babel/babel/tree/master/packages
+[React]: https://github.com/facebook/react/tree/master/packages
+[Angular]: https://github.com/angular/angular/tree/master/modules
+[Ember]: https://github.com/emberjs/ember.js/tree/master/packages
+[Meteor]: https://github.com/meteor/meteor/tree/devel/packages
+[Jest]: https://github.com/facebook/jest/tree/master/packages
 
 Lerna 是一个工具，可以优化 ( optimizes ) 使用 git 和 npm 管理多包存储库的工作流程 ( workflow ) 。
 

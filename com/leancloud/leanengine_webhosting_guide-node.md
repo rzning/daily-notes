@@ -1,8 +1,8 @@
 ---
-title       : 网站托管开发指南 · Node.js - LeanCloud 文档
-recorddate  : 2020-05-17
-repository  : https://github.com/leancloud/docs/blob/master/views/leanengine_webhosting_guide-node.md
-website     : https://leancloud.cn/docs/leanengine_webhosting_guide-node.html
+title: 网站托管开发指南 · Node.js - LeanCloud 文档
+recorddate: 2020-05-17
+repository: https://github.com/leancloud/docs/blob/master/views/leanengine_webhosting_guide-node.md
+website: https://leancloud.cn/docs/leanengine_webhosting_guide-node.html
 ---
 
 # 网站托管开发指南 · Node.js
@@ -39,8 +39,8 @@ website     : https://leancloud.cn/docs/leanengine_webhosting_guide-node.html
 
 Node.js SDK 为 [Express] 和 [Koa] 提供了集成支持。
 
-[Express]: <http://expressjs.com/>
-[Koa]: <http://koajs.com/>
+[Express]: http://expressjs.com/
+[Koa]: http://koajs.com/
 
 ```sh
 npm install --save leanengine leancloud-storage
@@ -49,49 +49,51 @@ npm install --save leanengine leancloud-storage
 ### Express
 
 ```js
-var express = require('express');
-var AV = require('leanengine');
+var express = require('express')
+var AV = require('leanengine')
 
 AV.init({
   appId: process.env.LEANCLOUD_APP_ID || '{{appid}}',
   appKey: process.env.LEANCLOUD_APP_KEY || '{{appkey}}',
   masterKey: process.env.LEANCLOUD_APP_MASTER_KEY || '{{masterkey}}'
-});
+})
 
-var app = express();
-app.use(AV.express());
-app.listen(process.env.LEANCLOUD_APP_PORT);
+var app = express()
+app.use(AV.express())
+app.listen(process.env.LEANCLOUD_APP_PORT)
 ```
 
 ### Koa
 
 ```js
-var koa = require('koa');
-var AV = require('leanengine');
+var koa = require('koa')
+var AV = require('leanengine')
 
 AV.init({
   appId: process.env.LEANCLOUD_APP_ID || '{{appid}}',
   appKey: process.env.LEANCLOUD_APP_KEY || '{{appkey}}',
   masterKey: process.env.LEANCLOUD_APP_MASTER_KEY || '{{masterkey}}'
-});
+})
 
-var app = koa();
-app.use(AV.koa());
-app.listen(process.env.LEANCLOUD_APP_PORT);
+var app = koa()
+app.use(AV.koa())
+app.listen(process.env.LEANCLOUD_APP_PORT)
 ```
 
 ### 其他 Web 框架
 
 ```js
-require('http').createServer(function (req, res) {
-  if (req.url == '/') {
-    res.statusCode = 200;
-    res.end();
-  } else {
-    res.statusCode = 404;
-    res.end();
-  }
-}).listen(process.env.LEANCLOUD_APP_PORT);
+require('http')
+  .createServer(function (req, res) {
+    if (req.url == '/') {
+      res.statusCode = 200
+      res.end()
+    } else {
+      res.statusCode = 404
+      res.end()
+    }
+  })
+  .listen(process.env.LEANCLOUD_APP_PORT)
 ```
 
 > [在云引擎中使用其他 Node 框架 - LeanCloud 文档](https://leancloud.cn/docs/leanengine-web-frameworks.html)

@@ -24,7 +24,9 @@
     ```scss
     // Element Property    value
     //   ↓      ↓            ↓
-        h2 { margin: 12px 6px 18px 6px; }
+    h2 {
+      margin: 12px 6px 18px 6px;
+    }
     //       |<-----Declaration------>|
     //  |<------------Rule------------->|
     ```
@@ -32,19 +34,19 @@
     - 也就是说 **词法分析** 和 **语法分析** 部分代码是自动生成的
   - `createStyleRule()` 函数将在一般性的规则需要被建立的时候调用:
     ```cpp
-    CSSRule* CSSParser::createStyleRule(CSSSelector* selector)  
-    {  
-        CSSStyleRule* rule = 0;  
-        if (selector) {  
-            rule = new CSSStyleRule(styleElement);  
-            m_parsedStyleObjects.append(rule);  
-            rule->setSelector(sinkFloatingSelector(selector));  
+    CSSRule* CSSParser::createStyleRule(CSSSelector* selector)
+    {
+        CSSStyleRule* rule = 0;
+        if (selector) {
+            rule = new CSSStyleRule(styleElement);
+            m_parsedStyleObjects.append(rule);
+            rule->setSelector(sinkFloatingSelector(selector));
             rule->setDeclaration(new CSSMutableStyleDeclaration(
               rule, parsedProperties, numParsedProperties
-            ));  
-        }  
-        clearProperties();  
-        return rule;  
+            ));
+        }
+        clearProperties();
+        return rule;
     }
     ```
   - 通过调用 CSSStyleSheet 的 parseString 函数，将上述 CSS 解析过程启动，

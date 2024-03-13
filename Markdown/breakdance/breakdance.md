@@ -1,8 +1,8 @@
 ---
-name        : breakdance
-recorddate  : 2020-05-17
-repository  : https://github.com/breakdance/breakdance
-website     : https://breakdance.github.io/breakdance/
+name: breakdance
+recorddate: 2020-05-17
+repository: https://github.com/breakdance/breakdance
+website: https://breakdance.github.io/breakdance/
 ---
 
 # breakdance
@@ -11,8 +11,8 @@ Breakdance 是一个将 HTML 转换为 markdown 的 node.js 库。高度可插�
 
 Breakdance 使用 [cheerio] 来解析 HTML ，并使用 [snapdragon] 来渲染。
 
-[cheerio]: <https://github.com/cheeriojs/cheerio>
-[snapdragon]: <https://github.com/here-be/snapdragon>
+[cheerio]: https://github.com/cheeriojs/cheerio
+[snapdragon]: https://github.com/here-be/snapdragon
 
 ## Quickstart
 

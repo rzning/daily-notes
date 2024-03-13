@@ -39,12 +39,9 @@ VS Code 是一种新类型的工具，它结合了代码编辑器的简单性和
 
 - <https://github.com/Microsoft/vscode/wiki/Related-Projects>
 
-
-
-[vscode]: <https://github.com/Microsoft/vscode>
-[Issues]: <https://github.com/microsoft/vscode/issues>
-[Pulls]: <https://github.com/microsoft/vscode/pulls>
-[vscode-docs]: <https://github.com/microsoft/vscode-docs>
-[contribute]: <https://github.com/Microsoft/vscode/wiki/How-to-Contribute>
-[conduct]: <https://github.com/Microsoft/vscode/blob/master/CODE_OF_CONDUCT.md>
-
+[vscode]: https://github.com/Microsoft/vscode
+[Issues]: https://github.com/microsoft/vscode/issues
+[Pulls]: https://github.com/microsoft/vscode/pulls
+[vscode-docs]: https://github.com/microsoft/vscode-docs
+[contribute]: https://github.com/Microsoft/vscode/wiki/How-to-Contribute
+[conduct]: https://github.com/Microsoft/vscode/blob/master/CODE_OF_CONDUCT.md

@@ -8,7 +8,6 @@
 4. [小程序宿主环境](#framework)
 5. [小程序协同工作和发布](#release)
 
-
 <hr id="intro"/>
 
 ## 1. 小程序简介
@@ -49,16 +48,16 @@
 
 <hr id="code"/>
 
-## 3. 小程序代码构成 
+## 3. 小程序代码构成
 
 > [dev/framework/quickstart/code](https://developers.weixin.qq.com/miniprogram/dev/framework/quickstart/code.html)
 
-后缀 | 说明
--|-
-`.json` | `JSON` 配置文件
-`.wxml` | `WXML` 模板文件
-`.wxss` | `WXSS` 样式文件
-`.js`   | `JS` 脚本逻辑文件
+| 后缀    | 说明              |
+| ------- | ----------------- |
+| `.json` | `JSON` 配置文件   |
+| `.wxml` | `WXML` 模板文件   |
+| `.wxss` | `WXSS` 样式文件   |
+| `.js`   | `JS` 脚本逻辑文件 |
 
 ### 3.1 JSON 配置
 
@@ -96,11 +95,11 @@
 ### 3.3 JS 逻辑交互
 
 - 处理用户交互事件
+
   - [WXML - 事件](./view/event.md)
 
 - 调用微信提供的 API 能力
   - [小程序 API](./app-service.md#api)
-
 
 <hr id="framework"/>
 
@@ -139,10 +138,7 @@
 
 ```json
 {
-  "pages": [
-    "pages/index/index",
-    "pages/logs/logs"
-  ]
+  "pages": ["pages/index/index", "pages/logs/logs"]
 }
 ```
 
@@ -152,7 +148,7 @@
 
 ```js
 App({
-  onLaunch () {
+  onLaunch() {
     // 小程序启动后触发
   }
 })
@@ -173,7 +169,7 @@ App({
 ```js
 Page({
   data: {},
-  onLoad () {}
+  onLoad() {}
 })
 ```
 
@@ -182,7 +178,6 @@ JS 脚本中 `Page()` 方法为一个页面构造器，传入页面配置，返�
 页面加载后，将触发 `onLoad()` 事件回调。
 
 - 关于 `Page()` 构造器参考 @ [注册页面](./app-service.md#page)
-
 
 ### 4.3 组件
 
@@ -215,18 +210,15 @@ wx.scanCode({
     console.log(res)
   }
 })
-
 ```
 
 - 参考 @ [小程序 API](./app-service.md#api)
-
 
 <hr id="release"/>
 
 ## 5. 小程序协同工作和发布
 
 > [dev/framework/quickstart/release](https://developers.weixin.qq.com/miniprogram/dev/framework/quickstart/release.html)
-
 
 ### 5.1 协同工作
 
@@ -235,4 +227,3 @@ wx.scanCode({
 ### 5.3 发布上线
 
 ### 5.4 运营数据
-

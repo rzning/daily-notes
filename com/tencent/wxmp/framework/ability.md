@@ -3,7 +3,9 @@
 # 基础能力
 
 1. [网络](#network)
-  - [局域网通信](#mDNS)
+
+- [局域网通信](#mDNS)
+
 2. [存储](#storage)
 3. [文件系统](#fs)
 4. [画布](#canvas)
@@ -12,7 +14,6 @@
 7. [服务器端能力](#server)
 8. [自定义 tabBar](#tabbar)
 9. [周期性更新](#fetch)
-
 
 <hr id="network"/>
 
@@ -79,7 +80,6 @@
 - HTTPS 证书
 - 跳过域名校验
 
-
 <hr id="mDNS"/>
 
 ### 1.4 局域网通信
@@ -105,8 +105,8 @@
 ```js
 wx.startLocalServiceDiscovery({
   serviceType: '_http._tcp.',
-  success () {},
-  fail () {}
+  success() {},
+  fail() {}
 })
 ```
 
@@ -120,15 +120,13 @@ wx.startLocalServiceDiscovery({
   - 语法 `_<protocol>._<transportlayer>`
 - [服务名称和传输协议端口号注册表](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml)
 
-
-[1.1.1]: <https://developers.weixin.qq.com/miniprogram/dev/api/network/request/wx.request.html>
-[1.1.2]: <https://developers.weixin.qq.com/miniprogram/dev/api/network/upload/wx.uploadFile.html>
-[1.1.3]: <https://developers.weixin.qq.com/miniprogram/dev/api/network/download/wx.downloadFile.html>
-[1.1.4]: <https://developers.weixin.qq.com/miniprogram/dev/api/network/websocket/wx.connectSocket.html>
-[1.1.5]: <https://developers.weixin.qq.com/miniprogram/dev/api/network/udp/wx.createUDPSocket.html>
-[1.4.1]: <https://developers.weixin.qq.com/miniprogram/dev/api/network/mdns/wx.startLocalServiceDiscovery.html>
-[android.nsd]: <https://developer.android.google.cn/training/connect-devices-wirelessly/nsd>
-
+[1.1.1]: https://developers.weixin.qq.com/miniprogram/dev/api/network/request/wx.request.html
+[1.1.2]: https://developers.weixin.qq.com/miniprogram/dev/api/network/upload/wx.uploadFile.html
+[1.1.3]: https://developers.weixin.qq.com/miniprogram/dev/api/network/download/wx.downloadFile.html
+[1.1.4]: https://developers.weixin.qq.com/miniprogram/dev/api/network/websocket/wx.connectSocket.html
+[1.1.5]: https://developers.weixin.qq.com/miniprogram/dev/api/network/udp/wx.createUDPSocket.html
+[1.4.1]: https://developers.weixin.qq.com/miniprogram/dev/api/network/mdns/wx.startLocalServiceDiscovery.html
+[android.nsd]: https://developer.android.google.cn/training/connect-devices-wirelessly/nsd
 
 <hr id="storage"/>
 
@@ -152,8 +150,8 @@ wx.startLocalServiceDiscovery({
 wx.setStorage({
   key: 'key',
   data: 'value',
-  success () {},
-  fail () {}
+  success() {},
+  fail() {}
 })
 
 // 同步方式
@@ -171,7 +169,7 @@ try {
 // 异步方式
 wx.getStorage({
   key: 'key',
-  success (res) {
+  success(res) {
     console.log(res.data)
   }
 })
@@ -198,16 +196,14 @@ try {
 - 本地缓存的清理与代码包处理相同
 - 只有在代码包被清理时，本地缓存才会被清理
 
-[2.1]: <https://developers.weixin.qq.com/miniprogram/dev/api/storage/wx.setStorage.html>
-[2.2]: <https://developers.weixin.qq.com/miniprogram/dev/api/storage/wx.setStorageSync.html>
-[2.3]: <https://developers.weixin.qq.com/miniprogram/dev/api/storage/wx.getStorage.html>
-[2.4]: <https://developers.weixin.qq.com/miniprogram/dev/api/storage/wx.getStorageSync.html>
-[2.5]: <https://developers.weixin.qq.com/miniprogram/dev/api/storage/wx.clearStorage.html>
-[2.6]: <https://developers.weixin.qq.com/miniprogram/dev/api/storage/wx.clearStorageSync.html>
-[2.7]: <https://developers.weixin.qq.com/miniprogram/dev/api/storage/wx.removeStorage.html>
-[2.8]: <https://developers.weixin.qq.com/miniprogram/dev/api/storage/wx.removeStorageSync.html>
-
-
+[2.1]: https://developers.weixin.qq.com/miniprogram/dev/api/storage/wx.setStorage.html
+[2.2]: https://developers.weixin.qq.com/miniprogram/dev/api/storage/wx.setStorageSync.html
+[2.3]: https://developers.weixin.qq.com/miniprogram/dev/api/storage/wx.getStorage.html
+[2.4]: https://developers.weixin.qq.com/miniprogram/dev/api/storage/wx.getStorageSync.html
+[2.5]: https://developers.weixin.qq.com/miniprogram/dev/api/storage/wx.clearStorage.html
+[2.6]: https://developers.weixin.qq.com/miniprogram/dev/api/storage/wx.clearStorageSync.html
+[2.7]: https://developers.weixin.qq.com/miniprogram/dev/api/storage/wx.removeStorage.html
+[2.8]: https://developers.weixin.qq.com/miniprogram/dev/api/storage/wx.removeStorageSync.html
 
 <hr id="fs"/>
 
@@ -249,7 +245,7 @@ var fs = wx.getFileSystemManager()
 ```js
 wx.chooseImage({
   count: 1,
-  success (res) {
+  success(res) {
     // 图片的本地临时文件路径列表
     var tempFilePaths = res.tempFilePaths
   }
@@ -266,7 +262,7 @@ wx.chooseImage({
 ```js
 fs.saveFile({
   tempFilePath: '',
-  success (res) {
+  success(res) {
     // 存储后的本地缓存文件路径
     console.log(res.savedFilePath)
   }
@@ -286,15 +282,12 @@ fs.writeFileSync(`${wx.env.USER_DATA_PATH}/hello.txt`, 'hello, world', 'utf8')
 
 - [`FileSystemManager.writeFileSync()`][3.6]
 
-
-[3.1]: <https://developers.weixin.qq.com/miniprogram/dev/api/file/wx.getFileSystemManager.html>
-[3.2]: <https://developers.weixin.qq.com/miniprogram/dev/api/file/FileSystemManager.html>
-[3.3]: <https://developers.weixin.qq.com/miniprogram/dev/api/file/FileSystemManager.saveFile.html>
-[3.4]: <https://developers.weixin.qq.com/miniprogram/dev/api/file/FileSystemManager.copyFile.html>
-[3.5]: <https://developers.weixin.qq.com/miniprogram/dev/api/media/image/wx.chooseImage.html>
-[3.6]: <https://developers.weixin.qq.com/miniprogram/dev/api/file/FileSystemManager.writeFileSync.html>
-
-
+[3.1]: https://developers.weixin.qq.com/miniprogram/dev/api/file/wx.getFileSystemManager.html
+[3.2]: https://developers.weixin.qq.com/miniprogram/dev/api/file/FileSystemManager.html
+[3.3]: https://developers.weixin.qq.com/miniprogram/dev/api/file/FileSystemManager.saveFile.html
+[3.4]: https://developers.weixin.qq.com/miniprogram/dev/api/file/FileSystemManager.copyFile.html
+[3.5]: https://developers.weixin.qq.com/miniprogram/dev/api/media/image/wx.chooseImage.html
+[3.6]: https://developers.weixin.qq.com/miniprogram/dev/api/file/FileSystemManager.writeFileSync.html
 
 <hr id="canvas"/>
 
@@ -310,22 +303,17 @@ API
 
 - 参考 @ [canvas](../api/canvas.md)
 
-
 <hr id="subpackages"/>
 
 ## 5. 分包加载
 
 > [dev/framework/subpackages](https://developers.weixin.qq.com/miniprogram/dev/framework/subpackages.html)
 
-
-
 <hr id="workers"/>
 
 ## 6. 多线程 Worker
 
 > [dev/framework/workers](https://developers.weixin.qq.com/miniprogram/dev/framework/workers.html)
-
-
 
 <hr id="server"/>
 
@@ -335,12 +323,9 @@ API
 
 > [dev/framework/server-ability/backend-api](https://developers.weixin.qq.com/miniprogram/dev/framework/server-ability/backend-api.html)
 
-
 ### 7.2 消息推送
 
 > [dev/framework/server-ability/message-push](https://developers.weixin.qq.com/miniprogram/dev/framework/server-ability/message-push.html)
-
-
 
 <hr id="tabbar"/>
 
@@ -348,11 +333,8 @@ API
 
 > [dev/framework/ability/custom-tabbar](https://developers.weixin.qq.com/miniprogram/dev/framework/ability/custom-tabbar.html)
 
-
-
 <hr id="fetch"/>
 
 ## 9. 周期性更新
 
 > [dev/framework/ability/background-fetch](https://developers.weixin.qq.com/miniprogram/dev/framework/ability/background-fetch.html)
-

@@ -16,7 +16,6 @@ Vue CLI 系统主要有两部分组成：
 
 两者都使用了基于插件的架构。
 
-
 ## 插件的功能
 
 CLI 插件是一个 NPM 包，它可以使用 Vue CLI 向项目添加额外的功能。
@@ -68,10 +67,10 @@ CLI Plugin 应该始终包含一个服务插件 ( Service Plugin ) 作为其主�
   - 创建 Service 实例时，将自动加载 Service Plugins
   - 比如每次在项目中调用 `vue-cli-service` 命令时
 
-
 一个 Service Plugin 应该导出一个接收两个参数的函数:
 
 - `api`
+
   - 一个 [PluginAPI](https://cli.vuejs.org/dev-guide/plugin-api.html) 实例
 
 - `options`
@@ -89,13 +88,14 @@ module.exports = (api, options) => {
 const VueAutoRoutingPlugin = require('vue-auto-routing/lib/webpack-plugin')
 
 module.exports = (api, options) => {
-  api.chainWebpack(webpackConfig => {
+  api.chainWebpack((webpackConfig) => {
     // 给 Webpack 添加 vue-auto-routing 插件
-    webpackConfig.plugin('vue-auto-routing')
-      .use(VueAutoRoutingPlugin, [{
+    webpackConfig.plugin('vue-auto-routing').use(VueAutoRoutingPlugin, [
+      {
         pages: 'src/pages',
         nested: true
-      }])
+      }
+    ])
   })
 }
 ```
@@ -105,7 +105,7 @@ module.exports = (api, options) => {
 ### 添加新的 cli-service 命令
 
 ```js
-module.exports = api => {
+module.exports = (api) => {
   api.registerCommand(
     // 命令名称
     'greet',
@@ -140,7 +140,7 @@ $ vue-cli-service greet --name 'John Doe'
 ```js
 // genarator.js
 
-module.exports = api => {
+module.exports = (api) => {
   api.extendPackage({
     script: {
       greet: 'vue-cli-service greet'
@@ -152,7 +152,7 @@ module.exports = api => {
 ### 修改现有的 cli-service 命令
 
 ```js
-module.exports = api => {
+module.exports = (api) => {
   // 获取 serve 命令
   const { serve } = api.service.commands
 
@@ -162,7 +162,7 @@ module.exports = api => {
   // 重写命令逻辑
   serve.fn = (...args) => {
     // 调用原方法，并将其结果在控制台打印
-    return serveFn(...args).then(res => {
+    return serveFn(...args).then((res) => {
       if (res && res.url) {
         console.log(`Project is running now at ${res.url}`)
       }
@@ -174,7 +174,7 @@ module.exports = api => {
 ### 为命令指定模式
 
 ```js
-module.exports = api => {
+module.exports = (api) => {
   api.registerCommand('build', () => {
     // ...
   })

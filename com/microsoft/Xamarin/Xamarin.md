@@ -24,7 +24,6 @@ Learn
 - [使用 Xamarin.Forms 构建移动应用 - Learn | Microsoft Docs](https://docs.microsoft.com/zh-cn/learn/paths/build-mobile-apps-with-xamarin-forms/)
 - [自定义功能并将其添加到 Xamarin.Forms 应用 - Learn | Microsoft Docs](https://docs.microsoft.com/zh-cn/learn/paths/customize-your-xamarin-forms-apps/)
 
-
 ### Xamarin.Forms
 
 - <https://dotnet.microsoft.com/apps/xamarin/xamarin-forms>

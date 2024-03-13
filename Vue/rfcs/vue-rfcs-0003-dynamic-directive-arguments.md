@@ -1,13 +1,13 @@
 ---
-title       : Vuejs Dynamic Directive Arguments
-recorddate  : 2020-03-19
+title: Vuejs Dynamic Directive Arguments
+recorddate: 2020-03-19
 ---
 
 # Vuejs RFCs 动态指令参数
 
 - [Vuejs-RFC-0003-dynamic-directive-arguments][rfc-0003]
 
-[rfc-0003]: <https://github.com/vuejs/rfcs/blob/master/active-rfcs/0003-dynamic-directive-arguments.md>
+[rfc-0003]: https://github.com/vuejs/rfcs/blob/master/active-rfcs/0003-dynamic-directive-arguments.md
 
 适用版本： 2.x / 3.x
 
@@ -62,6 +62,7 @@ recorddate  : 2020-03-19
 - 任何其他非字符串值都可能出错，并将触发警告
 
 - `null` 作为一个特殊值只适用于 `v-bind` 和 `v-on` 而不适用于 `v-slot`
+
   - 因为 `v-slot` 不是绑定，不能删除。
 
 - 自定义指令有决定如何处理非字符串参数的自由
@@ -83,4 +84,3 @@ recorddate  : 2020-03-19
   ```
 
 - 也就是说，复杂的动态键绑定应该通过计算属性在 JavaScript 中进行预转换
-

@@ -3,9 +3,7 @@
 - <http://llvm.org/>
 - <https://github.com/llvm/llvm-project>
 
-
 LLVM 项目是模块化和可重用的编译器及工具链技术的集合。
-
 
 ### 参考
 
@@ -32,7 +30,7 @@ LLVM 项目是模块化和可重用的编译器及工具链技术的集合。
     - 一般狭义的 LLVM 指的是 LLVM 后端（包含代码优化和目标代码生成）。
 - [llvm 入门篇 - 码农网](https://www.codercto.com/a/41721.html)
 - [LLVM 编译原理和使用 - 六神的博客 - CSDN](https://blog.csdn.net/yayaayaya123/article/details/83993041)
-  - 传统编译器分三个阶段： 
+  - 传统编译器分三个阶段：
     - 前端（Frontend）-- 优化器（Optimizer）-- 后端（Backend）
     - 前端负责分析源代码，可以检查语法级错误，并构建针对语言的抽象语法树（AST）；抽象语法树可以进一步转换为优化，最终转为新的表示方式，然后再交给让优化器和后端处理；最终由后端生成可执行的机器码。
   - LLVM编译工具链编译流程：

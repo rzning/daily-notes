@@ -35,13 +35,16 @@ Visual Studio Code 包括内置的 JavaScript
 虽然 `jsconfig.json` 文件不是必须的，但在下面情况还是需要创建此配置文件的：
 
 - Exclude
+
   - 工作区中并不是所有文件都被视为当前项目的一部分。
   - `jsconfig.json` 允许在 IntelliSense 中排除一些文件。
 
 - Include
+
   - 确保工作区中的某些 JavaScript 文件子集被视为单个项目。
 
 - Multi-Project
+
   - 工作空间包含多个项目上下文，例如前端和后端 JavaScript 代码。
   - 可在每个项目的根目录下创建 `jsconfig.json` 文件。
 

@@ -4,7 +4,6 @@
 
 > [dev/framework/structure](https://developers.weixin.qq.com/miniprogram/dev/framework/structure.html)
 
-
 ```
 |-- some-pages-folder
 |   |--demo-page

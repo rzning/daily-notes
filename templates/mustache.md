@@ -7,6 +7,7 @@
 - javaScript : <https://github.com/janl/mustache.js>
 
 # [mustache.js]
+
 > Logic-less {{mustache}} templates with JavaScript
 
 ### 安装
@@ -38,14 +39,14 @@ $ mustache dataView.json myTemplate.mustache > output.html
 ```js
 var view = {
   city: 'Louyang',
-  calc: function() {
-    retrun (29+16)/2;
+  calc: function () {
+    retrun(29 + 16) / 2
   }
-};
+}
 
-var tpl = 'The avarage temperature in {{city}} today is {{calc}}';
+var tpl = 'The avarage temperature in {{city}} today is {{calc}}'
 
-var output = Mustache.render(tpl, view);
+var output = Mustache.render(tpl, view)
 ```
 
 ### API
@@ -67,8 +68,5 @@ interface Tags [String, String]
 
 > 类型标记方法参考 [rtype] - JavaScript 直观类型标记
 
-
-
-
-[mustache.js]: <http://github.com/janl/mustache.js>
-[rtype]: <https://github.com/ericelliott/rtype>
+[mustache.js]: http://github.com/janl/mustache.js
+[rtype]: https://github.com/ericelliott/rtype

@@ -114,20 +114,18 @@ $ taro build --type h5
 $ npx taro build --type h5
 ```
 
-[Taro]: <https://taro.aotu.io/>
-[React]: <https://reactjs.org/>
-[React Native]: <https://facebook.github.io/react-native/>
-[JSX]: <https://reactjs.org/docs/jsx-in-depth.html>
-[npm]: <https://www.npmjs.com/>
-[yarn]: <https://yarnpkg.com>
-[CSS]: <https://www.w3.org/Style/CSS>
-[Sass]: <http://sass-lang.com/>
-[Redux]: <https://redux.js.org/>
-[ES7]: <http://www.ecma-international.org/ecma-262/7.0/index.html>
-[ES8]: <http://www.ecma-international.org/ecma-262/8.0/index.html>
-[ES]: <http://www.ecma-international.org/publications/standards/Ecma-262.htm>
-[Promise]: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>
-[npx]: <https://npm.im/npx>
-
-[微信开发者工具]: <https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html>
-
+[Taro]: https://taro.aotu.io/
+[React]: https://reactjs.org/
+[React Native]: https://facebook.github.io/react-native/
+[JSX]: https://reactjs.org/docs/jsx-in-depth.html
+[npm]: https://www.npmjs.com/
+[yarn]: https://yarnpkg.com
+[CSS]: https://www.w3.org/Style/CSS
+[Sass]: http://sass-lang.com/
+[Redux]: https://redux.js.org/
+[ES7]: http://www.ecma-international.org/ecma-262/7.0/index.html
+[ES8]: http://www.ecma-international.org/ecma-262/8.0/index.html
+[ES]: http://www.ecma-international.org/publications/standards/Ecma-262.htm
+[Promise]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+[npx]: https://npm.im/npx
+[微信开发者工具]: https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html

@@ -17,6 +17,8 @@ export default defineUserConfig({
 类型定义：
 
 ```ts
+import type { Theme } from '@vuepress/core'
+
 export type DefaultThemeConfig = BaseDefaultThemeConfig & {
   /**
    * 默认主题插件配置

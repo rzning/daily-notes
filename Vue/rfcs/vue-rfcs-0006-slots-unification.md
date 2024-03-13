@@ -1,13 +1,13 @@
 ---
-title       : Vuejs Slots Unification
-recorddate  : 2020-03-21
+title: Vuejs Slots Unification
+recorddate: 2020-03-21
 ---
 
 # Vuejs RFCs 统一插槽
 
 [Vuejs-RFC-0006-slots-unification][rfc-0006]
 
-[rfc-0006]: <https://github.com/vuejs/rfcs/blob/master/active-rfcs/0006-slots-unification.md>
+[rfc-0006]: https://github.com/vuejs/rfcs/blob/master/active-rfcs/0006-slots-unification.md
 
 适用版本： 3.x
 
@@ -18,7 +18,8 @@ recorddate  : 2020-03-21
 ## 动机
 
 - 普通插槽和作用域插槽的分离是由于作用域插槽作为新概念后来添加的结果，并且它们在 2.x 中有不同的内部实现。
-    - 这种分离在技术上是不必要的，将两者统一可以简化插槽的整体概念。
+
+  - 这种分离在技术上是不必要的，将两者统一可以简化插槽的整体概念。
 
 - 开发者不在担心同时处理 `$slots` 和 `$scoopedSlots`
 
@@ -30,26 +31,22 @@ recorddate  : 2020-03-21
 
 1. 语法的统一
 
-    - 包括在 2.6 的 `v-slot`
+   - 包括在 2.6 的 `v-slot`
 
 2. 实现的统一
 
-    - 统一使用 `this.$slots`
-    - 移除 `this.$scopedSlots`
-    - 在 2.6 中所有使用 `v-slot` 语法的插槽已在其内部编译为函数。
-    - 2.x 中 `this.$scopedSlots` 还作为普通插槽的代理，可公开使用
+   - 统一使用 `this.$slots`
+   - 移除 `this.$scopedSlots`
+   - 在 2.6 中所有使用 `v-slot` 语法的插槽已在其内部编译为函数。
+   - 2.x 中 `this.$scopedSlots` 还作为普通插槽的代理，可公开使用
 
 ## 在渲染函数中的使用
 
 ```js
-h(Comp, [
-  h('div', this.msg)
-])
+h(Comp, [h('div', this.msg)])
 
 // 相当于
-h(Comp, () => [
-  h('div', this.msg)
-])
+h(Comp, () => [h('div', this.msg)])
 ```
 
 具名插槽：新语法中内容节点上不在需要特殊的插槽数据属性。

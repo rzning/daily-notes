@@ -6,7 +6,6 @@
 
 - 创建服务器 [Create the Server](#create-server)
 
-
 <hr id="create-server"/>
 
 ## 创建服务器
@@ -63,11 +62,13 @@ server.on('request', (request, response) => {
 // 在每次 data 事件回调中将数据 PUSH 到数组
 // 在 end 事件中将所有数据拼接起来
 let body = []
-request.on('data', chunk => {
-  body.push(chunk)
-}).on('end', () => {
-  body = Buffer.concat(body).toString()
-})
+request
+  .on('data', (chunk) => {
+    body.push(chunk)
+  })
+  .on('end', () => {
+    body = Buffer.concat(body).toString()
+  })
 ```
 
 ### 请求错误处理
@@ -79,7 +80,7 @@ request.on('data', chunk => {
 若没有去处理监听该错误事件，则此错误被抛出时会导致你的程序崩溃。
 
 ```js
-request.on('error', err => {
+request.on('error', (err) => {
   console.error(err.stack)
 })
 ```
@@ -92,13 +93,13 @@ const http = request('http')
 const server = http.createServer((request, response) => {
   const { headers, method, url } = request
   let body = []
-  request.on('data', chunk => {
+  request.on('data', (chunk) => {
     body.push(chunk)
   })
   request.on('end', () => {
     body = Buffer.concat(body).toString()
   })
-  request.on('error', err => {
+  request.on('error', (err) => {
     console.error(err)
   })
 })
@@ -135,14 +136,10 @@ response.setHeader('X-Powered-By', 'bacon')
 
 ### 发送头数据
 
-
-
-
-[`EventEmitter`]: <https://nodejs.org/api/events.html#events_class_eventemitter>
-[`server.linsten()`]: <https://nodejs.org/api/http.html#http_server_listen>
-[`http.IncomingMessage`]: <https://nodejs.org/api/http.html#http_class_http_incomingmessage>
-[`http.ServerResponse`]: <https://nodejs.org/api/http.html#http_class_http_serverresponse>
-[`ReadableStream`]: <https://nodejs.org/api/stream.html#stream_class_stream_readable>
-[`WritableStream`]: <https://nodejs.org/api/stream.html#stream_class_stream_writable>
-[`Buffer`]: <https://nodejs.org/api/buffer.html>
-
+[`EventEmitter`]: https://nodejs.org/api/events.html#events_class_eventemitter
+[`server.linsten()`]: https://nodejs.org/api/http.html#http_server_listen
+[`http.IncomingMessage`]: https://nodejs.org/api/http.html#http_class_http_incomingmessage
+[`http.ServerResponse`]: https://nodejs.org/api/http.html#http_class_http_serverresponse
+[`ReadableStream`]: https://nodejs.org/api/stream.html#stream_class_stream_readable
+[`WritableStream`]: https://nodejs.org/api/stream.html#stream_class_stream_writable
+[`Buffer`]: https://nodejs.org/api/buffer.html

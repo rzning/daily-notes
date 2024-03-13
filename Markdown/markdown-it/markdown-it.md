@@ -1,8 +1,8 @@
 ---
-name        : markdown-it
-recorddate  : 2020-04-14
-repository  : https://github.com/markdown-it/markdown-it
-website     : https://markdown-it.github.io/
+name: markdown-it
+recorddate: 2020-04-14
+repository: https://github.com/markdown-it/markdown-it
+website: https://markdown-it.github.io/
 ---
 
 # markdown-it
@@ -35,23 +35,23 @@ CDN:
 ```js
 // node.js
 var MarkdownIt = require('markdown-it')
-var md = new MarkdownIt();
+var md = new MarkdownIt()
 var result = md.render('# markdown-it rulezz!')
 
 // node.js
-var md = require('markdown-it')();
-var result = md.render('# markdown-it rulezz!');
+var md = require('markdown-it')()
+var result = md.render('# markdown-it rulezz!')
 
 // browser
-var md = window.markdownit();
-var result = md.render('# markdown-it rulezz!');
+var md = window.markdownit()
+var result = md.render('# markdown-it rulezz!')
 ```
 
 单行渲染，无段落换行：
 
 ```js
-var md = require('markdown-it')();
-var result = md.renderInline('__markdown-it__ rulezz!');
+var md = require('markdown-it')()
+var result = md.renderInline('__markdown-it__ rulezz!')
 ```
 
 ### 使用预置和选项初始化
@@ -79,13 +79,13 @@ var md = require('markdown-it')({
 
 // full options list (defaults)
 var md = require('markdown-it')({
-  html: false,             // 在源码中启用 HTML 标签
-  xhtmlOut: false,         // 使用 '/' 关闭单标签，如 `<br />`
-  breaks: false,           // 将段落中的 '\n' 转换为 `<br>`
+  html: false, // 在源码中启用 HTML 标签
+  xhtmlOut: false, // 使用 '/' 关闭单标签，如 `<br />`
+  breaks: false, // 将段落中的 '\n' 转换为 `<br>`
   langPrefix: 'language-', // 用于 fenced 块的 CSS 语言前缀
-  linkify: false,          // 自动将 URL 类文本转换为链接
-  typograpter: false,      // 启用一些与语言无关的替换和引号美化
-  quotes: '“”‘’',          // 引号替换对
+  linkify: false, // 自动将 URL 类文本转换为链接
+  typograpter: false, // 启用一些与语言无关的替换和引号美化
+  quotes: '“”‘’', // 引号替换对
   highlight: (str, lang) => '' // 处理语法高亮
 })
 ```
@@ -93,10 +93,7 @@ var md = require('markdown-it')({
 ### 加载插件
 
 ```js
-var md = require('markdown-it')()
-  .use(plugin1)
-  .use(plugin2, opts)
-  .use(plugin3)
+var md = require('markdown-it')().use(plugin1).use(plugin2, opts).use(plugin3)
 ```
 
 ### 语法高亮显示
@@ -109,7 +106,7 @@ var md = require('markdown-it')()
 var hljs = require('highlight.js')
 
 var md = require('markdown-it')({
-  highlight (str, lang) {
+  highlight(str, lang) {
     if (lang && hljs.getLanguage(lang)) {
       try {
         return hljs.highlight(lang, str).value
@@ -126,7 +123,7 @@ var md = require('markdown-it')({
 var hljs = require('highlight.js')
 
 var md = require('markdown-it')({
-  highlight (str, lang) {
+  highlight(str, lang) {
     if (lang && hljs.getLanguage(lang)) {
       try {
         var code = hljs.highlight(lang, str).value
@@ -142,7 +139,7 @@ var md = require('markdown-it')({
 
 通过配置 `linkify: true` 来使用 [linkify-it] 库。
 
-[linkify-it]: <https://github.com/markdown-it/linkify-it>
+[linkify-it]: https://github.com/markdown-it/linkify-it
 
 可通过访问 linkify 实例 `md.linkify` 来配置 [linkify-it] ：
 
@@ -153,7 +150,7 @@ md.linkify.tlds('.py', false)
 
 ## API
 
-[API  Documentation](https://markdown-it.github.io/markdown-it/)
+[API Documentation](https://markdown-it.github.io/markdown-it/)
 
 若你要编写插件，可查看 [Development info](https://github.com/markdown-it/markdown-it/tree/master/docs)
 
@@ -185,8 +182,8 @@ md.linkify.tlds('.py', false)
 ```js
 // 通过 curring 方式 启用/禁用 规则
 var md = require('markdown-it')()
-  .disable([ 'link', 'image' ])
-  .enable([ 'link' ])
+  .disable(['link', 'image'])
+  .enable(['link'])
   .enable('image')
 ```
 

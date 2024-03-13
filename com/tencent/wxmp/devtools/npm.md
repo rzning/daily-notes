@@ -59,4 +59,3 @@ const pkgOther = require('packageName/other')
 - 小程序中无法使用一些全局变量（如 `window` 对象）和构造器（如 `Function` 构造器）。
 
 ## 原理介绍
-

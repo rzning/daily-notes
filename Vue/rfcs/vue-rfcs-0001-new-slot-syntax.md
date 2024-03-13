@@ -1,6 +1,6 @@
 ---
-title       : Vuejs New Slot Syntax
-recorddate  : 2020-03-19
+title: Vuejs New Slot Syntax
+recorddate: 2020-03-19
 ---
 
 # Vuejs RFCs 新的插槽语法

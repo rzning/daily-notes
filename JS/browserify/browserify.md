@@ -28,7 +28,9 @@ elem.textContent = gama(x)
 通过给 `module.exports` 或者 `exports` 赋值实现导出功能：
 
 ```js
-module.exports = function (n) { return n + 123 }
+module.exports = function (n) {
+  return n + 123
+}
 ```
 
 现在只需使用 `browserify` 命令从 `main.js` 文件构建包 ( bundle ) ：
@@ -39,7 +41,7 @@ $ browserify main.js > bundle.js
 
 `main.js` 需要的所有模块都包含在 `bundle.js` 中，使用 [required] 对 `require()` 树 ( graph ) 进行递归遍历。
 
-[required]: <https://github.com/defunctzombie/node-required>
+[required]: https://github.com/defunctzombie/node-required
 
 最后只需将构建好的 `bundle.js` 引入你的 HTML 即可：
 

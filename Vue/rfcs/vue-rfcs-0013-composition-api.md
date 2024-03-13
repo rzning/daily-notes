@@ -1,14 +1,14 @@
 ---
-title       : Vuejs Composition API
-recorddate  : 2020-03-25
-updatedate  : [2020-08-13, 2020-08-15, 2020-08-16, 2020-08-25]
+title: Vuejs Composition API
+recorddate: 2020-03-25
+updatedate: [2020-08-13, 2020-08-15, 2020-08-16, 2020-08-25]
 ---
 
 # Vuejs RFCs Composition API
 
 [Vuejs-RFC-0013-composition-api][rfc-0013]
 
-[rfc-0013]: <https://github.com/vuejs/rfcs/blob/master/active-rfcs/0013-composition-api.md>
+[rfc-0013]: https://github.com/vuejs/rfcs/blob/master/active-rfcs/0013-composition-api.md
 
 适用版本： 2.x / 3.x
 
@@ -132,7 +132,9 @@ Vue 模板被编译为使用了这些可反应属性的渲染函数，可以认�
 继续上面例子，让我们来处理用户的输入操作：
 
 ```js
-function increment() { state.count++ }
+function increment() {
+  state.count++
+}
 
 document.body.addEventListener('click', increment)
 ```
@@ -144,7 +146,9 @@ import { reactive, watchEffect } from 'vue'
 
 const state = reactive({ count: 0 })
 
-function increment() { state.count++ }
+function increment() {
+  state.count++
+}
 
 const renderContext = {
   state,
@@ -454,21 +458,21 @@ export default {
 现在，每个逻辑关注点的代码都被组合进了一个个函数中，这使得组件逻辑更清晰并更易浏览。
 
 ```js
-function useA () {
+function useA() {
   //...
   return A
 }
-function useB () {
+function useB() {
   //...
   return { B, C }
 }
-function useD (A, C) {
+function useD(A, C) {
   //...
   return D
 }
 
 export default {
-  setup () {
+  setup() {
     const A = useA()
     const { B, C } = useB()
     const D = useD(A, C)
@@ -497,7 +501,6 @@ export default {
 你可以非常方便的复用组件内的逻辑，只需将其封装为一个函数来引用。
 
 你甚至可以通过导出一个组件的整个 `setup()` 函数，来达到和 `extends` 一样的效果。
-
 
 类似的逻辑复用也可以通过使用现有的模式来实现，比如 `mixins` 、
 高阶组件 ( Higher-order Components ) 或（通过作用域插槽实现的）无渲染组件。
@@ -536,7 +539,7 @@ Composition API 可以与现有的基于选项的 API 一起使用。
 
 这使得类型推断变得棘手 ( Tricky ) ，因为每个插件都需要用户为注入的属性增加 Vue 类型定义。
 
-当使用 Composition API  时，由于不使用 `this` ，插件可以在内部使用【依赖注入】
+当使用 Composition API 时，由于不使用 `this` ，插件可以在内部使用【依赖注入】
 ( `provide` & `inject` ) 并公开为一个组合函数。
 
 定义一个插件：
@@ -547,14 +550,14 @@ import { provide, inject } from 'vue'
 
 const StoreSymbol = Symbol()
 
-export function provideStore (store) {
+export function provideStore(store) {
   provide(StoreSymbol, store)
 }
 
-export function useStore () {
+export function useStore() {
   const store = inject(StoreSymbol)
   if (!store) {
-    throw(new Error('Store plugin error.'))
+    throw new Error('Store plugin error.')
   }
   return store
 }
@@ -568,7 +571,7 @@ import { provideStore } from 'path/to/store-plugin'
 import store from 'path/to/store'
 
 const App = {
-  setup () {
+  setup() {
     provideStore(store)
   }
 }
@@ -577,7 +580,7 @@ const App = {
 import { useStore } from 'path/to/store-plugin'
 
 const Child = {
-  setup () {
+  setup() {
     const store = useStore()
   }
 }
@@ -585,7 +588,7 @@ const Child = {
 
 注意，也可以通过 [全局 API 更改提案](rfc-0009) 中建议的应用程序 App 级别的 `provide` 来提供 `store` 数据。
 
-[rfc-0000]: <https://github.com/vuejs/rfcs/blob/master/active-rfcs/0009-global-api-change.md#provide--inject>
+[rfc-0000]: https://github.com/vuejs/rfcs/blob/master/active-rfcs/0009-global-api-change.md#provide--inject
 
 定义插件：
 
@@ -595,13 +598,13 @@ import { inject } from 'vue'
 
 const StoreSymbol = Symbol()
 
-export function useStore () {
+export function useStore() {
   const store = inject(StoreSymbol)
   //...
 }
 
 export default {
-  install (app, store) {
+  install(app, store) {
     app.provide(StoreSymbol, store)
   }
 }
@@ -638,11 +641,11 @@ app.mount('#app')
 引入 Ref 是为了将响应式的值作为变量传递，而无需依赖对 `this` 对象的访问。
 
 1. 当使用 Composition API 时，我们需要不断地将【响应式引用】 ( Refs ) 与普通值和对象区分开来，
-  因而增加了使用此 API 的精神负担。
-  通过使用命名约定或使用类型系统，可以极大地减轻这种心理负担。
-  例如为所有 Ref 变量添加 `xxxRef` 后缀。
-  换句话说，由于提高了代码组织的灵活性，因此组件逻辑可以被分割为一些小的函数，
-  些函数的局部上下文都很简单，引用的开销也比较容易管理。
+   因而增加了使用此 API 的精神负担。
+   通过使用命名约定或使用类型系统，可以极大地减轻这种心理负担。
+   例如为所有 Ref 变量添加 `xxxRef` 后缀。
+   换句话说，由于提高了代码组织的灵活性，因此组件逻辑可以被分割为一些小的函数，
+   些函数的局部上下文都很简单，引用的开销也比较容易管理。
 
 2. 由于需要通过 `.value` 访问，读取和修改 Ref 要比使用普通值更冗长。
 
@@ -653,7 +656,6 @@ app.mount('#app')
 - 一些只接收或返回基本类型的组合函数需要将其值包裹在对象中才能达到响应性目的。
   若框架不提供标准实现，用户很可能最终会发明他们自己的类 Ref 模式，并导致生态系统碎片化。
 
-
 ### 🔸 Ref vs. Reactvie
 
 可以理解的是，用户可能会对 `ref` 和 `reactive` 之间该使用哪一个感到困惑。
@@ -661,31 +663,29 @@ app.mount('#app')
 首先要明白，这两个概念你必须都要理解，才能有效地使用 Composition API 。
 只是用一个很有可能会导致工作的复杂化或重复造轮子。
 
-使用 `ref` 和  `reactive` 之间的区别可以通过编写标准 JavaScript 逻辑的方式进行比较：
+使用 `ref` 和 `reactive` 之间的区别可以通过编写标准 JavaScript 逻辑的方式进行比较：
 
 ```js
 // 1. 分离的变量
 let x = 0
 let y = 0
-function updatePosition (e) {
+function updatePosition(e) {
   x = e.pageX
   y = e.pageY
 }
 
 // 2. 单一对象
 const pos = { x: 0, y: 0 }
-function updatePosition (e) {
+function updatePosition(e) {
   pos.x = e.pageX
   pos.y = e.pageY
 }
 ```
 
-- 若使用 `ref` 则在很大程度上是对上面第一种方式更详细的实现，以使基础类型值具有相应性。
+- 若使用 `ref` 则在很大程度上是对上面第一种方式更详细的实现，以使基础类型值具有响应性。
 
 - 使用 `reactive` 基本和第二种方式相同，我们只需要使用 `reactvie()` 创建此对象，仅此而已。
-
 
 ### 🔸 沉长的返回语句
 
 ### 🔸 更多的灵活性需要更多的自我约束
-

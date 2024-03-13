@@ -11,7 +11,7 @@ JSON Schema 是用于验证 JSON 数据结构的强大工具。
 空对象表示可接受任何有效的 JSON
 
 ```json
-{ }
+{}
 ```
 
 可以使用 `true` 代替空对象表示匹配任何内容
@@ -72,7 +72,6 @@ false
 }
 ```
 
-
 ## 2. JSON Schema 参考
 
 ### 2.1 特定类型关键字
@@ -81,15 +80,17 @@ false
 
 ```ts
 type NumericType = 'integer' | 'number'
-type SpecificType = 'string' | NumericType | 'object' | 'array' | 'boolean' | 'null'
+type SpecificType =
+  | 'string'
+  | NumericType
+  | 'object'
+  | 'array'
+  | 'boolean'
+  | 'null'
 
 interface Schema {
-  "type": SpecificType | SpecificType[]
+  type: SpecificType | SpecificType[]
 }
 ```
 
-
 ## 3. 构建一个复杂的 Schema
-
-
-

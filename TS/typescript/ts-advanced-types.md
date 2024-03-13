@@ -24,7 +24,6 @@
 - [Mapped types](#mapped) - 映射类型
 - [Conditional Types](#conditional) - 有条件类型
 
-
 <hr id="intersection" />
 
 ## ⒈ Intersection Types
@@ -84,7 +83,6 @@ const d: T & U = { x: 'x', y: 'y', z: 'z' }
 // error: 不能将类型“{ x: string; y: string; z: string; }”分配给类型“T & U”。
 //   对象文字可以只指定已知属性，并且“z”不在类型“T & U”中。
 ```
-
 
 <hr id="union" />
 
@@ -199,7 +197,7 @@ value.y = 'yy'
 //    ^
 // error: 类型“T”上不存在属性“y”。
 
-function funcA (value: T | U = { x: 'x', z: 'z' }) {
+function funcA(value: T | U = { x: 'x', z: 'z' }) {
   value.x = 'xx'
   //    ^
   // error: 类型“T | U”上不存在属性“x”。
@@ -214,7 +212,7 @@ function funcA (value: T | U = { x: 'x', z: 'z' }) {
   // ok.
 }
 
-function funcB (value: T | U) {
+function funcB(value: T | U) {
   value = { x: 'x', z: 'z' }
 
   value.x = 'xx'
@@ -228,7 +226,7 @@ function funcB (value: T | U) {
   // ok.
 }
 
-function funcC (value: T | U) {
+function funcC(value: T | U) {
   value = { x: 'x', y: 'y', z: 'z' }
 
   value.x = 'xx'
@@ -260,7 +258,7 @@ interface U {
 }
 
 // 不能判断当前 value 是否含有 x 或 y 属性
-function funcA (value: T | U) {
+function funcA(value: T | U) {
   if (value.x) {
     value.x = 'xx'
     // error.
@@ -278,14 +276,14 @@ function funcA (value: T | U) {
 }
 
 // 使用类型断言指明类型
-function funcB (value: T | U) {
+function funcB(value: T | U) {
   if ((<T>value).x) {
-    (<T>value).x = 'xx'
+    ;(<T>value).x = 'xx'
     // ok.
   }
 
   if ((<U>value).y) {
-    (<U>value).y = 'yy'
+    ;(<U>value).y = 'yy'
     // ok.
   }
 
@@ -295,7 +293,6 @@ function funcB (value: T | U) {
   }
 }
 ```
-
 
 <hr id="guards">
 
@@ -334,23 +331,23 @@ interface U {
 
 /**
  * 判断当前变量 v 是否为 T 类型
- * 
+ *
  * @param v 操作对象
  */
-function isT (v: T | U): v is T {
+function isT(v: T | U): v is T {
   return (<T>v).x !== undefined
 }
 
 /**
  * 判断当前变量 v 是否为 U 类型
- * 
+ *
  * @param v 操作对象
  */
-function isU (v: T | U): v is U {
+function isU(v: T | U): v is U {
   return (<U>v).y !== undefined
 }
 
-function funcA (value: T | U) {
+function funcA(value: T | U) {
   if (isT(value)) {
     value.x = 'xxx'
     // ok.
@@ -362,8 +359,7 @@ function funcA (value: T | U) {
   }
 }
 
-
-function funcB (value: T | U) {
+function funcB(value: T | U) {
   if (isT(value)) {
     value.x = 'xxx'
     // ok.
@@ -372,7 +368,6 @@ function funcB (value: T | U) {
     // ok.
   }
 }
-
 ```
 
 使用 type predicate 语法， Typescript 不仅知道 `if` 分支中变量的类型，同样也知道 `else` 分支中变量的类型。
@@ -393,13 +388,11 @@ interface V {
   z: string
 }
 
-
-function isT (v: T | U | V): v is T {
+function isT(v: T | U | V): v is T {
   return (<T>v).x !== undefined
 }
 
-
-function func (value: T | U | V) {
+function func(value: T | U | V) {
   if (isT(value)) {
     value.x = 'xxx'
     // ok.
@@ -425,8 +418,7 @@ interface U {
   y: string
 }
 
-function funcA (value: T | U) {
-
+function funcA(value: T | U) {
   value.x = 'xx'
   //    ^
   // error: 类型“T | U”上不存在属性“x”。
@@ -441,7 +433,7 @@ function funcA (value: T | U) {
   }
 }
 
-function funcB (value: T | U) {
+function funcB(value: T | U) {
   if ('x' in value) {
     return value.x
     // ok.
@@ -474,7 +466,7 @@ if (typeof value === T) {
 ```
 
 ```ts
-function func (value: string | number) {
+function func(value: string | number) {
   value.toUpperCase()
   //    ^
   // error: 类型“string | number”上不存在属性“toUpperCase”。
@@ -488,7 +480,7 @@ function func (value: string | number) {
     return value.toFixed(2)
     // ok.
   }
-  throw new Error(`Expected string or number, got '${value}'.`);
+  throw new Error(`Expected string or number, got '${value}'.`)
 }
 ```
 
@@ -506,7 +498,7 @@ interface T {
   x: string
 }
 
-function func (value: any) {
+function func(value: any) {
   if (value instanceof T) {
     //                 ^
     // error: “T”仅表示类型，但在此处却作为值使用。
@@ -529,7 +521,7 @@ class V implements T {
   z: string
 }
 
-function func (value: U | V) {
+function func(value: U | V) {
   value.x = 'x'
   // ok.
 
@@ -554,7 +546,6 @@ function func (value: U | V) {
   }
 }
 ```
-
 
 <hr id="nullable" />
 
@@ -587,8 +578,8 @@ nstr = undefined // error.
 
 ```ts
 // 可选参数：
-function func (x: number, y?: number) {
-  return x + ( y || 0 )
+function func(x: number, y?: number) {
+  return x + (y || 0)
 }
 
 func(1) // ok.
@@ -614,7 +605,7 @@ a.y = null // error.
 由于可空类型 ( `null` ) 是通过联合类型实现的，因此可以使用类型守卫去除 `null` ：
 
 ```ts
-function funcA (nstr: string | null): string {
+function funcA(nstr: string | null): string {
   if (nstr === null) {
     return 'default value'
   }
@@ -622,7 +613,7 @@ function funcA (nstr: string | null): string {
 }
 
 // 使用短路运算符
-function funcB (nstr: string | null): string {
+function funcB(nstr: string | null): string {
   return nstr | 'default value'
 }
 ```
@@ -632,7 +623,6 @@ function funcB (nstr: string | null): string {
 类型断言的语法是添加 `!` 后缀：
 
 - `identifier!` 表示从标识符 `identifier` 的类型中去除 `null` 和 `undefined`
-
 
 <hr id="aliases" />
 
@@ -657,11 +647,11 @@ type Tree<T> = {
 }
 
 // 与交叉类型一起使用：
-type LinkedList<T> = T & { next: LinkedList<T> };
+type LinkedList<T> = T & { next: LinkedList<T> }
 interface Person {
-    name: string;
+  name: string
 }
-var people: LinkedList<Person>;
+var people: LinkedList<Person>
 var p1 = people.name
 var p3 = people.next.next.name
 
@@ -672,7 +662,6 @@ type Yikes = Array<Yikes> // error.
 通常情况下，应该尽量使用接口来替代类型别名。
 
 若无法通过接口来表达某种类型，而需要使用并集或元组类型来表达时，可以使用类型别名。
-
 
 <hr id="literal" />
 
@@ -687,20 +676,19 @@ type Yikes = Array<Yikes> // error.
 ```ts
 type Easing = 'ease-in' | 'ease-out' | 'ease-in-out'
 class Tag {
-  animate (dx: number, dy: number, easing: Easing) {
+  animate(dx: number, dy: number, easing: Easing) {
     // ...
   }
 }
 
 // 用于区分函数重载
-function createElement(tagName: "img"): HTMLImageElement
-function createElement(tagName: "input"): HTMLInputElement
+function createElement(tagName: 'img'): HTMLImageElement
+function createElement(tagName: 'input'): HTMLInputElement
 // ...
 function createElement(tagName: string): Element {
   // ...
 }
 ```
-
 
 <hr id="numeric" />
 
@@ -714,14 +702,13 @@ function rollDice(): 1 | 2 | 3 | 4 | 5 | 6 {
   // ...
 }
 
-function func (x: number) {
+function func(x: number) {
   if (x !== 1 || x !== 2) {
     //           ^
     // error: 这个条件将总是返回'true'，因为类型'1'和'2'没有重叠。
   }
 }
 ```
-
 
 <hr id="enum" />
 
@@ -739,23 +726,22 @@ enum ShapeKind {
 }
 
 interface Circle {
-  kind: ShapeKind.Circle;
-  radius: number;
+  kind: ShapeKind.Circle
+  radius: number
 }
 
 interface Square {
-  kind: ShapeKind.Square;
-  sideLength: number;
+  kind: ShapeKind.Square
+  sideLength: number
 }
 
 let c: Circle = {
   kind: ShapeKind.Square,
   // ^
   // error: 不能将类型“ShapeKind.Square”分配给类型“ShapeKind.Circle”。
-  radius: 100,
+  radius: 100
 }
 ```
-
 
 <hr id="discrim" />
 
@@ -797,21 +783,24 @@ interface Circle {
 // 接下来使用以上接口定义一个可辨识联合类型
 type Shape = Square | Rectangle | Circle
 
-function area (s: Shape): number {
+function area(s: Shape): number {
   // 使用可辨识联合的类型守卫
   switch (s.kind) {
-    case 'square': return s.size * s.size
-    case 'rectangle': return s.height * s.width
-    case 'circle': return Math.PI * s.radius ** 2
-    default: return assertNever(s)
+    case 'square':
+      return s.size * s.size
+    case 'rectangle':
+      return s.height * s.width
+    case 'circle':
+      return Math.PI * s.radius ** 2
+    default:
+      return assertNever(s)
   }
 }
 
-function assertNever (x: never): never {
-  throw new Error("Unexpected object: " + x);
+function assertNever(x: never): never {
+  throw new Error('Unexpected object: ' + x)
 }
 ```
-
 
 <hr id="this" />
 
@@ -819,20 +808,17 @@ function assertNever (x: never): never {
 
 > 多态的 `this` 类型
 
-
 <hr id="index" />
 
 ## ⒒ Index types
 
 > 索引类型
 
-
 <hr id="mapped" />
 
 ## ⒓ Mapped types
 
 > 映射类型
-
 
 <hr id="conditional" />
 

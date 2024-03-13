@@ -44,6 +44,7 @@ VuePress 遵循约定大于配置原则，推荐目录结构如下：
 > <https://vuepress.vuejs.org/zh/config/>
 
 - 基本配置
+
   - `targetDir/.vuepress/config.js`
     - `base` - 部署站点的基础路径 = `'/'`
     - `title` - 网站的标题
@@ -61,19 +62,23 @@ VuePress 遵循约定大于配置原则，推荐目录结构如下：
     - `patterns` - 指定需被解析的文件模式 = `['**/*.md', '**/*.vue']`
 
 - 样式配置
+
   - `targetDir/.vuepress/palette.styl` - 全局变量
   - `targetDir/.vuepress/index.styl` - 全局样式
 
 - 主题配置
+
   - `targetDir/.vuepress/config.js`
     - `theme` - 使用的主题名称
     - `themeConfig` - 当前主题配置 = `{}`
 
 - 插件配置
+
   - `targetDir/.vuepress/config.js`
     - ``
 
 - Markdown 配置
+
   - `targetDir/.vuepress/config.js`
     - `markdown`
       - `lineNumbers` - 开启行号
@@ -97,17 +102,17 @@ VuePress 遵循约定大于配置原则，推荐目录结构如下：
     - `chainWebpack` - 使用 [webpack-chain] 修改 [Webpack] 配置 = `(config, isServer) => {}`
     - `evergreen` - 忽略向下兼容 = `false`
 
-[cache-loader]: <https://github.com/webpack-contrib/cache-loader>
-[markdown-it]: <https://github.com/markdown-it/markdown-it>
-[markdown-it-anchor]: <https://github.com/valeriangalliat/markdown-it-anchor>
-[markdown-it-table-of-contents]: <https://github.com/Oktavilla/markdown-it-table-of-contents>
-[postcss-loader]: <https://github.com/postcss/postcss-loader>
-[stylus-loader]: <https://github.com/shama/stylus-loader>
-[sass-loader]: <https://github.com/webpack-contrib/sass-loader>
-[less-loader]: <https://github.com/webpack-contrib/less-loader>
-[Webpack]: <https://webpack.docschina.org/configuration/>
-[webpack-merge]: <https://github.com/survivejs/webpack-merge>
-[webpack-chain]: <https://github.com/neutrinojs/webpack-chain>
+[cache-loader]: https://github.com/webpack-contrib/cache-loader
+[markdown-it]: https://github.com/markdown-it/markdown-it
+[markdown-it-anchor]: https://github.com/valeriangalliat/markdown-it-anchor
+[markdown-it-table-of-contents]: https://github.com/Oktavilla/markdown-it-table-of-contents
+[postcss-loader]: https://github.com/postcss/postcss-loader
+[stylus-loader]: https://github.com/shama/stylus-loader
+[sass-loader]: https://github.com/webpack-contrib/sass-loader
+[less-loader]: https://github.com/webpack-contrib/less-loader
+[Webpack]: https://webpack.docschina.org/configuration/
+[webpack-merge]: https://github.com/survivejs/webpack-merge
+[webpack-chain]: https://github.com/neutrinojs/webpack-chain
 
 ## 🪐 全局计算属性
 
@@ -124,7 +129,7 @@ VuePress 遵循约定大于配置原则，推荐目录结构如下：
 
 Vuepress 中任何包含 YAML front matter 的 Markdown 文件都将由 [gray-matter] 处理。
 
-[gray-matter]: <https://github.com/jonschlinkert/gray-matter>
+[gray-matter]: https://github.com/jonschlinkert/gray-matter
 
 一个基本示例：
 
@@ -141,6 +146,7 @@ contents of article
 然后可以使用 `$frontmatter` 或 `$page.frontmatter` 来访问这些变量。
 
 - 预定义变量
+
   - `title` - 当前页面标题
   - `lang` - 当前页面语言 = `'en-US'`
   - `description` - 当前页面描述
@@ -202,7 +208,7 @@ Vuepress 实现了 Markdown 内容的分发，
 然后在布局组件中利用 `<Content/>` 组件来使用该插槽：
 
 ```html
-<Content slot-key="name" />
+<content slot-key="name" />
 ```
 
 一个例子：
@@ -222,7 +228,9 @@ Vuepress 实现了 Markdown 内容的分发，
 
 ```md
 ::: slot header
+
 # title
+
 :::
 
 - list item

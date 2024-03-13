@@ -1,6 +1,6 @@
 ---
-title       : Vuejs Slot Syntax shorthand
-recorddate  : 2020-03-19
+title: Vuejs Slot Syntax shorthand
+recorddate: 2020-03-19
 ---
 
 # Vuejs RFCs 插槽语法简写
@@ -13,7 +13,7 @@ recorddate  : 2020-03-19
 
 为 [rfc-0001] 中提出的 `v-slot` 语法添加简写语法。
 
-[rfc-0001]: <https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md>
+[rfc-0001]: https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md
 
 ## 详细设计
 

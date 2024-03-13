@@ -4,7 +4,7 @@ Node-sass 是一个库，它提供了 Node.js 到 [LibSass] 的绑定。
 
 > [LibSass] 是流行的样式表预处理器 Sass 的 C 版本。
 
-[LibSass]: <https://github.com/sass/libsass>
+[LibSass]: https://github.com/sass/libsass
 
 它允许你以令人难以置信的速度将 .scss 文件编译成 css，并通过一个连接中间件自动编译。
 
@@ -26,12 +26,15 @@ npm install node-sass
 ```js
 var sass = require('node-sass')
 
-sass.render({
-  file: scss_filename,
-  ...other_options
-}, function (err, result) {
-  // ...
-})
+sass.render(
+  {
+    file: scss_filename,
+    ...other_options
+  },
+  function (err, result) {
+    // ...
+  }
+)
 
 // 同步方式
 
@@ -53,14 +56,12 @@ var result = sass.readerSync({
 
 若想执行转换，必须指定 `file` 或 `data` 中的一项。
 
-
-
 ### `render()` callback
 
 ```js
 /**
  * 异步回调
- * 
+ *
  * @param {Object} error - 错误对象
  * @param {string} error.message - 错误消息
  * @param {number} error.line - 错误的行号
@@ -77,7 +78,7 @@ var result = sass.readerSync({
  * @param {number} result.stats.duration - 持续时间 `end - start`
  * @param {string[]} result.stats.includedFiles - 所有相关 scss 文件的绝对路径，没有特定的顺序
  */
-function callback (error, result) {
+function callback(error, result) {
   if (error) {
     console.error(error)
   } else {

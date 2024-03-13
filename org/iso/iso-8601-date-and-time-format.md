@@ -1,7 +1,7 @@
 ---
-title       : "ISO 8601 Date and time format"
-recorddate  : 2020-02-18
-website     : https://www.iso.org/iso-8601-date-and-time-format.html
+title: 'ISO 8601 Date and time format'
+recorddate: 2020-02-18
+website: https://www.iso.org/iso-8601-date-and-time-format.html
 ---
 
 ## ISO 8601日期和时间格式
@@ -43,4 +43,3 @@ YYYY-MM-DD
   - Part 1: Basic rules
 
 日期和时间 — 信息交换的表示形式 — 第 1 部分：基本规则
-

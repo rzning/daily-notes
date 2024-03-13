@@ -1,0 +1,16 @@
+{
+  "name": "daily-notes",
+  "version": "0.1.0",
+  "description": "My Daily Notes",
+  "main": "index.js",
+  "repository": "https://github.com/rzning/daily-notes.git",
+  "author": "Rzning <rzning@outlook.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5"
+  }
+}

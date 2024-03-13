@@ -1,15 +1,18 @@
-
 示例：使用 `按钮 btn` 触发 `选择文件 input 控件` 单击事件。
 
 ```html
 <button id="btn">打开</button>
 <input id="input" type="file" />
 <script>
-    var btn = document.getElementById('btn');
-    var input = document.getElementById('input');
-    btn.addEventListener('click', function() {
-        input.dispatchEvent(new MouseEvent('click'));
-    }, false);
+  var btn = document.getElementById('btn')
+  var input = document.getElementById('input')
+  btn.addEventListener(
+    'click',
+    function () {
+      input.dispatchEvent(new MouseEvent('click'))
+    },
+    false
+  )
 </script>
 ```
 

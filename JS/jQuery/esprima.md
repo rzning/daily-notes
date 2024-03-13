@@ -13,10 +13,9 @@ Esprima 是一款用 ECMAScript 编写的高性能、符合标准的 [ECMAScript
 - 可选的语法节点位置跟踪（基于索引和行-列）
 - 大量测试（大约 1500 个单元测试，完全覆盖代码）
 
-
-[ECMAScript]: <http://www.ecma-international.org/publications/standards/Ecma-262.htm>
-[ESTree]: <https://github.com/estree/estree/blob/master/es5.md>
-[JSX]: <https://facebook.github.io/jsx/>
+[ECMAScript]: http://www.ecma-international.org/publications/standards/Ecma-262.htm
+[ESTree]: https://github.com/estree/estree/blob/master/es5.md
+[JSX]: https://facebook.github.io/jsx/
 
 # API
 

@@ -5,8 +5,7 @@
 
 cssnano 是建立在 [PostCSS] 生态系统之上的现代模块化压缩工具。
 
-[PostCSS]: <https://github.com/postcss/postcss>
-
+[PostCSS]: https://github.com/postcss/postcss
 
 ## Using PostCSS CLI
 

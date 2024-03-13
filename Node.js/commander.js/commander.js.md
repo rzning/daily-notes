@@ -17,7 +17,6 @@ Commander 导出一个全局 `program` 对象，方便快速使用：
 ```js
 const { program } = require('commander')
 program.version('0.0.1')
-
 ```
 
 也可以自己创建一个本地命令对象来使用：
@@ -65,7 +64,7 @@ program
   .command('clone <source> [destination]')
   .description('clone a repository into a newly created directory')
   .action((source, destination) => {
-    console.log('clone command called');
+    console.log('clone command called')
   })
 ```
 

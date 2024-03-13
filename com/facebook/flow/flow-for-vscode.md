@@ -6,14 +6,13 @@
 
 [Flow] 是一个静态类型检查器，用于在 JavaScript 程序中发现类型错误。
 
-[Flow]: <https://github.com/facebook/flow>
+[Flow]: https://github.com/facebook/flow
 
 ## Setup
 
 - 确保你的项目有一个 `.flowconfig` 文件。
 - 确保你能够通过命令行运行 `flow` 命令。
 - 将 `javascript.validate.enable` 选项设置为 `false` 或在项目中完全禁用内置的 TypeScript 扩展。
-
 
 ## Configuration
 

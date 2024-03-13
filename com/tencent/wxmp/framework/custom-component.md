@@ -9,4 +9,3 @@
 ## Component 构造器
 
 > [dev/framework/custom-component/component](https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/component.html)
-

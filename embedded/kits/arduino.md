@@ -1,13 +1,11 @@
 ---
-title   : "Arduino"
-date    : 2018-09-02 23:45:00 +0800
+title: 'Arduino'
+date: 2018-09-02 23:45:00 +0800
 ---
 
-Arduino
-=======
+# Arduino
 
 - <https://www.arduino.cc/>
-
 
 ---
 
@@ -42,7 +40,6 @@ Arduino
 
 ## Store
 
-
 - [Arduino Uno Rev3](https://store.arduino.cc/usa/arduino-uno-rev3) - Code: A000066
 - [Arduino Nano](https://store.arduino.cc/usa/arduino-nano) - Code: A000005
 - [Arduino Due](https://store.arduino.cc/usa/arduino-due) - Code: A000062
@@ -68,5 +65,5 @@ Arduino
 
 ## Other Reference
 
-- [Arduino教程_w3cschool](https://www.w3cschool.cn/arduino/)
+- [Arduino教程\_w3cschool](https://www.w3cschool.cn/arduino/)
 - [Arduino MKR 系列—规格、功能等 | Arrow.com](https://www.arrow.com/zh-cn/research-and-events/articles/arduino-mkr-the-new-frontier)

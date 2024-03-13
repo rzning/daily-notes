@@ -13,9 +13,7 @@ $ npm install execa
 ## Usage
 
 ```js
-const execa = require('execa')
-
-(async () => {
+const execa = require('execa')(async () => {
   const { stdout } = await execa('echo', ['unicorns'])
   console.log(stdout)
 })()
@@ -34,9 +32,7 @@ execa('echo', ['unicorns']).stdout.pipe(process.stdout)
 ### 处理错误
 
 ```js
-const execa = require('execa')
-
-()(async () => {
+const execa = require('execa')()(async () => {
   // 捕获错误
   try {
     await execa('unknown', ['command'])
@@ -49,9 +45,7 @@ const execa = require('execa')
 ## 取消一个生成的进程
 
 ```js
-const execa = require('execa')
-
-(async () => {
+const execa = require('execa')(async () => {
   const subprocess = execa('node')
 
   setTimeout(() => {
@@ -61,8 +55,8 @@ const execa = require('execa')
   try {
     await subprocess
   } catch (error) {
-    console.log(subprocess.killed)  // true
-    console.log(error.isCanceled)   // true
+    console.log(subprocess.killed) // true
+    console.log(error.isCanceled) // true
   }
 })()
 ```
@@ -111,9 +105,9 @@ setTimeout(() => {
   - `cancel()`
   - `all`
 
-[`child_process.execFile()`]: <https://nodejs.org/api/child_process.html#child_process_child_process_execfile_file_args_options_callback>
-[`child_process.spawn()`]: <https://nodejs.org/api/child_process.html#child_process_child_process_spawn_command_args_options>
-[`child_process`]: <https://nodejs.org/api/child_process.html#child_process_class_childprocess>
+[`child_process.execFile()`]: https://nodejs.org/api/child_process.html#child_process_child_process_execfile_file_args_options_callback
+[`child_process.spawn()`]: https://nodejs.org/api/child_process.html#child_process_child_process_spawn_command_args_options
+[`child_process`]: https://nodejs.org/api/child_process.html#child_process_class_childprocess
 
 ### `execa.sync(file, arguments?, options?)`
 
@@ -159,5 +153,3 @@ setTimeout(() => {
 - 没有足够的内存或者已经有太多的子进程
 
 ## `options`
-
-

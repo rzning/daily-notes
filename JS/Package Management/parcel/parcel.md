@@ -1,10 +1,9 @@
 ---
-name        : Parcel
-recorddate  : 2020-03-30
-repository  : https://github.com/parcel-bundler/parcel
-website     : https://parceljs.org/
+name: Parcel
+recorddate: 2020-03-30
+repository: https://github.com/parcel-bundler/parcel
+website: https://parceljs.org/
 ---
-
 
 # Parcel
 
@@ -33,7 +32,7 @@ yarn add --dev parcel@next
 例如你要构建一个网站，创建一个 `index.html` 文件：
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -71,7 +70,7 @@ console.log('Hello World')
 
 ```html
 <!-- index.html -->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />

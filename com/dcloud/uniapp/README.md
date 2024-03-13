@@ -8,8 +8,8 @@
 开发者使用 [uni-app] 编写一套代码，可发布到 iOS, Android, H5
 以及各种小程序（微信 / 支付宝 / 百度 / 头条 / QQ / 钉钉）等多个平台。
 
-[uni-app]: <https://github.com/dcloudio/uni-app>
-[Vue.js]: <https://github.com/vuejs/vue>
+[uni-app]: https://github.com/dcloudio/uni-app
+[Vue.js]: https://github.com/vuejs/vue
 
 - [介绍](#intro)
 - 框架

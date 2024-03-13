@@ -42,8 +42,8 @@ $ bower install --save sortablejs
 </ul>
 
 <script>
-  var elem = document.getElementById('list');
-  var sortable = Sortable.create(elem);
+  var elem = document.getElementById('list')
+  var sortable = Sortable.create(elem)
 </script>
 ```
 
@@ -51,14 +51,14 @@ $ bower install --save sortablejs
 
 ```js
 var sortable = new Sortable(elem, {
-  group: "name",
+  group: 'name',
   delay: 0,
   animation: 150,
   touchStartThreshold: 0,
   handle: '.my-handle',
   store: null,
-  sort: true,
-});
+  sort: true
+})
 ```
 
 ## Reference

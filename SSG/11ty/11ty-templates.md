@@ -269,7 +269,7 @@ title: 我的有关 Nunjucks 的博客文章
 title: 我的博客
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />

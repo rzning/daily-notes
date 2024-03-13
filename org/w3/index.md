@@ -1,9 +1,12 @@
 ---
-title       : "World Wide Web Consortium (W3C)"
-date        : 2018-08-19 17:50:00 +0800
+title: 'World Wide Web Consortium (W3C)'
+date: 2018-08-19 17:50:00 +0800
 ---
+
 # W3C
+
 ### World Wide Web Consortium
+
 - <https://www.w3.org/>
 
 万维网联盟（W3C）是一个国际社区，其成员组织，全职员工和公众共同制定 Web 标准。

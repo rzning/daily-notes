@@ -61,7 +61,6 @@ npm start
 - `development.js` - 开发环境入口文件
 - `production.js` - 生产环境入口文件
 
-
 ## 🚛 运行流程
 
 Node.js 提供 [http] 模块，可以直接创建 HTTP 服务，以响应用户的请求。
@@ -79,10 +78,11 @@ const instance = new Application()
 instance.run()
 ```
 
-[http]: <https://nodejs.org/api/http.html>
-[http.createServer]: <https://nodejs.org/api/http.html#http_http_createserver_options_requestlistener>
+[http]: https://nodejs.org/api/http.html
+[http.createServer]: https://nodejs.org/api/http.html#http_http_createserver_options_requestlistener
 
 - 系统服务启动流程
+
   - 执行 `npm start` 或 `node development.js`
   - 实例化 ThinkJS 的 [Application] 类，并执行 `run()` 方法
   - 根据不同环境（Master 进程、Worker 进程、命令行调用）处理不同逻辑
@@ -101,6 +101,4 @@ instance.run()
 - 用户请求处理流程
   - ...
 
-
-[Application]: <https://github.com/thinkjs/thinkjs/blob/3.0/lib/application.js>
-
+[Application]: https://github.com/thinkjs/thinkjs/blob/3.0/lib/application.js

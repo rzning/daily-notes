@@ -10,7 +10,7 @@ JSX 是 ECMAScript 的一种类 XML 的语法扩展。
 
 ```jsx
 // 使用 JSX 来标识一个 UI 组件：
-var dropdown =
+var dropdown = (
   <Dropdown>
     A dropdown list
     <Menu>
@@ -19,6 +19,7 @@ var dropdown =
       <MenuItem>Do Something Else</MenuItem>
     </Menu>
   </Dropdown>
+)
 ```
 
 ## Rationale 基本原理

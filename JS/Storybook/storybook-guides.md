@@ -24,6 +24,7 @@ npx -p @storybook/cli sb init
 该工具会检查你的 `package.json` 内容，来确定您使用的是哪个视图层。
 
 - HTML
+
   - 如果想在 Storybook 中开发 HTML 片段，则无法自动确定。
   - 此时需要使用 `--type` 标志来强制 HTML 项目类型。
 
@@ -42,7 +43,6 @@ npm run storybook
 ## 慢速入门指南
 
 要了解有关 Storybook CLI `sb init` 命令的功能的更多信息，可查看慢速入门指南：
-
 
 - Storybook for React
 - Storybook for React Native

@@ -14,12 +14,4 @@ Codespaces 是 GitHub 上的集成开发环境 ( IDE ) ，你可以使用此功�
 - Codespaces 疑难解答
 - 从 VSCode 连接到你的 Codespaces
 
-
 ## 关于 Codespaces
-
-
-
-
-
-
-

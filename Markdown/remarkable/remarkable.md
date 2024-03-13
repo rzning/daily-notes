@@ -1,8 +1,8 @@
 ---
-name        : remarkable
-recorddate  : 2020-05-17
-repository  : https://github.com/jonschlinkert/remarkable
-website     : https://jonschlinkert.github.io/remarkable/demo/
+name: remarkable
+recorddate: 2020-05-17
+repository: https://github.com/jonschlinkert/remarkable
+website: https://jonschlinkert.github.io/remarkable/demo/
 ---
 
 # remarkable
@@ -30,7 +30,6 @@ browser
   - <https://www.jsdelivr.com/package/npm/remarkable>
 - cdnjs
   - <https://cdnjs.com/libraries/remarkable>
-
 
 ## Usage
 
@@ -92,7 +91,9 @@ var md = new Remarkable({
   langPrefix: 'language-',
   typographer: false,
   quotes: '“”‘’',
-  highlight: function (/* str, lang */) { return '' }
+  highlight: function (/* str, lang */) {
+    return ''
+  }
 })
 
 console.log(md.render('# Remarkable rulezz!'))
@@ -137,7 +138,7 @@ import { Remarkable } from 'remarkable'
 import hljs from 'highlight.js'
 
 var md = new Remarkable({
-  highlight (str, lang) {
+  highlight(str, lang) {
     if (lang && hljs.getLanguage(lang)) {
       try {
         return hljs.highlight(lang, str).value
@@ -147,7 +148,7 @@ var md = new Remarkable({
       } catch (err) {}
       return ''
     }
-  } 
+  }
 })
 ```
 
@@ -167,7 +168,7 @@ var md = new Remarkable({
 - `<ins>` - `++inserted text++` （实验性）
 - `<mark>` - `==marked text==` （实验性）
 
-[sup_sub]: <https://pandoc.org/MANUAL.html#superscripts-and-subscripts>
+[sup_sub]: https://pandoc.org/MANUAL.html#superscripts-and-subscripts
 
 ## Manage rules
 
@@ -201,10 +202,7 @@ const md = new Remarkable({
 })
 
 // Disable rules at all:
-md.core.ruler.disable([
-  'replacements',
-  'smartquotes'
-])
+md.core.ruler.disable(['replacements', 'smartquotes'])
 ```
 
 ## Plugins
@@ -212,8 +210,7 @@ md.core.ruler.disable([
 ```js
 var md = new Remarkable()
 
-md.use(plugin1)
-  .use(plugin2, opts)
+md.use(plugin1).use(plugin2, opts)
 ```
 
 > [插件文档](https://github.com/jonschlinkert/remarkable/blob/master/docs/plugins.md)

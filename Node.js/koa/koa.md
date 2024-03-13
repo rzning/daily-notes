@@ -18,13 +18,12 @@ $ npm install koa
 ## Hello Koa
 
 ```js
-const Koa = require('koa');
-const app = new Koa();
+const Koa = require('koa')
+const app = new Koa()
 
-app.use(ctx => {
-  ctx.body = 'Hello Koa';
-});
+app.use((ctx) => {
+  ctx.body = 'Hello Koa'
+})
 
-app.listen(3000);
+app.listen(3000)
 ```
-

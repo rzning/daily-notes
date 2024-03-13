@@ -4,13 +4,13 @@
 
 > [dev/framework/app-service](https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/)
 
-  - [场景值](#scene)
-  - [注册小程序](#app)
-  - [注册页面](#page)
-  - [页面生命周期](#lifecycle)
-  - [页面路由](#route)
-  - [模块化](#module)
-  - [API](#api)
+- [场景值](#scene)
+- [注册小程序](#app)
+- [注册页面](#page)
+- [页面生命周期](#lifecycle)
+- [页面路由](#route)
+- [模块化](#module)
+- [API](#api)
 
 小程序开发框架的 `逻辑层` 为开发者提供 JavaScript 代码处理能力。
 
@@ -33,7 +33,7 @@
 
 > 参考 @ [场景值列表](../reference/scene-list.md)
 
-在小程序中，可以在 `App()` 的 `onLaunch()` 和 `onShow()` 方法，或在 `wx.getLaunchOptionsSync()` 方法中获取场景值信息。 
+在小程序中，可以在 `App()` 的 `onLaunch()` 和 `onShow()` 方法，或在 `wx.getLaunchOptionsSync()` 方法中获取场景值信息。
 
 <hr id="app"/>
 
@@ -49,10 +49,10 @@
 // app.js
 
 App({
-  onLaunch (options) {},
-  onShow (options) {},
-  onHide () {},
-  onError () {},
+  onLaunch(options) {},
+  onShow(options) {},
+  onHide() {},
+  onError() {},
   someGlobalData: 'abc'
 })
 ```
@@ -87,22 +87,22 @@ Page({
   },
 
   // 生命周期回调函数
-  onLoad () {},
-  onShow () {},
-  onReady () {},
-  onHide () {},
-  onUnload () {},
+  onLoad() {},
+  onShow() {},
+  onReady() {},
+  onHide() {},
+  onUnload() {},
 
   // 页面事件处理函数
-  onPullDownRefresh () {},
-  onReachBottom () {},
-  onShareAppMessage () {},
-  onPageScroll () {},
-  onResize () {},
-  onTabItemTap (item) {},
+  onPullDownRefresh() {},
+  onReachBottom() {},
+  onShareAppMessage() {},
+  onPageScroll() {},
+  onResize() {},
+  onTabItemTap(item) {},
 
   // 组件事件响应函数
-  viewTap () {},
+  viewTap() {},
   // 自由数据
   customData: {}
 })
@@ -126,9 +126,9 @@ Page({
 Component({
   data: {},
   methods: {
-    onLoad () {},
-    onPullDownRefresh () {},
-    wiewTap () {}
+    onLoad() {},
+    onPullDownRefresh() {},
+    wiewTap() {}
   }
 })
 ```
@@ -157,25 +157,25 @@ Component({
 
 当路由改变时 `页面栈` 有以下表现：
 
-路由操作 | 页面栈
--|-
-初始化 | 新页面入栈
-打开新页面 | 新页面入栈
-页面重定向 | 当前页面出栈，新页面入栈
-页面返回 | 页面出栈，直到目标返回页
-Tab 切换 | 页面全部出栈，只留下新的 Tab 页面
-重加载 | 页面全部出栈，只留下新的页面
+| 路由操作   | 页面栈                            |
+| ---------- | --------------------------------- |
+| 初始化     | 新页面入栈                        |
+| 打开新页面 | 新页面入栈                        |
+| 页面重定向 | 当前页面出栈，新页面入栈          |
+| 页面返回   | 页面出栈，直到目标返回页          |
+| Tab 切换   | 页面全部出栈，只留下新的 Tab 页面 |
+| 重加载     | 页面全部出栈，只留下新的页面      |
 
 路由触发方式与页面生命周期关系如下表所示：
 
-路由操作 | 触发时机 | 路由原页面 | 路由目标页面
--|-|-|-
-初始化 | 小程序打开第一个页面 | - | `onLoad()` , `onShow()`
-打开新页面 | `wx.navigateTo()` <hr/> `<navigator open-type="navigateTo"/>` | `onHide()` | `onLoad()` , `onShow()`
-页面重定向 | `wx.redirectTo()` <hr/> `<navigator open-type="redirectTo"/>` | `onUnload()` | `onLoad()` , `onShow()`
-页面返回 | `wx.navigateBack()` <hr/> `<navigator open-type="navigateBack">` <hr/> 用户点击左上角返回 | `onUnload()` | `onShow()`
-Tab 切换 | `wx.switchTab()` <hr/> `<navigator open-type="switchTab"/>` <hr/> 用户切换 Tab | （参考 | 子表）
-重启动 | `wx.reLaunch()` <hr/> `<navigator open-type="reLaunch"/>` | `onLoad()` | `onLoad()` , `onShow()`
+| 路由操作   | 触发时机                                                                                  | 路由原页面   | 路由目标页面            |
+| ---------- | ----------------------------------------------------------------------------------------- | ------------ | ----------------------- |
+| 初始化     | 小程序打开第一个页面                                                                      | -            | `onLoad()` , `onShow()` |
+| 打开新页面 | `wx.navigateTo()` <hr/> `<navigator open-type="navigateTo"/>`                             | `onHide()`   | `onLoad()` , `onShow()` |
+| 页面重定向 | `wx.redirectTo()` <hr/> `<navigator open-type="redirectTo"/>`                             | `onUnload()` | `onLoad()` , `onShow()` |
+| 页面返回   | `wx.navigateBack()` <hr/> `<navigator open-type="navigateBack">` <hr/> 用户点击左上角返回 | `onUnload()` | `onShow()`              |
+| Tab 切换   | `wx.switchTab()` <hr/> `<navigator open-type="switchTab"/>` <hr/> 用户切换 Tab            | （参考       | 子表）                  |
+| 重启动     | `wx.reLaunch()` <hr/> `<navigator open-type="reLaunch"/>`                                 | `onLoad()`   | `onLoad()` , `onShow()` |
 
 > （子表）Tab 切换对应生命周期：参考官方 [页面路由](https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/route.html)
 
@@ -193,9 +193,9 @@ Tips:
 
 > [dev/framework/app-service/module](https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/module.html)
 
- JS 模块通过 `module.exports` 或者 `exports` 暴露接口。
+JS 模块通过 `module.exports` 或者 `exports` 暴露接口。
 
- 小程序目前不支持直接引入 `node_modules` 目录文件，开发者需将相关代码拷贝到小程序目录中，或使用小程序中支持的 npm 功能。
+小程序目前不支持直接引入 `node_modules` 目录文件，开发者需将相关代码拷贝到小程序目录中，或使用小程序中支持的 npm 功能。
 
 - 参考 @ [小程序 npm 包](../devtools/npm.md)
 
@@ -214,7 +214,7 @@ module.exports.sayHello = sayHello
 
 const common = require('common.js')
 Page({
-  helloAnna () {
+  helloAnna() {
     common.sayHello('Anna')
   }
 })

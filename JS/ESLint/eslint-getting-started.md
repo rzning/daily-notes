@@ -13,7 +13,7 @@ ESLint 以 “使代码更加一致和避免错误” 为目标。
 - ESLint 使用 AST 评估代码中的模式
 - ESLint 完全可插拔，每个规则都是独立插件，可以在运行时随时添加。
 
-[Espree]: <https://github.com/eslint/espree>
+[Espree]: https://github.com/eslint/espree
 
 ## 安装和使用 Installation and Usage
 
@@ -59,5 +59,3 @@ yarn run eslint yourfile.js
 - `"off"` 或 `0` 代表关闭规则
 - `"warn"` 或 `1` 代表开启规则，并以警告抛出，不影响程序运行
 - `"error"` 或 `2` 代表开启规则，并以错误抛出，将终止程序运行
-
-

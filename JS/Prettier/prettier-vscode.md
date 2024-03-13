@@ -91,11 +91,13 @@ graphql
 有两种方法可以同时使用 Prettier 和 Linters ：
 
 - 第一种方法是简单地让每个工具做它应该做的事情。
+
   - 可以通过禁用 Linter 检查格式中的任何规则，并让 Prettier 自动处理所有格式来实现。
 
 - 第二种方法是通过插件让 Linter 来运行 Prettier 。
 
 > Refer: Integrating with Linters · Prettier
+>
 > - <https://prettier.io/docs/en/integrating-with-linters.html>
 
 ### 4.1 禁用 Linter 中的格式化规则
@@ -122,10 +124,7 @@ yarn add --dev eslint-config-prettier
 
 ```json
 {
-  "extends": [
-    "some-other-config-you-use",
-    "prettier"
-  ]
+  "extends": ["some-other-config-you-use", "prettier"]
 }
 ```
 
@@ -194,7 +193,6 @@ yarn add --dev eslint-config-prettier
   }
 }
 ```
-
 
 ## 5. 设置
 

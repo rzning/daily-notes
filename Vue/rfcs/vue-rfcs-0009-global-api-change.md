@@ -1,14 +1,14 @@
 ---
-title       : Vuejs Global API Change
-recorddate  : 2020-03-23
-updatedate  : 2020-03-25
+title: Vuejs Global API Change
+recorddate: 2020-03-23
+updatedate: 2020-03-25
 ---
 
 # Vuejs RFCs 全局 API 更改
 
 [Vuejs-RFC-0009-global-api-change][rfc-0009]
 
-[rfc-0009]: <https://github.com/vuejs/rfcs/blob/master/active-rfcs/0009-global-api-change.md>
+[rfc-0009]: https://github.com/vuejs/rfcs/blob/master/active-rfcs/0009-global-api-change.md
 
 适用版本： 3.x
 
@@ -35,7 +35,7 @@ Vue.directive(/* ... */)
 Vue.prototype.customProperty = () => {}
 
 new Vue({
-  render: h => h(App)
+  render: (h) => h(App)
 }).$mount('#app')
 ```
 
@@ -47,7 +47,7 @@ import App from './App.vue'
 
 const app = createApp(App)
 
-app.config.isCustomElement = tag => tag.startsWith('app-')
+app.config.isCustomElement = (tag) => tag.startsWith('app-')
 app.use(/* ... */)
 app.mixin(/* ... */)
 app.component(/* ... */)
@@ -69,23 +69,25 @@ app.mount('#app')
 ```js
 import { createApp } from 'vue'
 
-const app = createApp({ /* 根组件定义 */ })
+const app = createApp({
+  /* 根组件定义 */
+})
 ```
 
 调用 `createApp()` 方法将返回一个应用实例。每个应用实例提供自己的应用上下文。
 
 应用程序实例公开了当前全局 API 的子集。
 
-Old APIs | New APIs
--|-
-`Vue.config` | `app.config`
-`Vue.config.productionTip` | 移除
-`Vue.config.ignoredElements` | `app.config.isCustomElement`
-`Vue.component` | `app.component`
-`Vue.directive` | `app.directive`
-`Vue.mixin` | `app.mixin`
-`Vue.use` | `app.use`
-`Vue.extend` | 不再适用，可使用新的 `defineComponent` 全局 API
+| Old APIs                     | New APIs                                        |
+| ---------------------------- | ----------------------------------------------- |
+| `Vue.config`                 | `app.config`                                    |
+| `Vue.config.productionTip`   | 移除                                            |
+| `Vue.config.ignoredElements` | `app.config.isCustomElement`                    |
+| `Vue.component`              | `app.component`                                 |
+| `Vue.directive`              | `app.directive`                                 |
+| `Vue.mixin`                  | `app.mixin`                                     |
+| `Vue.use`                    | `app.use`                                       |
+| `Vue.extend`                 | 不再适用，可使用新的 `defineComponent` 全局 API |
 
 ### 挂载应用实例
 

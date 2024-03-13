@@ -22,7 +22,7 @@ npm install --save-dev stylelint stylelint-config-standard
 }
 ```
 
-对项目中的所有 CSS  文件执行 stylelint
+对项目中的所有 CSS 文件执行 stylelint
 
 ```sh
 npx stylelint "**/*.css"
@@ -31,7 +31,7 @@ npx stylelint "**/*.css"
 ## Node.js API
 
 ```js
-stylelint.lint(options).then(resultObject => {
+stylelint.lint(options).then((resultObject) => {
   /* .. */
 })
 ```
@@ -44,13 +44,13 @@ stylelint
     config: { rules: 'color-no-invalid-hex' },
     files: 'all/my/stylesheets/*.css'
   })
-  .then(data => {
+  .then((data) => {
     // data.output
     // data.errored
     // data.results
     // todo...
   })
-  .catch(err => {
+  .catch((err) => {
     console.error(err.stack)
   })
 ```

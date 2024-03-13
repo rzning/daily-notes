@@ -1,9 +1,10 @@
 ---
-title       : "能力扩展 - Touch WX 入门"
-author      : Rzning
-date        : 2018-06-19 20:18:00 +0800
-modified    : 2018-08-05 17:12:00 +0800
+title: '能力扩展 - Touch WX 入门'
+author: Rzning
+date: 2018-06-19 20:18:00 +0800
+modified: 2018-08-05 17:12:00 +0800
 ---
+
 # Touch WX
 
 ### 能力扩展
@@ -18,7 +19,9 @@ modified    : 2018-08-05 17:12:00 +0800
   - 引入资源 - [extend/import]
 
 ---
+
 ## 矢量图标库
+
 - [extend/icon]
 
 在 Touch WX 中可使用 iconfont 海量图标库。
@@ -42,42 +45,45 @@ modified    : 2018-08-05 17:12:00 +0800
 只需替换后面 `.icon-*` 部分和 `base64` 数据即可。
 
 ## 框架常量
+
 - [extend/constant]
 
 为了让 Touch WX 框架与 Touch UI 框架在 API 层面保持统一，这里补充了获取常量的 API，可以在 Touch WX 中直接使用。
 
-常量 | 说明
--|-
-IS_APP | 是否为 App 环境
-IS_ANDROID | 是否为 Android 环境
-IS_IOS | 是否为 iOS 环境
-WIN_HEIGHT | 窗体高度
-STATUS_BAR_HEIGHT | 状态栏的高度
-DEFAULT_HEADER_HEIGHT | 当前导航栏高度
-DEFAULT_CONTENT_HEIGHT | 当前内容高度
-WIN_WIDTH | 当前屏幕宽度
+| 常量                   | 说明                |
+| ---------------------- | ------------------- |
+| IS_APP                 | 是否为 App 环境     |
+| IS_ANDROID             | 是否为 Android 环境 |
+| IS_IOS                 | 是否为 iOS 环境     |
+| WIN_HEIGHT             | 窗体高度            |
+| STATUS_BAR_HEIGHT      | 状态栏的高度        |
+| DEFAULT_HEADER_HEIGHT  | 当前导航栏高度      |
+| DEFAULT_CONTENT_HEIGHT | 当前内容高度        |
+| WIN_WIDTH              | 当前屏幕宽度        |
 
 ```js
 // Android环境
-console.log(wx.IS_APP)      // true
-console.log(wx.IS_ANDROID)  // true
-console.log(wx.IS_IOS)      // false
+console.log(wx.IS_APP) // true
+console.log(wx.IS_ANDROID) // true
+console.log(wx.IS_IOS) // false
 ```
 
 ## 常用样式库
+
 - [extend/styleLib]
 
 框架提供了一套公用的 Less 函数库 `utils/mixins.less` 实现了很多常见样式，无需引入直接使用。
 
-函数 | 说明
--|-
-`.mix-1px (@top, @right, @bottom, @left, @color)` | 一像素细线
-`.mix-flex-x-center()` | 水平居中
-`.mix-flex-y-center()` | 垂直居中
-`.mix-flex-center()` | 水平垂直水平居中
-`.mix-text-overflow()` | 文字超出部分出省略号
+| 函数                                              | 说明                 |
+| ------------------------------------------------- | -------------------- |
+| `.mix-1px (@top, @right, @bottom, @left, @color)` | 一像素细线           |
+| `.mix-flex-x-center()`                            | 水平居中             |
+| `.mix-flex-y-center()`                            | 垂直居中             |
+| `.mix-flex-center()`                              | 水平垂直水平居中     |
+| `.mix-text-overflow()`                            | 文字超出部分出省略号 |
 
 ## API 补充
+
 - [extend/api]
 
 为了让 Touch WX 框架与 Touch UI 框架在 API 层面保持统一，这里补充了两个反馈类的 API，可以在 Touch WX 中直接使用。
@@ -92,7 +98,7 @@ console.log(wx.IS_IOS)      // false
  * @param {String}   [opt.confirmText = "确定"] - 按钮文字
  * @param {Function} [opt.success] - 按钮回调函数
  */
- wx.showAlert(opt)
+wx.showAlert(opt)
 ```
 
 ### wx.showConfirm(Object)
@@ -112,6 +118,7 @@ wx.showConfirm(opt)
 ```
 
 ## Less 语法
+
 - [extend/less]
 
 Touch WX 支持 LESS 语法。
@@ -130,7 +137,7 @@ LESS 可以直接在客户端使用，也可以在服务器端使用。
 
 ```html
 <link rel="stylesheet/less" type="text/css" href="styles.less" />
-<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.0.2/less.min.js" ></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.0.2/less.min.js"></script>
 ```
 
 Less 原文件一定要在 `less.js` 引入之前引入。
@@ -169,7 +176,7 @@ Mixins（混入）特性，它是多重继承的一种实现，
 在 LESS 中，混入是指在一个 CLASS 中引入另外一个已经定义的 CLASS，
 
 就像在当前 CLASS 中增加一个属性一样。
- 
+
 ```less
 .borderRadius(@radius:5px) {
   border-radius: @radius;
@@ -229,11 +236,13 @@ Mixins（混入）特性，它是多重继承的一种实现，
 ```
 
 ## NPM 支持
+
 - [extend/npm]
 
 Touch WX 中支持通过 npm 引入模块，通过修改 `package.json` 即可。
 
 ## 引入资源
+
 - [extend/import]
 
 1. 引入 js
@@ -259,26 +268,25 @@ import city from '../static/data/city.js'
 
 ```vue
 <template name="item">
-  <text>{{text}}</text>
+  <text>{{ text }}</text>
 </template>
 ```
 
 在 `index.wx` 中引入：
 
 ```vue
-<import src="item.wxml"/>
-<template is="item" data="{{text: 'forbar'}}"/>
+<import src="item.wxml" />
+<template is="item" data="{{text: 'forbar'}}" />
 ```
 
 模版不支持引入 wx 文件，只支持引入 wxml 文件。
 
 此外，模板名字如果带 `-` 可能导致引入出错。
 
-
-[extend/icon]: <http://www.wetouch.net/touchwx_doc/quickstart/extend/icon>
-[extend/constant]: <http://www.wetouch.net/touchwx_doc/quickstart/extend/constant>
-[extend/styleLib]: <http://www.wetouch.net/touchwx_doc/quickstart/extend/styleLib>
-[extend/api]: <http://www.wetouch.net/touchwx_doc/quickstart/extend/api>
-[extend/less]: <http://www.wetouch.net/touchwx_doc/quickstart/extend/less>
-[extend/npm]: <http://www.wetouch.net/touchwx_doc/quickstart/extend/npm>
-[extend/import]: <http://www.wetouch.net/touchwx_doc/quickstart/extend/import>
+[extend/icon]: http://www.wetouch.net/touchwx_doc/quickstart/extend/icon
+[extend/constant]: http://www.wetouch.net/touchwx_doc/quickstart/extend/constant
+[extend/styleLib]: http://www.wetouch.net/touchwx_doc/quickstart/extend/styleLib
+[extend/api]: http://www.wetouch.net/touchwx_doc/quickstart/extend/api
+[extend/less]: http://www.wetouch.net/touchwx_doc/quickstart/extend/less
+[extend/npm]: http://www.wetouch.net/touchwx_doc/quickstart/extend/npm
+[extend/import]: http://www.wetouch.net/touchwx_doc/quickstart/extend/import

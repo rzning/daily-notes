@@ -1,4 +1,3 @@
-
 # Promise
 
 `Promise` 对象用于一个异步操作的完成或失败及其结果的表示。
@@ -32,17 +31,16 @@ new Promise(
 
 一个 `Promise` 对象的状态一旦改变，就已定型（`resolved`）不可改变。
 
-
 ### 示例
 
 ```js
 var myPromise = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        resolve('hello');
-    }, 1000);
-});
+  setTimeout(() => {
+    resolve('hello')
+  }, 1000)
+})
 myPromise.then((message) => {
-    console.log(message);
+  console.log(message)
 })
 // 1s后输出：hello
 ```
@@ -58,20 +56,20 @@ myPromise.then((message) => {
 
 ```js
 function myPromise(state, time) {
-    var p = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            if(state) resolve('success.'); 
-            else reject('failed.');
-        }, 1000 * time);
-    });
-    p.then(
-        message => console.log('fulfilled.', message),
-        message => console.log('rejected.', message)
-    );
+  var p = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (state) resolve('success.')
+      else reject('failed.')
+    }, 1000 * time)
+  })
+  p.then(
+    (message) => console.log('fulfilled.', message),
+    (message) => console.log('rejected.', message)
+  )
 }
 
-myPromise(true, 1); // 1s后输出：fulfilled. success.
-myPromise(false, 2); // 2s后输出：rejected. failed.
+myPromise(true, 1) // 1s后输出：fulfilled. success.
+myPromise(false, 2) // 2s后输出：rejected. failed.
 ```
 
 ### :two: `catch()`
@@ -86,21 +84,19 @@ myPromise(false, 2); // 2s后输出：rejected. failed.
 
 ```js
 function myPromise(state, time) {
-    var p = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            if(state) resolve('success.'); 
-            else reject('failed.');
-        }, 1000 * time);
-    });
-    p.then(
-        message => console.log('fulfilled.', message)
-    ).catch(
-        message => console.log('rejected.', message)     
-    );
+  var p = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (state) resolve('success.')
+      else reject('failed.')
+    }, 1000 * time)
+  })
+  p.then((message) => console.log('fulfilled.', message)).catch((message) =>
+    console.log('rejected.', message)
+  )
 }
 
-myPromise(true, 1); // 1s后输出：fulfilled. success.
-myPromise(false, 2); // 2s后输出：rejected. failed.
+myPromise(true, 1) // 1s后输出：fulfilled. success.
+myPromise(false, 2) // 2s后输出：rejected. failed.
 ```
 
 ### 参考

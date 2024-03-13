@@ -1,14 +1,13 @@
 ---
-title       : Vuejs Custom Directive API Change
-recorddate  : 2020-03-25
+title: Vuejs Custom Directive API Change
+recorddate: 2020-03-25
 ---
 
 # Vuejs RFCs 自定义指令 API 更改
 
 [Vuejs-RFC-0012-custom-directive-api-change][rfc-0012]
 
-[rfc-0012]: <https://github.com/vuejs/rfcs/blob/master/active-rfcs/0012-custom-directive-api-change.md>
-
+[rfc-0012]: https://github.com/vuejs/rfcs/blob/master/active-rfcs/0012-custom-directive-api-change.md
 
 适用版本： 3.x
 
@@ -45,15 +44,15 @@ const MyDirective = {
 
 ## 📜 详细设计
 
-Before | After
--|-
-`bind()` | `beforeMount()`
-`inserted()` | `mounted()`
--- | `beforeUpdate()`
-`update()` | --
-`componentUpdated()` | `updated()`
--- | `beforeUnmount()`
-`unbind` | `unmounted()`
+| Before               | After             |
+| -------------------- | ----------------- |
+| `bind()`             | `beforeMount()`   |
+| `inserted()`         | `mounted()`       |
+| --                   | `beforeUpdate()`  |
+| `update()`           | --                |
+| `componentUpdated()` | `updated()`       |
+| --                   | `beforeUnmount()` |
+| `unbind`             | `unmounted()`     |
 
 ### 在组件上使用
 
@@ -74,9 +73,7 @@ Before | After
 ```js
 const vFoo = resolveDirective('foo')
 
-return withDirectives(h('div'), [
-  [vFoo, bar]
-])
+return withDirectives(h('div'), [[vFoo, bar]])
 ```
 
 其中 `vFoo` 代表用户编写的指令对象，它包含了 `mounted()` 和 `updated()` 等钩子。

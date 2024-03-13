@@ -1,13 +1,13 @@
 ---
-title       : Vuejs Reader Function API Change
-recorddate  : 2020-03-22
+title: Vuejs Reader Function API Change
+recorddate: 2020-03-22
 ---
 
 # Vuejs RFCs 渲染函数 API 更改
 
 [Vuejs-RFC-0008-render-function-api-change][rfc-0008]
 
-[rfc-0008]: <https://github.com/vuejs/rfcs/blob/master/active-rfcs/0008-render-function-api-change.md>
+[rfc-0008]: https://github.com/vuejs/rfcs/blob/master/active-rfcs/0008-render-function-api-change.md
 
 适用版本： 3.x
 
@@ -27,18 +27,16 @@ recorddate  : 2020-03-22
 import { h } from 'vue'
 
 export default {
-  render () {
+  render() {
     return h(
       'div',
       {
         id: 'app',
-        onClick () {
+        onClick() {
           console.log('hello')
         }
       },
-      [
-        h('span','child')
-      ]
+      [h('span', 'child')]
     )
   }
 }
@@ -160,7 +158,7 @@ createElement(
 import { h } from 'vue'
 
 export default {
-  render () {
+  render() {
     return h('div')
   }
 }
@@ -196,8 +194,6 @@ export default {
 ```
 
 > 有关 `setup()` 工作原理的详细信息，可参阅 [Composition API RFC](https://vue-composition-api-rfc.netlify.com/api.html#setup)
-
-
 
 函数组件的渲染函数与有状态组件具有相同签名：
 
@@ -253,10 +249,8 @@ const FunctionComp = (props, { slots, attrs, emit }) => {
   - 如果该键名作为属性存在于 DOM 节点上，则将其设置为 DOM 属性，否则将其设置为属性
   - 特殊的 `key` 和 `ref` 保留
 
-
 由于扁平化结构，组件内的 `$attrs` 将包含所有没有显式声明的原始 Props ，
 包括 `class` , `style` , `onXXX` 监听器 , `vnodeXXX` 钩子
 
 这使得编写包装器组件 ( Wrapper Components ) 变得更加容易，只需简单的通过
 `v-bind="$attrs"` 传递即可。
-

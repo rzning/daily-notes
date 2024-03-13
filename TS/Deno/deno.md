@@ -18,7 +18,6 @@
   - awesome-deno
     - <https://github.com/denolib/awesome-deno>
 
-
 ## Install
 
 - <https://github.com/denoland/deno_install>

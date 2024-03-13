@@ -13,15 +13,12 @@
 
 所有 VS Code 扩展（extensions）共享一个通用模型，包括贡献（注册）、激活（加载）和访问 VS Code 可扩展性 API。
 
-
-
 然而 VS Code extensions 有两种特殊的风格，语言服务器（language servers）和调试器（debuggers），
 它们有自己的附加协议（additional protocols），这将在下文分别介绍。
 
 1. [Extensions](#extensions) - 基本构件块
 2. [Language Servers](#language-servers) - 通过语言服务器协议（[Language Server Protocol]）增强编辑体验
 3. [Debuggers](#debug-adapter) - 通过调试适配器（Debug Adapter）连接外部调试器
-
 
 ![extensibility rchitecture](https://code.visualstudio.com/assets/docs/extensions/overview/extensibility-architecture.png)
 
@@ -35,20 +32,20 @@
 
 扩展包括支持：
 
-Support | Description
-:-:|-
-Activation | 当检测到特定的文件类型、存在特定的文件、或者通过命令面板或组合键选择命令时，加载扩展
-Editor | 和编辑器内容一起工作，读取和操作文本等
-Workspace | 访问打开的编辑器、状态栏、信息消息等
-Eventing | 连接到编辑器生命周期事件，例如打开、关闭、改变等
-Evolved editing | 为丰富的语言支持创建供应者（providers），包括智能感知（IntelliSense）、窥探（Peek）、悬浮（Hover）、诊断（Diagnostics）等
+|     Support     | Description                                                                                                               |
+| :-------------: | ------------------------------------------------------------------------------------------------------------------------- |
+|   Activation    | 当检测到特定的文件类型、存在特定的文件、或者通过命令面板或组合键选择命令时，加载扩展                                      |
+|     Editor      | 和编辑器内容一起工作，读取和操作文本等                                                                                    |
+|    Workspace    | 访问打开的编辑器、状态栏、信息消息等                                                                                      |
+|    Eventing     | 连接到编辑器生命周期事件，例如打开、关闭、改变等                                                                          |
+| Evolved editing | 为丰富的语言支持创建供应者（providers），包括智能感知（IntelliSense）、窥探（Peek）、悬浮（Hover）、诊断（Diagnostics）等 |
 
 我们有两个端到端教程，让你了解扩展基础：
 
 1. [Hello World][example-hello-world] - 生成一个基本的扩展，理解扩展的文件夹结构，
-  扩展清单，了解怎样激活使其工作，运行和调试扩展并在本地安装它。
+   扩展清单，了解怎样激活使其工作，运行和调试扩展并在本地安装它。
 2. [Word Count][example-word-count] - 根据特定的文件类型激活，更新状态栏
-  响应文本编辑器中的更改，并在删除文件时处理您的扩展。
+   响应文本编辑器中的更改，并在删除文件时处理您的扩展。
 
 扩展性原则和模式（[Extensibility Principles and Patterns]）也很有用，它们描述了整个 extensibility API 中使用的共享编程模式。
 
@@ -70,6 +67,7 @@ VS Code 实现了一个通用调试器 UI，并依赖于调试器扩展和所谓
 - 了解更多关于创建调试器扩展（[debugger extensions][example-debuggers]）
 
 ---
+
 ---
 
 查看 VS Code extensions 最简单的方式是通过扩展市场（[Extension Marketplace]）。
@@ -128,24 +126,20 @@ VS Code 团队将跟踪可能的扩展作为 GitHub 中标记为 `*extension-can
 - [Extension API] - 了解 VS Code 可扩展性 APIs。
 - [Extension Examples][samples] - 您可以查看和构建的扩展示例列表。
 
-
-[Extensibility Principles and Patterns]: <https://code.visualstudio.com/docs/extensionAPI/patterns-and-principles>
-[Extension Marketplace]: <https://code.visualstudio.com/docs/editor/extension-gallery>
-[Marketplace]: <https://marketplace.visualstudio.com/VSCode>
-[Language Server Protocol]: <https://microsoft.github.io/language-server-protocol/>
-[example-hello-world]: <https://code.visualstudio.com/docs/extensions/example-hello-world>
-[example-word-count]: <https://code.visualstudio.com/docs/extensions/example-word-count>
-[language-support]: <https://code.visualstudio.com/docs/extensionAPI/language-support>
-[example-language-server]: <https://code.visualstudio.com/docs/extensions/example-language-server>
-[example-debuggers]: <https://code.visualstudio.com/docs/extensions/example-debuggers>
-[themes-snippets-colorizers]: <https://code.visualstudio.com/docs/extensions/themes-snippets-colorizers>
-[yocode]: <https://code.visualstudio.com/docs/extensions/yocode>
-[samples]: <https://code.visualstudio.com/docs/extensions/samples>
-[Developing Extensions]: <https://code.visualstudio.com/docs/extensions/developing-extensions>
-[Testing Extensions]: <https://code.visualstudio.com/docs/extensions/testing-extensions>
-[extension-candidate-issues]: <https://github.com/Microsoft/vscode/issues?q=is%3Aopen+is%3Aissue+label%3A*extension-candidate>
-[vscode repository]: <https://github.com/Microsoft/vscode>
-[Extension API]: <https://code.visualstudio.com/docs/extensionAPI/overview>
-
-
-
+[Extensibility Principles and Patterns]: https://code.visualstudio.com/docs/extensionAPI/patterns-and-principles
+[Extension Marketplace]: https://code.visualstudio.com/docs/editor/extension-gallery
+[Marketplace]: https://marketplace.visualstudio.com/VSCode
+[Language Server Protocol]: https://microsoft.github.io/language-server-protocol/
+[example-hello-world]: https://code.visualstudio.com/docs/extensions/example-hello-world
+[example-word-count]: https://code.visualstudio.com/docs/extensions/example-word-count
+[language-support]: https://code.visualstudio.com/docs/extensionAPI/language-support
+[example-language-server]: https://code.visualstudio.com/docs/extensions/example-language-server
+[example-debuggers]: https://code.visualstudio.com/docs/extensions/example-debuggers
+[themes-snippets-colorizers]: https://code.visualstudio.com/docs/extensions/themes-snippets-colorizers
+[yocode]: https://code.visualstudio.com/docs/extensions/yocode
+[samples]: https://code.visualstudio.com/docs/extensions/samples
+[Developing Extensions]: https://code.visualstudio.com/docs/extensions/developing-extensions
+[Testing Extensions]: https://code.visualstudio.com/docs/extensions/testing-extensions
+[extension-candidate-issues]: https://github.com/Microsoft/vscode/issues?q=is%3Aopen+is%3Aissue+label%3A*extension-candidate
+[vscode repository]: https://github.com/Microsoft/vscode
+[Extension API]: https://code.visualstudio.com/docs/extensionAPI/overview

@@ -1,8 +1,6 @@
 # @vue/cli-plugin-unit-jest
 
-- [vue-cli/packages/@vue/cli-plugin-unit-jest](
-  https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-unit-jest
-)
+- [vue-cli/packages/@vue/cli-plugin-unit-jest](https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-unit-jest)
   - [zh-CN](https://github.com/vuejs/vue-docs-zh-cn/tree/master/vue-cli-plugin-unit-jest)
 
 ## Usage
@@ -48,7 +46,6 @@ vue add @vue/unit-jest
   }
   ```
 
-
 4️⃣ 若存在 ESLint 则向 `.eslistrc` 配置文件注入配置项：
 
 ```js
@@ -90,9 +87,7 @@ vue add @vue/unit-jest
 ```json
 {
   "compilerOptions": {
-    "types": [
-      "jest"
-    ]
+    "types": ["jest"]
   }
 }
 ```

@@ -1,13 +1,12 @@
 ---
-title       : React 入门教程
-recorddate  : 2020-03-17
+title: React 入门教程
+recorddate: 2020-03-17
 ---
 
 # Tutorial: Intro to React
 
 - en : <https://reactjs.org/tutorial/tutorial.html>
 - zh : <https://zh-hans.reactjs.org/tutorial/tutorial.html>
-
 
 目标：使用 React 开发一个井字棋 ( tic-tac-toe ) 游戏。
 
@@ -41,7 +40,7 @@ class ShoppingList extends React.Component {
           <li>Oculus</li>
         </ul>
       </div>
-    );
+    )
   }
 }
 
@@ -53,4 +52,3 @@ class ShoppingList extends React.Component {
 JSX 语法 `<div/>` 将被编译成 `React.createElement('div')` 。
 
 > [createElement() API](https://zh-hans.reactjs.org/docs/react-api.html#createelement)
-

@@ -115,12 +115,12 @@ type C = Test<A>
 type PropType<T, Path extends string> = string extends Path
   ? unknown
   : Path extends keyof T
-  ? T[Path]
-  : Path extends `${infer K}.${infer R}`
-  ? K extends keyof T
-    ? PropType<T[K], R>
-    : unknown
-  : unknown
+    ? T[Path]
+    : Path extends `${infer K}.${infer R}`
+      ? K extends keyof T
+        ? PropType<T[K], R>
+        : unknown
+      : unknown
 
 declare function get<T, P extends string>(obj: T, path: P): PropType<T, P>
 

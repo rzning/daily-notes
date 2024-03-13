@@ -13,10 +13,7 @@
 ```jsonc
 {
   /* 页面路径列表 */
-  "pages": [
-    "pages/index/index",
-    "pages/logs/index"
-  ],
+  "pages": ["pages/index/index", "pages/logs/index"],
   /* 全局默认窗口表现 */
   "window": {
     /* 导航栏背景色 */
@@ -25,15 +22,18 @@
   /* 底部标签栏表现 */
   "tabBar": {
     /* 标签列表 */
-    "list": [{
-      /* 页面路径 */
-      "pagePath": "pages/index/index",
-      /* 标签按钮文字 */
-      "text": "首页"
-    }, {
-      "pagePath": "pages/logs/logs",
-      "text": "日志"
-    }]
+    "list": [
+      {
+        /* 页面路径 */
+        "pagePath": "pages/index/index",
+        /* 标签按钮文字 */
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "text": "日志"
+      }
+    ]
   },
   /* 网络超时时间 */
   "networkTimeout": {
@@ -45,9 +45,7 @@
   /* 使能 debug 模式 */
   "debug": true,
   /* 需跳转的小程序列表 */
-  "navigateToMiniProgramAppIdList": [
-    "wxe5f52902cf4de896"
-  ]
+  "navigateToMiniProgramAppIdList": ["wxe5f52902cf4de896"]
 }
 ```
 

@@ -52,9 +52,9 @@ RunKit notebook 的嵌入式版本只有一个可执行的代码单元。
 <script src="https://embed.runkit.com"></script>
 <div id="my-code"></div>
 <script>
-var notebook = RunKit.createNotebook({
-  element: document.getElementById("my-code"),
-  source: `console.log('Hello.')`
+  var notebook = RunKit.createNotebook({
+    element: document.getElementById('my-code'),
+    source: `console.log('Hello.')`
   })
 </script>
 ```
@@ -97,7 +97,7 @@ interface EmbedOptions {
    * 执行环境的环境变量。
    * 可用通过 `process.env` 访问，默认为 `[]`
    */
-  environment?: Array<{name: string, value: string}>
+  environment?: Array<{ name: string; value: string }>
   /**
    * 加载完成后执行 Embed
    */
@@ -169,143 +169,145 @@ interface EmbedOptions {
 ```ts
 interface NotebookEmbed {
   /// 方法 Methods
-	destroy: () => void
-	evaluate: () => void
+  destroy: () => void
+  evaluate: () => void
 
   /// 事件 Events
   /**
    * 在计算一个单元格 ( Cell ) 后调用
    */
-	onEvaluate: () => void
+  onEvaluate: () => void
   /**
    * 完全加载后调用
    */
-	onLoad: (arg: NotebookEmbed) => void
-	
+  onLoad: (arg: NotebookEmbed) => void
+
   // Called when the embed cell is resized.
   /**
    * 在调整一个嵌入式单元格 ( Embed Cell ) 大小后调用
    */
-  onResize: (arg: {height: number}) => void
+  onResize: (arg: { height: number }) => void
   /**
    * 当嵌入式实例被保存时调用
    */
-	onSave: () => void
-	/**
+  onSave: () => void
+  /**
    * 当可共享 URL 或端点 URL 更改时调用
    */
-	onURLChanged: (arg: {shareableURL: string, endpointURL: string}) => void
+  onURLChanged: (arg: { shareableURL: string; endpointURL: string }) => void
 
-	/// 属性 Properties
+  /// 属性 Properties
   /**
    * endpointURL
    * 端点模式运行时可访问 URL
    * @see https://runkit.com/docs/endpoint
    */
-	getEndpointURL: () => Promise<string>	
+  getEndpointURL: () => Promise<string>
   /**
    * environment
    * 执行环境中的环境变量，可通过 `process.env` 访问，默认为 []
    */
-	getEnvironment: () => Promise<Array<{name: string, value: string}>>
-	setEnvironment: (environment: Array<{name: string, value: string}>) => Promise<undefined>
+  getEnvironment: () => Promise<Array<{ name: string; value: string }>>
+  setEnvironment: (
+    environment: Array<{ name: string; value: string }>
+  ) => Promise<undefined>
   /**
    * evaluateOnLoad
    * 是否在加载完成后立即执行
    */
-	getEvaluateOnLoad: () => Promise<boolean>
+  getEvaluateOnLoad: () => Promise<boolean>
   /**
    * gutterStyle
    * 行号的显示位置，默认为 `outside`
    */
-	getGutterStyle: () => Promise<"inside" | "none" | "outside">
-	setGutterStyle: (gutterStyle: "inside" | "none" | "outside") => Promise<undefined>
-	
-	// 
+  getGutterStyle: () => Promise<'inside' | 'none' | 'outside'>
+  setGutterStyle: (
+    gutterStyle: 'inside' | 'none' | 'outside'
+  ) => Promise<undefined>
+
+  //
   // Hides the "▶ Run" button. In Endpoint mode, Hides the endpoint URL.
   /**
    * hidesActionButton
    * 是否隐藏 `▶ Run` 按钮。在 Endpoint 模式中，隐藏端点的访问 URL
    */
-	getHidesActionButton: () => Promise<boolean>
-	setHidesActionButton: (hidesActionButton: boolean) => Promise<undefined>
+  getHidesActionButton: () => Promise<boolean>
+  setHidesActionButton: (hidesActionButton: boolean) => Promise<undefined>
   /**
    * hidesEndpointLogs
    * 是否隐藏端点模式的日志
    */
-	getHidesEndpointLogs: () => Promise<boolean>
-	setHidesEndpointLogs: (hidesEndpointLogs: boolean) => Promise<undefined>
+  getHidesEndpointLogs: () => Promise<boolean>
+  setHidesEndpointLogs: (hidesEndpointLogs: boolean) => Promise<undefined>
   /**
    * minHeight
    * 显示的最小高度，默认为 `73px`
    */
-	getMinHeight: () => Promise<cssPxString>
-	setMinHeight: (minHeight: cssPxString) => Promise<undefined>
+  getMinHeight: () => Promise<cssPxString>
+  setMinHeight: (minHeight: cssPxString) => Promise<undefined>
   /**
    * mode
    * 当前为端点模式 ( Endpoint ) 还是默认模式 ( Default )
    */
-	getMode: () => Promise<"endpoint" | "default">
-	setMode: (mode: "endpoint" | "default") => Promise<undefined>
+  getMode: () => Promise<'endpoint' | 'default'>
+  setMode: (mode: 'endpoint' | 'default') => Promise<undefined>
   /**
    * nodeVersion
    * Node 引擎应该满足的语义化版本，默认为 `10.x.x`
    */
-	getNodeVersion: () => Promise<semverRange>
-	setNodeVersion: (nodeVersion: semverRange) => Promise<undefined>
+  getNodeVersion: () => Promise<semverRange>
+  setNodeVersion: (nodeVersion: semverRange) => Promise<undefined>
   /**
    * source
    * 当前嵌入的源代码
    */
-	getSource: () => Promise<string> // The source code of the Embed.
-	setSource: (source: string) => Promise<undefined>
-	/**
+  getSource: () => Promise<string> // The source code of the Embed.
+  setSource: (source: string) => Promise<undefined>
+  /**
    * packageTimestamp
    * 包的可用性状态时间戳
    */
-	getPackageTimestamp: () => Promise<number | null>
-	setPackageTimestamp: (packageTimestamp: number | null) => Promise<undefined>
+  getPackageTimestamp: () => Promise<number | null>
+  setPackageTimestamp: (packageTimestamp: number | null) => Promise<undefined>
   /**
    * preamble
    * 前置代码
    */
-	getPreamble: () => Promise<string>
-	setPreamble: (preamble: string) => Promise<undefined>
+  getPreamble: () => Promise<string>
+  setPreamble: (preamble: string) => Promise<undefined>
   /**
    * readOnly
    * 是否为只读模式
    */
-	getReadOnly: () => Promise<boolean> 
-	setReadOnly: (readOnly: boolean) => Promise<undefined>
+  getReadOnly: () => Promise<boolean>
+  setReadOnly: (readOnly: boolean) => Promise<undefined>
   /**
    * shareableURL
    * 可用于共享给其他用户访问的 URL
    */
-	getShareableURL: () => Promise<string>
+  getShareableURL: () => Promise<string>
   /**
    * requirePath
    * 可以在另一个 Embeds 或 Runkit Notebook 中作为一个模块引用的路径
    */
-	getRequirePath: () => Promise<string>
+  getRequirePath: () => Promise<string>
   /**
    * tabSize
    * 缩进大小，默认为 4 个字符
    */
-	getTabSize: () => Promise<number>
-	setTabSize: (tabSize: number) => Promise<undefined>
+  getTabSize: () => Promise<number>
+  setTabSize: (tabSize: number) => Promise<undefined>
   /**
    * title
    * 保存时使用的标题
    */
-	getTitle: () => Promise<string>
-	setTitle: (title: string) => Promise<undefined>
+  getTitle: () => Promise<string>
+  setTitle: (title: string) => Promise<undefined>
 }
 ```
 
-
 > 你可以下载我们提供的 [RunKit.d](https://runkit.com/assets/typedefs/RunKit.d.ts)
 > 文件，将这些类型集成到你的编辑器中，以达到智能感知。
-
 
 ## 示例 Examples
 
@@ -313,24 +315,28 @@ interface NotebookEmbed {
 
 ```html
 <script src="https://embed.runkit.com"></script>
-<style>.embed { overflow: visible; }</style>
+<style>
+  .embed {
+    overflow: visible;
+  }
+</style>
 <pre class="embed" data-gutter="inside">console.log("hello inside");</pre>
 <pre class="embed" data-gutter="outside">console.log("hello outside");</pre>
 <pre class="embed" data-gutter="none">console.log("hello none");</pre>
 <script>
-const elements = [...document.getElementsByClassName('embed')]
-const notebooks = elements.reduce((notebooks, element) => {
-  const innerText = element.firstChild
-  const currentCell = window.RunKit.createNotebook({
-    element,
-    gutterStyle: element.getAttribute("data-gutter"),
-    source: innerText.textContent,
-    // 实例加载后删除 <pre> 标签的文本内容
-    onLoad: () => innerText.remove()
-  })
-  notebooks.push(currentCell)
-  return notebooks
-}, [])
+  const elements = [...document.getElementsByClassName('embed')]
+  const notebooks = elements.reduce((notebooks, element) => {
+    const innerText = element.firstChild
+    const currentCell = window.RunKit.createNotebook({
+      element,
+      gutterStyle: element.getAttribute('data-gutter'),
+      source: innerText.textContent,
+      // 实例加载后删除 <pre> 标签的文本内容
+      onLoad: () => innerText.remove()
+    })
+    notebooks.push(currentCell)
+    return notebooks
+  }, [])
 </script>
 ```
 
@@ -342,29 +348,29 @@ const notebooks = elements.reduce((notebooks, element) => {
 <script src="https://embed.runkit.com"></script>
 <rk-embed>console.log("hello world")</rk-embed>
 <script>
-class RunKitEmbed extends HTMLElement {
-  constructor () {
-    super()
-    const wrapper = document.createElement('div')
-    wrapper.style = 'margin: 20pt'
-    const source = this.textContent
-    this.textContent = ''
-    const tempCodePlaceholder = document.createElement('pre')
-    tempCodePlaceholder.textContent = source
+  class RunKitEmbed extends HTMLElement {
+    constructor() {
+      super()
+      const wrapper = document.createElement('div')
+      wrapper.style = 'margin: 20pt'
+      const source = this.textContent
+      this.textContent = ''
+      const tempCodePlaceholder = document.createElement('pre')
+      tempCodePlaceholder.textContent = source
 
-    window.RunKit.createNotebook({
-      element: wrapper,
-      source,
-      onLoad () {
-        tempCodePlaceholder.remove()
-      }
-    })
+      window.RunKit.createNotebook({
+        element: wrapper,
+        source,
+        onLoad() {
+          tempCodePlaceholder.remove()
+        }
+      })
 
-    this.appendChild(wrapper)
-    this.appendChild(tempCodePlaceholder)
+      this.appendChild(wrapper)
+      this.appendChild(tempCodePlaceholder)
+    }
   }
-}
-customElements.define('rk-embed', RunKitEmbed)
+  customElements.define('rk-embed', RunKitEmbed)
 </script>
 ```
 
@@ -401,26 +407,26 @@ RunKit Embed 具有高度的交互性，因此他们希望根据用户交互来�
 
 ```html
 <script>
-window.addEventListener('message', function(e) {
-  if (e.origin !== "https://runkit.com") {
-    return
-  }
-  try {
-    var data = JSON.parse(e.data)
-  } catch (e) {
-    return false
-  }
-  if (data.context !== 'iframe.resize') {
-    return false
-  }
-  var iframe = document.querySelector('iframe[src="' + data.src + '"]');
-  if (!iframe) {
-    return false
-  }
-  if (data.height) {
-    iframe.height = data.height;
-  }
-})
+  window.addEventListener('message', function (e) {
+    if (e.origin !== 'https://runkit.com') {
+      return
+    }
+    try {
+      var data = JSON.parse(e.data)
+    } catch (e) {
+      return false
+    }
+    if (data.context !== 'iframe.resize') {
+      return false
+    }
+    var iframe = document.querySelector('iframe[src="' + data.src + '"]')
+    if (!iframe) {
+      return false
+    }
+    if (data.height) {
+      iframe.height = data.height
+    }
+  })
 </script>
 ```
 

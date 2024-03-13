@@ -1,8 +1,8 @@
 ---
-title       : Eclipse Theia
-recorddate  : 2020-04-04
-repository  : https://github.com/eclipse-theia/theia
-website     : http://theia-ide.org/
+title: Eclipse Theia
+recorddate: 2020-04-04
+repository: https://github.com/eclipse-theia/theia
+website: http://theia-ide.org/
 ---
 
 # Theia

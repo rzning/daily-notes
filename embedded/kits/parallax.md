@@ -1,10 +1,9 @@
 ---
-title   : "Parallax Inc | Equip your genius ®"
-date    : 2018-09-17 17:00:00 +0800
+title: 'Parallax Inc | Equip your genius ®'
+date: 2018-09-17 17:00:00 +0800
 ---
 
-Parallax
-========
+# Parallax
 
 - <https://www.parallax.com/>
 

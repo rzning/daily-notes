@@ -16,16 +16,20 @@ module.exports = {
     'vuepress-plugin-xxx', // 使用 NPM 包
     'xxx', // 同上
     '@org/xxx', // 同 '@org/vuepress-plugin-xxx'
-    '@vuepress/xxx' // 同 '@vuepress/plugin-xxx',
-    [
-      'vuepress-plugin-xxx', { /* options */ }
+    '@vuepress/xxx'[ // 同 '@vuepress/plugin-xxx',
+      ('vuepress-plugin-xxx',
+      {
+        /* options */
+      })
     ],
-    [ 'yyy', false ] // 禁用插件
+    ['yyy', false] // 禁用插件
   ],
   // 对象形式
   plugins: {
-    'xxx': { /* options */ },
-    'yyy': false // 禁用插件
+    xxx: {
+      /* options */
+    },
+    yyy: false // 禁用插件
   }
 }
 ```
@@ -68,7 +72,7 @@ module.exports = {
    * - enhanceAppFiles
    * @env dev | build
    */
-  async ready () {
+  async ready() {
     // ...
   },
 
@@ -76,7 +80,7 @@ module.exports = {
    * 开发模式下有文件更新时被调用
    * @env dev
    */
-  updated () {
+  updated() {
     // ...
   },
 
@@ -85,7 +89,7 @@ module.exports = {
    * @param {string[]} pagePaths 生成的页面的路径数组
    * @env build
    */
-  async generated (pagePaths) {
+  async generated(pagePaths) {
     // ...
   }
 }
@@ -93,7 +97,7 @@ module.exports = {
 
 ## 🍨 Plugin Options
 
-```js
+````js
 // one-plugin.js
 module.exports = (options, context) => ({
   /**
@@ -109,7 +113,7 @@ module.exports = (options, context) => ({
    * @param {object} config 一个 ChainableConfig 实例
    * @param {boolean} isServer 是否 SSR
    */
-  chainWebpack (config, isServer) {
+  chainWebpack(config, isServer) {
     config.plugin('injections').tap(([options]) => [
       Object.assign(options, {
         SW_BASE_URL: JSON.stringify('/')
@@ -137,7 +141,7 @@ module.exports = (options, context) => ({
    * - 等同于 webpack-dev-server 中的 `before` 选项
    * @see {@link https://webpack.js.org/configuration/dev-server/#devserver-before}
    */
-  beforeDevServer (app, server, compiler) {
+  beforeDevServer(app, server, compiler) {
     app.get('/path/to/your/custom', (req, res) => {
       res.json({ custom: 'response' })
     })
@@ -147,7 +151,7 @@ module.exports = (options, context) => ({
    * - 等同于 webpack-dev-server 中的 `after` 选项
    * @see {@link https://webpack.js.org/configuration/dev-server/#devserver-after}
    */
-  afterDevServer (app, server, compiler) {
+  afterDevServer(app, server, compiler) {
     // ...
   },
   /**
@@ -155,7 +159,7 @@ module.exports = (options, context) => ({
    * [markdown-it]{@link https://github.com/markdown-it/markdown-it}
    * 实例的配置、或应用一些额外的插件
    */
-  extendMarkdown (md) {
+  extendMarkdown(md) {
     md.set({ breaks: true })
     md.use(require('markdown-it-xxx'))
   },
@@ -164,7 +168,7 @@ module.exports = (options, context) => ({
    * 来修改内部的 markdown-it 配置
    * @param config 交互配置对象
    */
-  chainMarkdown (config) {
+  chainMarkdown(config) {
     // ...
   },
   /**
@@ -174,14 +178,14 @@ module.exports = (options, context) => ({
   enhanceAppFiles: resolve(__dirname, 'client.js'),
   /**
    * 在编译期生成指定的客户端使用的模块
-   * 
+   *
    * 本例中，使用此插件的用户可以使用以下方式使用动态生成的模块：
-   * 
+   *
    * ```js
    * import { SOURCE_DIR } from '@dynamic/constants'
    * ```
    */
-  clientDynamicModules () {
+  clientDynamicModules() {
     return {
       // 模块文件名
       name: 'constants.js',
@@ -204,7 +208,7 @@ module.exports = (options, context) => ({
    * @param {string} $page.path - 当前页面实际链接
    * @see {@link https://vuepress.vuejs.org/zh/guide/global-computed.html#page|$page}
    */
-  extendPageData ($page) {
+  extendPageData($page) {
     const { _content, frontmatter } = $page
     // 1. 添加额外字段
     $page.size = (_content.length / 1024).toFixed(2) + 'kb'
@@ -249,9 +253,9 @@ module.exports = (options, context) => ({
   ],
   /**
    * 指定全局 Vue 组件名称
-   * 
+   *
    * VuePress 会自动将这些组件注入到布局组件之后：
-   * 
+   *
    * ```html
    *  <div id="app">
    *    <div class="theme-container">
@@ -263,19 +267,17 @@ module.exports = (options, context) => ({
    *    </div>
    *  </div>
    * ```
-   * 
+   *
    * @type {(string|string[])}
    */
-  globalUIComponents: [
-    'OnePluginComp',
-    'OtherPluginComp'
-  ],
+  globalUIComponents: ['OnePluginComp', 'OtherPluginComp'],
   /**
    * 注册核外的命令行指令
    * @param {Object} 一个 [CAC]{@link https://github.com/cacjs/cac} 实例
    */
-  extendCli (cli) {
-    cli.command('ask [person]', 'Ask someone how they feel')
+  extendCli(cli) {
+    cli
+      .command('ask [person]', 'Ask someone how they feel')
       .options('--war', 'outbreak of war')
       .action((person = 'girl', options) => {
         const { war } = options
@@ -293,7 +295,7 @@ module.exports = (options, context) => ({
  * @typedef {function} AsyncFunction
  * @async
  */
-```
+````
 
 ## 🔮 Plugin Context
 
@@ -315,7 +317,7 @@ module.exports = (options, context) => ({
  * @param {string} ctx.base 部署应用的基础路径
  * @param {function} ctx.writeTemp 一个用于向 `tempPath` 写入临时文件的方法
  */
-module.exports = function plugin (options, ctx) {
+module.exports = function plugin(options, ctx) {
   // ...
 }
 ```

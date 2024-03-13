@@ -7,28 +7,28 @@ JavaScript 全局标准内置对象
 
 ## Value properties
 
-value | description
--|-
-`Infinity` | 正的无穷大数值
-`NaN` | 不是一个数字 Not-A-Number
-`undefined` | 未定义
-`null` | 字面量，表示尚未创建的对象
+| value       | description                |
+| ----------- | -------------------------- |
+| `Infinity`  | 正的无穷大数值             |
+| `NaN`       | 不是一个数字 Not-A-Number  |
+| `undefined` | 未定义                     |
+| `null`      | 字面量，表示尚未创建的对象 |
 
 ## Function properties
 
-function | description
--|-
-`eval()` | 将传入的字符串解析为 JavaScript 代码并执行
-`isFinite()` | 检查某个值是否为有穷大数
-`isNaN()` | 检查某值是否为 `NaN`
-`parseFloat()` | 解析一个字符串并返回一个浮点数
-`parseInt()` | 解析一个字符串并返回一个整数
-`decodeURI()` | 解码一个编码的 URI
-`decodeURIComponent()` | 解码一个编码的 URI 组件
-`encodeURI()` | 把字符串编码为 URI
-`encodeURIComponent()` | 把字符串编码为 URI 组件
-`escape()` | :-1: 将字符串编码生成为十六进制转义序列
-`unescape()` | :-1: 将十六进制转义序列解码为对应的字符串
+| function               | description                                |
+| ---------------------- | ------------------------------------------ |
+| `eval()`               | 将传入的字符串解析为 JavaScript 代码并执行 |
+| `isFinite()`           | 检查某个值是否为有穷大数                   |
+| `isNaN()`              | 检查某值是否为 `NaN`                       |
+| `parseFloat()`         | 解析一个字符串并返回一个浮点数             |
+| `parseInt()`           | 解析一个字符串并返回一个整数               |
+| `decodeURI()`          | 解码一个编码的 URI                         |
+| `decodeURIComponent()` | 解码一个编码的 URI 组件                    |
+| `encodeURI()`          | 把字符串编码为 URI                         |
+| `encodeURIComponent()` | 把字符串编码为 URI 组件                    |
+| `escape()`             | :-1: 将字符串编码生成为十六进制转义序列    |
+| `unescape()`           | :-1: 将十六进制转义序列解码为对应的字符串  |
 
 ## 基本对象 Fundamental objects
 
@@ -83,8 +83,8 @@ function | description
 ## 结构化数据 Structured data
 
 - ArrayBuffer
-- SharedArrayBuffer 
-- Atomics 
+- SharedArrayBuffer
+- Atomics
 - DataView
 - JSON
 
@@ -121,4 +121,3 @@ function | description
 ## Other
 
 - arguments
-

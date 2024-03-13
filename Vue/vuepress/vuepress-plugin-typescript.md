@@ -32,9 +32,7 @@ module.exports = {
 - `tsLoaderOptions`
   - 参考 [ts-loader] 文档
 
-
-[ts-loader]: <https://github.com/TypeStrong/ts-loader#loader-options>
-
+[ts-loader]: https://github.com/TypeStrong/ts-loader#loader-options
 
 ## 特性
 
@@ -61,7 +59,6 @@ export default Vue.extend({
 - 主题布局组件
   - `theme/layout/*.vue`
 - 其他 Vue 组件
-
 
 ## 类型定义
 

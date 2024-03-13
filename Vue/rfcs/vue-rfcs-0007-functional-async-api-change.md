@@ -1,31 +1,30 @@
 ---
-title       : Vuejs Functional Async API Change
-recorddate  : 2020-03-22
+title: Vuejs Functional Async API Change
+recorddate: 2020-03-22
 ---
 
 # Vuejs RFCs 函数式异步 API 更改
 
 [Vuejs-RFC-0007-functional-async-api-change][rfc-0007]
 
-[rfc-0007]: <https://github.com/vuejs/rfcs/blob/master/active-rfcs/0007-functional-async-api-change.md>
+[rfc-0007]: https://github.com/vuejs/rfcs/blob/master/active-rfcs/0007-functional-async-api-change.md
 
 适用版本： 3.x
 
 ## 摘要
 
 - 函数式组件必须以普通函数的形式编写:
+
   - 移除 `{ function: true }` 选项
   - 不再支持 `<template functional>` 模板语法
 
 - 异步组件必须通过 `createAsyncComponent` API 方法创建。
-
 
 ## 2.x 中的函数式组件
 
 > [函数式组件 — Vue.js 2.x](https://cn.vuejs.org/v2/guide/render-function.html#函数式组件)
 
 我们可以将组件标记为 `functional` 表示它是无状态的，也就是没有响应式数据，也没有 Vue 组件实例。
-
 
 一个函数式组件示例：
 
@@ -55,7 +54,7 @@ Vue.component('my-component', {
 ```js
 import { h } from 'vue'
 
-const FunctionalComp = props => {
+const FunctionalComp = (props) => {
   return h('div', `Hello! ${props.name}`)
 }
 ```
@@ -71,7 +70,7 @@ const AsyncComp = createAsyncComponent(() => import('./Foo.vue'))
 运行时 Props 验证：
 
 ```js
-const FunctionalComp = props => {
+const FunctionalComp = (props) => {
   return h('div', `Hello! ${props.name}`)
 }
 

@@ -1,7 +1,7 @@
 ---
-title       : Vue Property Decorator
-recorddate  : 2020-03-12
-repository  : https://github.com/kaorun343/vue-property-decorator
+title: Vue Property Decorator
+recorddate: 2020-03-12
+repository: https://github.com/kaorun343/vue-property-decorator
 ---
 
 Vue Property Decorator
@@ -29,14 +29,13 @@ yarn add vue-property-decorator
 - `@Emit`
 - `@Ref`
 
-
 <section>
 
 <details>
 <summary>@prop</summary>
 
 ```js
-var aaa = "aaaa"
+var aaa = 'aaaa'
 ```
 
 </details>

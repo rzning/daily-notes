@@ -2,7 +2,6 @@
 
 - <https://github.com/typescript-eslint/typescript-eslint>
 
-
 # Getting Started - Linting your TypeScript Codebase
 
 - <https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/README.md>
@@ -29,9 +28,7 @@ module.exports = {
 
   // 告诉 ESLint 加载你安装的插件包
   // - 这允许你在代码库中使用规则
-  plugins: [
-    '@typescript-eslint'
-  ],
+  plugins: ['@typescript-eslint'],
 
   // 告诉 ESLint 你的配置扩展了给定的配置
   extends: [

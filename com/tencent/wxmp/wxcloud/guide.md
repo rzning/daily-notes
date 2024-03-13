@@ -20,14 +20,11 @@
 
 > [dev/wxcloud/guide/console](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/guide/console.html)
 
-
-
 <hr id="init"/>
 
 ## 初始化
 
 > [dev/wxcloud/guide/init](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/guide/init.html)
-
 
 <hr id="debug"/>
 
@@ -35,14 +32,11 @@
 
 > [dev/wxcloud/guide/debug](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/guide/debug.html)
 
-
-
 <hr id="database"/>
 
 ## 数据库
 
 > [dev/wxcloud/guide/database](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/guide/database.html)
-
 
 <hr id="storage"/>
 
@@ -50,15 +44,11 @@
 
 > [dev/wxcloud/guide/storage](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/guide/storage.html)
 
-
-
 <hr id="functions"/>
 
 ## 云函数
 
 > [dev/wxcloud/guide/functions](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/guide/functions.html)
-
-
 
 <hr id="openapi"/>
 
@@ -66,15 +56,11 @@
 
 > [dev/wxcloud/guide/openapi/openapi](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/guide/openapi/openapi.html)
 
-
-
 <hr id="alarm"/>
 
 ## 告警消息
 
 > [dev/wxcloud/guide/alarm](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/guide/alarm.html)
-
-
 
 <hr id="ticket"/>
 

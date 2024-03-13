@@ -1,8 +1,8 @@
 ---
-title       : Vue Class Component
-recorddate  : 2020-02-18
-repository  : https://github.com/vuejs/vue-class-component
-website     : https://class-component.vuejs.org/
+title: Vue Class Component
+recorddate: 2020-02-18
+repository: https://github.com/vuejs/vue-class-component
+website: https://class-component.vuejs.org/
 ---
 
 ## Overview
@@ -77,13 +77,13 @@ Babel 环境需要安装下面两个包开发依赖，并且在 `.babelrc` 文�
 
 `@Component` 装饰器使你的类成为一个 Vue 组件：
 
-Vue Component | Class
--|-
-`data` | 对应于类属性
-`methods` | 直接声明为类原型方法
-`computed` | 类 getter / setter 属性
-Hooks | `data()` , `render()`
-Other | 通过装饰器函数 `@Component()` 传递
+| Vue Component | Class                              |
+| ------------- | ---------------------------------- |
+| `data`        | 对应于类属性                       |
+| `methods`     | 直接声明为类原型方法               |
+| `computed`    | 类 getter / setter 属性            |
+| Hooks         | `data()` , `render()`              |
+| Other         | 通过装饰器函数 `@Component()` 传递 |
 
 ```js
 import Vue from 'vue'
@@ -106,7 +106,7 @@ export default class HelloWorld extends Vue {
   // 为避免这种情况，可以取 `null` 值，或使用 `data()` 钩子
   notes = null
 
-  data () {
+  data() {
     return {
       // 这里是响应式的
       title: undefined
@@ -114,27 +114,27 @@ export default class HelloWorld extends Vue {
   }
 
   // 声明计算属性
-  get name () {
+  get name() {
     return `${this.firstName} ${this.lastName}`
   }
-  set name (value) {
+  set name(value) {
     const [first, last] = value.split(' ')
     this.firstName = first
     this.lastName = last || ''
   }
 
   // 声明组件普通方法 methods
-  hello () {
+  hello() {
     console.log('hello world!')
   }
 
   // 声明生命周期钩子 Hooks
-  mounted () {
+  mounted() {
     console.log('mounted.')
   }
 
   // 声明渲染函数
-  render () {
+  render() {
     return <OtherComponent title={this.title} />
   }
 }
@@ -165,7 +165,7 @@ export default class HelloWorld extends Vue {
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-Component.registerHooks ([
+Component.registerHooks([
   // 注册 vue-router 钩子方法
   'beforeRouteEnter',
   'beforeRouteLeave',
@@ -218,7 +218,7 @@ interface CreateDecoratorFactory {
  * @param {function} factory 一个工厂函数
  * @returns {function} 一个装饰器函数
  */
-function createDecorator (factory: CreateDecoratorFactory): VueDecorator {
+function createDecorator(factory: CreateDecoratorFactory): VueDecorator {
   return (target: Vue | typeof Vue, key?: any, index?: any) => {
     // ...
   }
@@ -233,9 +233,9 @@ import { createDecorator } from 'vue-class-component'
 
 export const Log = createDecorator((options, key) => {
   // 所修饰的方法
-  const originalMethod  = options.methods[key]
+  const originalMethod = options.methods[key]
   // 覆盖此方法，并添加逻辑
-  options.methods[key] = function wrapperMethod (...args) {
+  options.methods[key] = function wrapperMethod(...args) {
     // 打印日志
     console.log(`Invoked: ${key}(`, ...args, `)`)
     // 调用原始方法
@@ -257,7 +257,7 @@ class MyComp extends Vue {
     // ...
   }
 
-  test () {
+  test() {
     // 控制台将打印 `Invoked: hello( world )`
     this.hello('world')
   }

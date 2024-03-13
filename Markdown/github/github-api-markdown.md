@@ -15,7 +15,6 @@ POST /markdown
   - `mode` ? - 渲染模式 : `markdown` | `gfm`
   - `context` - 在 gfm 模式中表示创建引用时使用的存储库上下文
 
-
 示例
 
 ```json
@@ -29,12 +28,18 @@ POST /markdown
 响应
 
 ```html
-Status: 200 OK
-Content-Type: text/html
-Content-Length: 121
+Status: 200 OK Content-Type: text/html Content-Length: 121
 X-CommonMarker-Version: 0.17.4
 
-<p>Hello <a href="http://github.com/github/gollum/issues/1" class="issue-link" title="This is another issue">#1</a>!</p>
+<p
+  >Hello
+  <a
+    href="http://github.com/github/gollum/issues/1"
+    class="issue-link"
+    title="This is another issue"
+    >#1</a
+  >!</p
+>
 ```
 
 ## 2️⃣ 在 raw 模式下渲染一个 Markdown 文档
@@ -58,9 +63,7 @@ curl https://api.github.com/markdown/raw -X "POST" -H "Content-Type: text/plain"
 响应
 
 ```html
-Status: 200 OK
-Content-Type: text/html
-Content-Length: 40
+Status: 200 OK Content-Type: text/html Content-Length: 40
 X-CommonMarker-Version: 0.17.4
 
 <p>Hello <strong>world</strong> #1!</p>

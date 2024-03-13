@@ -15,7 +15,6 @@
 
 ---
 
-
 - [Git - The Simple Guide](https://github.com/rogerdudler/git-guide)
   - [git 使用简易指南](http://www.bootcss.com/p/git-guide/)
 - [A Visual Git Reference](https://github.com/MarkLodato/visual-git-guide)
@@ -27,7 +26,4 @@
 - [Git教程 - 廖雪峰的官方网站](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
 - [Git与Repo入门 - OPEN 开发经验库](http://www.open-open.com/lib/view/open1405048177091.html)
 - [Git - 文章 - 伯乐在线](http://blog.jobbole.com/tag/git/)
-- [Git 常用命令速查表(图文+表格)_服务器其它_脚本之家](https://www.jb51.net/article/55442.htm)
-
-
-
+- [Git 常用命令速查表(图文+表格)*服务器其它*脚本之家](https://www.jb51.net/article/55442.htm)

@@ -25,7 +25,7 @@ JSDoc Reference
 必须使用圆括号，即下列格式：
 
 ```js
-/** @type {类型} */ (variable)
+/** @type {类型} */ ;(variable)
 ```
 
 示例：
@@ -70,7 +70,7 @@ var typeAssertedNumber: number = <number>numOrStr
 
 ```ts
 type Prop<T> = {
-    value: T;
+  value: T
 }
 ```
 
@@ -124,7 +124,6 @@ function func(key) {
 function func<K extends string | number>(key: K): void
 ```
 
-
 ## 参考帖子
 
-- [JSDoc支持_TypeScript笔记19 | 黯羽轻扬](http://www.ayqy.net/blog/jsdoc支持_typescript笔记19)
+- [JSDoc支持\_TypeScript笔记19 | 黯羽轻扬](http://www.ayqy.net/blog/jsdoc支持_typescript笔记19)

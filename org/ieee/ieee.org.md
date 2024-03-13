@@ -12,13 +12,11 @@ IEEE 是一个非营利性组织，是世界上最大的技术专业组织，致
 - [IEEE Spectrum](http://spectrum.ieee.org)
 - [More Sites](https://www.ieee.org/sitemap.html)
 
-
 ### 地理活动/国家/地区站点 Geographic Activities/country sites
 
 - IEEE 美国 <https://ieeeusa.org/>
 - IEEE 中国 <http://cn.ieee.org/>
 - IEEE 日本 <https://jp.ieee.org/>
-
 
 ### IEEE 倡议 Initiatives
 

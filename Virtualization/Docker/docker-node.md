@@ -1,8 +1,8 @@
 ---
-name        : docker-node
-recorddate  : 2020-09-10
-repository  : https://github.com/nodejs/docker-node
-website     : https://hub.docker.com/_/node/
+name: docker-node
+recorddate: 2020-09-10
+repository: https://github.com/nodejs/docker-node
+website: https://hub.docker.com/_/node/
 ---
 
 # docker-node
@@ -38,29 +38,29 @@ $ docker build -t my-nodejs-app .
 $ docker run -it -rm --name my-running-app my-nodejs-app
 ```
 
-run 命令选项 | 说明
--|-
-`-i` | 以交互模式运行容器
-`` | 
-`` | 
-`` | 
+| run 命令选项 | 说明               |
+| ------------ | ------------------ |
+| `-i`         | 以交互模式运行容器 |
+| ``           |
+| ``           |
+| ``           |
 
 若你使用 Docker Compose 则编写配置文件：
 
 ```yml
-version: "2"
+version: '2'
 services:
   node:
-    image: "node:12"
-    user: "node"
+    image: 'node:12'
+    user: 'node'
     working_dir: /home/node/app
-    environment: 
+    environment:
       - NODE_ENV=production
     volumes:
       - ./:/home/node/app
     expose:
-      - "8081"
-    command: "yarn run start"
+      - '8081'
+    command: 'yarn run start'
 ```
 
 然后使用 Docker Compose 命令来启动服务：

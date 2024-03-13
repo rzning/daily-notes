@@ -1,12 +1,14 @@
 ---
-title       : "起步 - Touch WX 入门"
-author      : Rzning
-date        : 2018-06-19 16:00:00 +0800
-modified    : 2018-08-05 17:07:00 +0800
+title: '起步 - Touch WX 入门'
+author: Rzning
+date: 2018-06-19 16:00:00 +0800
+modified: 2018-08-05 17:07:00 +0800
 ---
+
 # Touch WX
 
 ### 起步
+
 - ~~<http://www.touchui.io/touchui_doc_wx/quickstart/begin>~~
 - <http://www.wetouch.net/touchwx_doc/quickstart/begin>
 
@@ -18,6 +20,7 @@ modified    : 2018-08-05 17:07:00 +0800
 ---
 
 ## 框架介绍
+
 - [begin/wx]
 
 Touch WX 是一套完全免费的微信小程序开发框架，扩展了小程序的能力。
@@ -36,6 +39,7 @@ Touch WX 是一套完全免费的微信小程序开发框架，扩展了小程�
 扩充的 30 多种组件，完全是基于小程序官方的自定义组件机制实现（row & col 除外）。
 
 ## 环境安装
+
 - [begin/ide]
 
 基本环境：
@@ -52,7 +56,7 @@ Touch WX 是一套完全免费的微信小程序开发框架，扩展了小程�
 
 1. 在 vscode 中安装 Vetur 插件
 
-    Touch WX 基于 Vue 开发，使用 `.wx` 和 `.wxa` 后缀，安装 Vetur 插件实现语法高亮提示。
+   Touch WX 基于 Vue 开发，使用 `.wx` 和 `.wxa` 后缀，安装 Vetur 插件实现语法高亮提示。
 
 2. 在 vscode 中安装 TouchWX 插件
 
@@ -81,6 +85,7 @@ npm update touchui-wx-components
 ```
 
 ## 构建基础工程
+
 - [begin/miniProgram]
 
 1. 新建空目录。
@@ -90,23 +95,27 @@ npm update touchui-wx-components
 3. 输入项目名称。
 
 4. 回车，插件将自动执行以下操作：
-    1. 创建基础工程所需文件；
-    2. 安装项目依赖；
-    3. 编译输出 `dist` 目录。
+
+   1. 创建基础工程所需文件；
+   2. 安装项目依赖；
+   3. 编译输出 `dist` 目录。
 
 5. 使用微信开发者工具新建项目，打开 `dist` 目录。
 
 6. 启动服务：
-    - 在 vscode 中右键菜单 `Touch WX 启动开发服务`，将自动执行 `tui dev` 命令。
+
+   - 在 vscode 中右键菜单 `Touch WX 启动开发服务`，将自动执行 `tui dev` 命令。
 
 7. 新建页面：
-    1. 在 vscode 中对应目录右键菜单 `Touch WX 新建页面`；
-    2. 输入文件夹名称；
-    3. 输入页面标题；
-    4. 回车后生成对应 `.wx` 文件，并自动将页面路径添加到 `app.wxa` 路由配置列表。
+
+   1. 在 vscode 中对应目录右键菜单 `Touch WX 新建页面`；
+   2. 输入文件夹名称；
+   3. 输入页面标题；
+   4. 回车后生成对应 `.wx` 文件，并自动将页面路径添加到 `app.wxa` 路由配置列表。
 
 8. 识别为 Touch WX 工程:
-    - 在 vscode 中右键菜单 `Touch WX 识别为 Touch WX 工程`
+
+   - 在 vscode 中右键菜单 `Touch WX 识别为 Touch WX 工程`
 
 9. 语法高亮：
 
@@ -127,6 +136,7 @@ npm update touchui-wx-components
 ```
 
 10. 安装依赖：
+
     - 在 vscode 中右键菜单 `Touch WX 安装依赖`
 
 11. 导入导出：
@@ -134,6 +144,7 @@ npm update touchui-wx-components
     - `Touch WX 从 TouchUI 工程导入`
 
 ## 常见问题
+
 - [begin/question]
 
 1. 如果提示 `statusBarHeight` 错误，需要将微信开发者工具更新到最新版。
@@ -143,9 +154,7 @@ npm update touchui-wx-components
 5. image 标签导致 VSCode 语法检查，可以使用 `<image/>` 自闭合标签。
 6. 除了 image 组件其他组件尽量都不要写自闭合，否则编译后可能导致代码结构错乱。
 
-
-
-[begin/wx]: <http://www.wetouch.net/touchwx_doc/quickstart/begin/wx>
-[begin/ide]: <http://www.wetouch.net/touchwx_doc/quickstart/begin/ide>
-[begin/miniProgram]: <http://www.wetouch.net/touchwx_doc/quickstart/begin/miniProgram>
-[begin/question]: <http://www.wetouch.net/touchwx_doc/quickstart/begin/question>
+[begin/wx]: http://www.wetouch.net/touchwx_doc/quickstart/begin/wx
+[begin/ide]: http://www.wetouch.net/touchwx_doc/quickstart/begin/ide
+[begin/miniProgram]: http://www.wetouch.net/touchwx_doc/quickstart/begin/miniProgram
+[begin/question]: http://www.wetouch.net/touchwx_doc/quickstart/begin/question

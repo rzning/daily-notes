@@ -1,8 +1,8 @@
 ---
-title       : Create React App
-recorddate  : 2020-03-27
-repository  : https://github.com/facebook/create-react-app
-website     : https://create-react-app.dev/
+title: Create React App
+recorddate: 2020-03-27
+repository: https://github.com/facebook/create-react-app
+website: https://create-react-app.dev/
 ---
 
 # Create React App
@@ -31,8 +31,8 @@ npm start
 
 你可以使用 [nvm] ( macOS/Linux ) 或 [nvm-windows] 在不同项目之间切换 Node 版本。
 
-[nvm]: <https://github.com/creationix/nvm>
-[nvm-windows]: <https://github.com/coreybutler/nvm-windows>
+[nvm]: https://github.com/creationix/nvm
+[nvm-windows]: https://github.com/coreybutler/nvm-windows
 
 你可以选择以下方式之一来创建新应用：
 
@@ -86,11 +86,11 @@ cd my-app
 
 在新创建的项目中，你可以运行一些内置的命令：
 
-命令 | npm | yarn
--|-|-
-启动本地开发服务 | `npm start` | `yarn start`
-以交互模式运行测试监视程序 | `npm test` | `yarn test`
-构建用于生产的应用 | `npm run build` | `yarn build`
+| 命令                       | npm             | yarn         |
+| -------------------------- | --------------- | ------------ |
+| 启动本地开发服务           | `npm start`     | `yarn start` |
+| 以交互模式运行测试监视程序 | `npm test`      | `yarn test`  |
+| 构建用于生产的应用         | `npm run build` | `yarn build` |
 
 ## 🔮 设计哲学
 
@@ -126,14 +126,17 @@ Create React App 非常适合：
 
 - 若需要将 React 与服务器端模板框架（如 Rails, Django 或 Symfony）集成在一起，
   或者你不构建单页面应用，可以考虑使用更加灵活的 [nwb] 或 [Neutrino]
+
   - 对于 Rails 可以使用 [Rails Webpacker](https://github.com/rails/webpacker)
   - 对于 Symfony 可以尝试 [Symfony's webpack Encore](https://symfony.com/doc/current/frontend/encore/reactjs.html)
 
 - 若你需要发布一个 React 组件，可以试一下：
+
   - [nwb's React Components and Libraries](https://github.com/insin/nwb#react-components-and-libraries)
   - [Neutrino's React Components Preset](https://neutrinojs.org/packages/react-components/)
 
 - 若你需要使用 React 和 Node.js 进行服务器端渲染，可参考 [Next.js] 或 [Razzle]
+
   - Create React App 与后台无关，仅生成静态的 HTML/JS/CSS 包
 
 - 若你的网站大部分内容是静态的，可以考虑改用 [Gatsby] ，它在构建时会将网站预先渲染为 HTML
@@ -144,8 +147,8 @@ Create React App 非常适合：
 
 如果你喜欢自己配置构建，请遵循本 [指南](https://zh-hans.reactjs.org/docs/add-react-to-a-website.html) 。
 
-[nwb]: <https://github.com/insin/nwb>
-[Neutrino]: <https://neutrino.js.org/>
-[Next.js]: <https://github.com/zeit/next.js/>
-[Razzle]: <https://github.com/jaredpalmer/razzle>
-[Gatsby]: <https://www.gatsbyjs.org/>
+[nwb]: https://github.com/insin/nwb
+[Neutrino]: https://neutrino.js.org/
+[Next.js]: https://github.com/zeit/next.js/
+[Razzle]: https://github.com/jaredpalmer/razzle
+[Gatsby]: https://www.gatsbyjs.org/

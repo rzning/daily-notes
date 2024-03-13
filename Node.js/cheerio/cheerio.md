@@ -22,9 +22,8 @@ Cheerio 是一个专为服务器设计的，可以快速、灵活、高效的操
 - Cheerio 不会产生可视化渲染，不会应用 CSS ，不会加载外部资源，也不会执行 JavaScript 。
   - 若你的用例需要此类功能，可以考虑使用 [PhantomJS] 或 [JSDom] 之类的项目。
 
-[PhantomJS]: <https://github.com/ariya/phantomjs>
-[JSDom]: <https://github.com/tmpvar/jsdom>
-
+[PhantomJS]: https://github.com/ariya/phantomjs
+[JSDom]: https://github.com/tmpvar/jsdom
 
 ### Installation
 

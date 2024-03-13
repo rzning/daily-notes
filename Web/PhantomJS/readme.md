@@ -1,7 +1,8 @@
 ---
-title       : "PhantomJS - Scriptable Headless Browser"
-date        : 2018-08-12 13:57:00 +0800
+title: 'PhantomJS - Scriptable Headless Browser'
+date: 2018-08-12 13:57:00 +0800
 ---
+
 # PhantomJS
 
 - <http://phantomjs.org/>
@@ -22,7 +23,6 @@ PhantomJS 是一个支持 JavaScript 脚本的 headless 网页浏览器。
 ### Download
 
 - <http://phantomjs.org/download.html>
-
 
 ### Example
 

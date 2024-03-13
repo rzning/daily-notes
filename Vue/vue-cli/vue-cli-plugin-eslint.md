@@ -1,4 +1,1 @@
-@vue/cli-plugin-eslint
-=====================
-
-
+# @vue/cli-plugin-eslint

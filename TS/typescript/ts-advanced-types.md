@@ -749,7 +749,7 @@ let c: Circle = {
 
 > 可辨识联合
 
-你可以结合下列类型来创建一个叫作可便是联合的高级模式。
+你可以结合下列类型来创建一个叫作可辨识联合的高级模式。
 
 - singleton types, union types, type guards, and type aliases
 - 单例类型、联合类型、类型守卫、类型别名
